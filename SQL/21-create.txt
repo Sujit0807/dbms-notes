@@ -1,0 +1,41 @@
+mysql> CREATE TABLE cats (
+    -> cat_id INT NOT NULL AUTO_INCREMENT,
+    -> name VARCHAR(100),
+    -> breed VARCHAR(100),
+    -> age INT,
+    -> PRIMARY KEY (cat_id));
+Query OK, 0 rows affected (1.15 sec)
+
+mysql> desc cats;
++--------+--------------+------+-----+---------+----------------+
+| Field  | Type         | Null | Key | Default | Extra          |
++--------+--------------+------+-----+---------+----------------+
+| cat_id | int          | NO   | PRI | NULL    | auto_increment |
+| name   | varchar(100) | YES  |     | NULL    |                |
+| breed  | varchar(100) | YES  |     | NULL    |                |
+| age    | int          | YES  |     | NULL    |                |
++--------+--------------+------+-----+---------+----------------+
+4 rows in set (0.15 sec)
+
+mysql> INSERT INTO cats(name, breed, age)
+    -> VALUES ('Ringo','Tabby',4),
+    -> ('Cindy','Maine Coon',10),
+    -> ('Dumbledore', 'Maine Coon',11),
+    -> ('Egg', 'Persian', 13),
+    -> ('George Michael', 'Ragdoll', 9),
+    -> ('Jackson', 'Sphynx', 7);
+Query OK, 6 rows affected (0.20 sec)
+Records: 6  Duplicates: 0  Warnings: 0
+
+mysql> SELECT * FROM cats;
++--------+----------------+------------+------+
+| cat_id | name           | breed      | age  |
++--------+----------------+------------+------+
+|      1 | Ringo          | Tabby      |    4 |
+|      2 | Cindy          | Maine Coon |   10 |
+|      3 | Dumbledore     | Maine Coon |   11 |
+|      4 | Egg            | Persian    |   13 |
+|      5 | George Michael | Ragdoll    |    9 |
+|      6 | Jackson        | Sphynx     |    7 |
++--------+----------------+------------+------+
+6 rows in set (0.00 sec)

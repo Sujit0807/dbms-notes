@@ -1,0 +1,33 @@
+// DATATYPES : 
+ 
+i. Numeric Type : 1.INT
+                  2.SMALLINT
+                  3.TINYINT
+                  4.MEDIUMINT
+                  5.BIGINT
+                  6.DECIMAL
+                  7.NUMERIC
+                  8.FLOAT
+                  9.DOUBLE
+                  10.BIT
+
+ii. String Type : 1.CHAR    - fixed length string
+                  2.VARCHAR - variable-length string
+                  3.BINARY
+                  4.VARBINART
+                  5.BLOB
+                  6.TINYBLOB
+                  7.MEDIUMBLOB
+                  8.LONGBLOB
+                  9.TEXT
+                  10.TINYTEXT
+                  11.MEDIUMTEXT
+                  12.LONGTEXT
+                  13.ENUM
+
+iii. Date Types : 1.Date  
+                  2.DATETIME
+                  3.TIMESTAMP
+                  4.TIME
+                  5.YEAR
+

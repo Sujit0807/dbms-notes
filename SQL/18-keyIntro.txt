@@ -1,0 +1,54 @@
+mysql> CREATE TABLE unique_cats(cat_id INT NOT NULL,
+    -> name VARCHAR(100)
+    -> age INT,
+    -> PRIMARY KEY (cat_id));
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'age INT,
+PRIMARY KEY (cat_id))' at line 3
+mysql> CREATE TABLE unique_cats(cat_id INT NOT NULL,
+    -> name VARCHAR(100),
+    -> age INT,
+    -> PRIMARY KEY (cat_id));
+Query OK, 0 rows affected (1.72 sec)
+
+mysql> DESC unique_cats;
++--------+--------------+------+-----+---------+-------+
+| Field  | Type         | Null | Key | Default | Extra |
++--------+--------------+------+-----+---------+-------+
+| cat_id | int          | NO   | PRI | NULL    |       |
+| name   | varchar(100) | YES  |     | NULL    |       |
+| age    | int          | YES  |     | NULL    |       |
++--------+--------------+------+-----+---------+-------+
+3 rows in set (0.05 sec)
+
+mysql> INSERT INTO unique_cats(cat_id, name, age)
+    -> VALUES(1, 'FRED', 2);
+Query OK, 1 row affected (0.11 sec)
+
+mysql> SELECT * FROM unique_cats;
++--------+------+------+
+| cat_id | name | age  |
++--------+------+------+
+|      1 | FRED |    2 |
++--------+------+------+
+1 row in set (0.00 sec)
+
+mysql> INSERT INTO unique_cats(cat_id, name, age)
+    ->     -> VALUES(2, 'Dog', 4);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '-> VALUES(2, 'Dog', 4)' at line 2
+mysql> INSERT INTO unique_cats(cat_id, name, age)
+    -> VALUES(2, 'Anjali', 20);
+Query OK, 1 row affected (0.21 sec)
+
+mysql> SELECT * FROM unique_cats;
++--------+--------+------+
+| cat_id | name   | age  |
++--------+--------+------+
+|      1 | FRED   |    2 |
+|      2 | Anjali |   20 |
++--------+--------+------+
+2 rows in set (0.00 sec)
+
+mysql> INSERT INTO unique_cats(cat_id, name, age)
+    -> VALUES (1, 'Kirti', 19);
+ERROR 1062 (23000): Duplicate entry '1' for key 'unique_cats.PRIMARY'
+mysql>

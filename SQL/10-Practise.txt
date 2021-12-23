@@ -1,0 +1,52 @@
+mysql> CREATE DATABASE sujit;
+Query OK, 1 row affected (0.17 sec)
+
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| mysql              |
+| performance_schema |
+| sujit              |
+| sys                |
++--------------------+
+5 rows in set (0.09 sec)
+
+mysql> USE sujit;
+Database changed
+mysql> SELECT database();
++------------+
+| database() |
++------------+
+| sujit      |
++------------+
+1 row in set (0.00 sec)
+
+mysql> CREATE TABLE pastries (
+    -> name varchar(50),
+    -> quantity int,
+    -> );
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ')' at line 4
+mysql> CREATE TABLE pastries (
+    -> name varchar(50),
+    -> quantity int,
+    -> );
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ')' at line 4
+mysql>
+mysql> CREATE TABLE pastries (
+    -> name varchar(50),
+    -> quantity int
+    -> );
+Query OK, 0 rows affected (1.24 sec)
+
+mysql> SHOW COLUMN FROM sujit;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'COLUMN FROM sujit' at line 1
+mysql> SHOW COLUMNS FROM pastries;
++----------+-------------+------+-----+---------+-------+
+| Field    | Type        | Null | Key | Default | Extra |
++----------+-------------+------+-----+---------+-------+
+| name     | varchar(50) | YES  |     | NULL    |       |
+| quantity | int         | YES  |     | NULL    |       |
++----------+-------------+------+-----+---------+-------+
+2 rows in set (0.26 sec)

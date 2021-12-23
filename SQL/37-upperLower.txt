@@ -1,0 +1,92 @@
+mysql> SELECT UPPER('Hello World');
++----------------------+
+| UPPER('Hello World') |
++----------------------+
+| HELLO WORLD          |
++----------------------+
+1 row in set (0.12 sec)
+
+mysql> SELECT LOWER('Hello World');
++----------------------+
+| LOWER('Hello World') |
++----------------------+
+| hello world          |
++----------------------+
+1 row in set (0.00 sec)
+
+mysql>
+mysql>
+mysql>
+mysql>
+mysql> SELECT UPPER(title) FROM books;
++-----------------------------------------------------+
+| UPPER(title)                                        |
++-----------------------------------------------------+
+| THE NAMESAKE                                        |
+| NORSE MYTHOLOGY                                     |
+| AMERICAN GODS                                       |
+| INTERPRETER OF MALADIES                             |
+| A HOLOGRAM FOR THE KING: A NOVEL                    |
+| THE CIRCLE                                          |
+| THE AMAZING ADVENTURES OF KAVALIER & CLAY           |
+| JUST KIDS                                           |
+| A HEARTBREAKING WORK OF STAGGERING GENIUS           |
+| CORALINE                                            |
+| WHAT WE TALK ABOUT WHEN WE TALK ABOUT LOVE: STORIES |
+| WHERE I'M CALLING FROM: SELECTED STORIES            |
+| WHITE NOISE                                         |
+| CANNERY ROW                                         |
+| OBLIVION: STORIES                                   |
+| CONSIDER THE LOBSTER                                |
++-----------------------------------------------------+
+16 rows in set (0.03 sec)
+
+mysql> SELECT UPPER(CONCAT('My Favourite Book is ', title)) AS Statement;
+ERROR 1054 (42S22): Unknown column 'title' in 'field list'
+mysql> SELECT UPPER(CONCAT('My Favourite Book is ', title)) AS Statement FROM books;
++--------------------------------------------------------------------------+
+| Statement                                                                |
++--------------------------------------------------------------------------+
+| MY FAVOURITE BOOK IS THE NAMESAKE                                        |
+| MY FAVOURITE BOOK IS NORSE MYTHOLOGY                                     |
+| MY FAVOURITE BOOK IS AMERICAN GODS                                       |
+| MY FAVOURITE BOOK IS INTERPRETER OF MALADIES                             |
+| MY FAVOURITE BOOK IS A HOLOGRAM FOR THE KING: A NOVEL                    |
+| MY FAVOURITE BOOK IS THE CIRCLE                                          |
+| MY FAVOURITE BOOK IS THE AMAZING ADVENTURES OF KAVALIER & CLAY           |
+| MY FAVOURITE BOOK IS JUST KIDS                                           |
+| MY FAVOURITE BOOK IS A HEARTBREAKING WORK OF STAGGERING GENIUS           |
+| MY FAVOURITE BOOK IS CORALINE                                            |
+| MY FAVOURITE BOOK IS WHAT WE TALK ABOUT WHEN WE TALK ABOUT LOVE: STORIES |
+| MY FAVOURITE BOOK IS WHERE I'M CALLING FROM: SELECTED STORIES            |
+| MY FAVOURITE BOOK IS WHITE NOISE                                         |
+| MY FAVOURITE BOOK IS CANNERY ROW                                         |
+| MY FAVOURITE BOOK IS OBLIVION: STORIES                                   |
+| MY FAVOURITE BOOK IS CONSIDER THE LOBSTER                                |
++--------------------------------------------------------------------------+
+16 rows in set (0.00 sec)
+
+mysql> SELECT LOWER(CONCAT('My Favourite Book is ', title)) AS Statement FROM books;
++--------------------------------------------------------------------------+
+| Statement                                                                |
++--------------------------------------------------------------------------+
+| my favourite book is the namesake                                        |
+| my favourite book is norse mythology                                     |
+| my favourite book is american gods                                       |
+| my favourite book is interpreter of maladies                             |
+| my favourite book is a hologram for the king: a novel                    |
+| my favourite book is the circle                                          |
+| my favourite book is the amazing adventures of kavalier & clay           |
+| my favourite book is just kids                                           |
+| my favourite book is a heartbreaking work of staggering genius           |
+| my favourite book is coraline                                            |
+| my favourite book is what we talk about when we talk about love: stories |
+| my favourite book is where i'm calling from: selected stories            |
+| my favourite book is white noise                                         |
+| my favourite book is cannery row                                         |
+| my favourite book is oblivion: stories                                   |
+| my favourite book is consider the lobster                                |
++--------------------------------------------------------------------------+
+16 rows in set (0.00 sec)
+
+mysql>

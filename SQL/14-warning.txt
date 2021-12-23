@@ -1,0 +1,38 @@
+mysql> DESC cats;
++-------+-------------+------+-----+---------+-------+
+| Field | Type        | Null | Key | Default | Extra |
++-------+-------------+------+-----+---------+-------+
+| name  | varchar(50) | YES  |     | NULL    |       |
+| age   | int         | YES  |     | NULL    |       |
++-------+-------------+------+-----+---------+-------+
+2 rows in set (0.13 sec)
+
+mysql> INSERT INTO cats(name, age)
+    -> VALUES ('This cat is named
+    '> Charlie which is also a
+    '> human name. In fact I know
+    '> a couple of Charlies. Fun Fact',
+    -> 10);
+ERROR 1406 (22001): Data too long for column 'name' at row 1
+mysql> SHOW WARNINGS;
++-------+------+------------------------------------------+
+| Level | Code | Message                                  |
++-------+------+------------------------------------------+
+| Error | 1406 | Data too long for column 'name' at row 1 |
++-------+------+------------------------------------------+
+1 row in set (0.02 sec)
+
+mysql> SELECT * FROM cats;
++-----------+------+
+| name      | age  |
++-----------+------+
+| Blue      |    1 |
+| Draco     |   11 |
+| Charlie   |   10 |
+| Sadie     |    3 |
+| Lazy Bear |    1 |
+| ROCKY     |    5 |
++-----------+------+
+6 rows in set (0.03 sec)
+
+mysql>

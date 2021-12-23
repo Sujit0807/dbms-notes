@@ -1,0 +1,65 @@
+mysql> SELECT * FROM cats;
++--------+----------------+------------+------+
+| cat_id | name           | breed      | age  |
++--------+----------------+------------+------+
+|      1 | Ringo          | Tabby      |    4 |
+|      2 | Cindy          | Maine Coon |   10 |
+|      3 | Dumbledore     | Maine Coon |   11 |
+|      4 | Egg            | Persian    |    1 |
+|      5 | George Michael | Maine Coon |    9 |
+|      6 | Jackson        | Sphynx     |    7 |
++--------+----------------+------------+------+
+6 rows in set (0.00 sec)
+
+mysql> UPDATE cats SET name = 'Jack' WHERE name = 'Jackson';
+Query OK, 1 row affected (0.31 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> SELECT * FROM cats;
++--------+----------------+------------+------+
+| cat_id | name           | breed      | age  |
++--------+----------------+------------+------+
+|      1 | Ringo          | Tabby      |    4 |
+|      2 | Cindy          | Maine Coon |   10 |
+|      3 | Dumbledore     | Maine Coon |   11 |
+|      4 | Egg            | Persian    |    1 |
+|      5 | George Michael | Maine Coon |    9 |
+|      6 | Jack           | Sphynx     |    7 |
++--------+----------------+------------+------+
+6 rows in set (0.02 sec)
+
+mysql> UPDATE cats SET breed = 'British Shorthair' WHERE name = 'Ringo';
+Query OK, 1 row affected (0.12 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> SELECT * FROM cats;
++--------+----------------+-------------------+------+
+| cat_id | name           | breed             | age  |
++--------+----------------+-------------------+------+
+|      1 | Ringo          | British Shorthair |    4 |
+|      2 | Cindy          | Maine Coon        |   10 |
+|      3 | Dumbledore     | Maine Coon        |   11 |
+|      4 | Egg            | Persian           |    1 |
+|      5 | George Michael | Maine Coon        |    9 |
+|      6 | Jack           | Sphynx            |    7 |
++--------+----------------+-------------------+------+
+6 rows in set (0.00 sec)
+
+mysql> UPDATE cats SET age = 12 WHERE breed = 'Maine Coon';
+Query OK, 3 rows affected (0.17 sec)
+Rows matched: 3  Changed: 3  Warnings: 0
+
+mysql> SELECT * FROM cats;
++--------+----------------+-------------------+------+
+| cat_id | name           | breed             | age  |
++--------+----------------+-------------------+------+
+|      1 | Ringo          | British Shorthair |    4 |
+|      2 | Cindy          | Maine Coon        |   12 |
+|      3 | Dumbledore     | Maine Coon        |   12 |
+|      4 | Egg            | Persian           |    1 |
+|      5 | George Michael | Maine Coon        |   12 |
+|      6 | Jack           | Sphynx            |    7 |
++--------+----------------+-------------------+------+
+6 rows in set (0.00 sec)
+
+mysql>

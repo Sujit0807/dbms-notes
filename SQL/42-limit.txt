@@ -1,0 +1,188 @@
+mysql> SELECT title FROM books LIMIT 3;
++-----------------+
+| title           |
++-----------------+
+| The Namesake    |
+| Norse Mythology |
+| American Gods   |
++-----------------+
+3 rows in set (0.00 sec)
+
+mysql> SELECT title FROM books ORDER BY 1 LIMIT 3;
++-------------------------------------------+
+| title                                     |
++-------------------------------------------+
+| 10% Happier                               |
+| A Heartbreaking Work of Staggering Genius |
+| A Hologram for the King: A Novel          |
++-------------------------------------------+
+3 rows in set (0.02 sec)
+
+mysql> SELECT released_year FROM books ORDER BY 1 LIMIT 3;
++---------------+
+| released_year |
++---------------+
+|          1945 |
+|          1981 |
+|          1985 |
++---------------+
+3 rows in set (0.00 sec)
+
+mysql> SELECT released_year FROM books ORDER BY 1 LIMIT 10;
++---------------+
+| released_year |
++---------------+
+|          1945 |
+|          1981 |
+|          1985 |
+|          1989 |
+|          1996 |
+|          2000 |
+|          2001 |
+|          2001 |
+|          2001 |
+|          2003 |
++---------------+
+10 rows in set (0.00 sec)
+
+mysql> SELECT title, released_year FROM books ORDER BY 2 LIMIT 10;
++-----------------------------------------------------+---------------+
+| title                                               | released_year |
++-----------------------------------------------------+---------------+
+| Cannery Row                                         |          1945 |
+| What We Talk About When We Talk About Love: Stories |          1981 |
+| White Noise                                         |          1985 |
+| Where I'm Calling From: Selected Stories            |          1989 |
+| Interpreter of Maladies                             |          1996 |
+| The Amazing Adventures of Kavalier & Clay           |          2000 |
+| American Gods                                       |          2001 |
+| A Heartbreaking Work of Staggering Genius           |          2001 |
+| fake_book                                           |          2001 |
+| The Namesake                                        |          2003 |
++-----------------------------------------------------+---------------+
+10 rows in set (0.00 sec)
+
+mysql> SELECT title, released_year FROM books ORDER BY 2 DESC LIMIT 10;
++----------------------------------+---------------+
+| title                            | released_year |
++----------------------------------+---------------+
+| Lincoln In The Bardo             |          2017 |
+| Norse Mythology                  |          2016 |
+| 10% Happier                      |          2014 |
+| The Circle                       |          2013 |
+| A Hologram for the King: A Novel |          2012 |
+| Just Kids                        |          2010 |
+| Consider the Lobster             |          2005 |
+| Oblivion: Stories                |          2004 |
+| The Namesake                     |          2003 |
+| Coraline                         |          2003 |
++----------------------------------+---------------+
+10 rows in set (0.00 sec)
+
+mysql> SELECT title, released_year FROM books ORDER BY 2 DESC LIMIT 5;
++----------------------------------+---------------+
+| title                            | released_year |
++----------------------------------+---------------+
+| Lincoln In The Bardo             |          2017 |
+| Norse Mythology                  |          2016 |
+| 10% Happier                      |          2014 |
+| The Circle                       |          2013 |
+| A Hologram for the King: A Novel |          2012 |
++----------------------------------+---------------+
+5 rows in set (0.00 sec)
+
+mysql> SELECT title, released_year FROM books LIMIT 5;
++----------------------------------+---------------+
+| title                            | released_year |
++----------------------------------+---------------+
+| The Namesake                     |          2003 |
+| Norse Mythology                  |          2016 |
+| American Gods                    |          2001 |
+| Interpreter of Maladies          |          1996 |
+| A Hologram for the King: A Novel |          2012 |
++----------------------------------+---------------+
+5 rows in set (0.00 sec)
+
+mysql> SELECT title, released_year FROM books ORDER BY released_year LIMIT 5;
++-----------------------------------------------------+---------------+
+| title                                               | released_year |
++-----------------------------------------------------+---------------+
+| Cannery Row                                         |          1945 |
+| What We Talk About When We Talk About Love: Stories |          1981 |
+| White Noise                                         |          1985 |
+| Where I'm Calling From: Selected Stories            |          1989 |
+| Interpreter of Maladies                             |          1996 |
++-----------------------------------------------------+---------------+
+5 rows in set (0.00 sec)
+
+mysql> SELECT title, released_year FROM books ORDER BY released_year LIMIT 0,  5;
++-----------------------------------------------------+---------------+
+| title                                               | released_year |
++-----------------------------------------------------+---------------+
+| Cannery Row                                         |          1945 |
+| What We Talk About When We Talk About Love: Stories |          1981 |
+| White Noise                                         |          1985 |
+| Where I'm Calling From: Selected Stories            |          1989 |
+| Interpreter of Maladies                             |          1996 |
++-----------------------------------------------------+---------------+
+5 rows in set (0.00 sec)
+
+mysql> SELECT title, released_year FROM books ORDER BY released_year LIMIT 1,  5;
++-----------------------------------------------------+---------------+
+| title                                               | released_year |
++-----------------------------------------------------+---------------+
+| What We Talk About When We Talk About Love: Stories |          1981 |
+| White Noise                                         |          1985 |
+| Where I'm Calling From: Selected Stories            |          1989 |
+| Interpreter of Maladies                             |          1996 |
+| The Amazing Adventures of Kavalier & Clay           |          2000 |
++-----------------------------------------------------+---------------+
+5 rows in set (0.00 sec)
+
+mysql> SELECT title, released_year FROM books ORDER BY released_year LIMIT 2,  5;
++-------------------------------------------+---------------+
+| title                                     | released_year |
++-------------------------------------------+---------------+
+| White Noise                               |          1985 |
+| Where I'm Calling From: Selected Stories  |          1989 |
+| Interpreter of Maladies                   |          1996 |
+| The Amazing Adventures of Kavalier & Clay |          2000 |
+| American Gods                             |          2001 |
++-------------------------------------------+---------------+
+5 rows in set (0.00 sec)
+
+mysql> SELECT title, released_year FROM books ORDER BY released_year LIMIT 10,  1;
++----------+---------------+
+| title    | released_year |
++----------+---------------+
+| Coraline |          2003 |
++----------+---------------+
+1 row in set (0.00 sec)
+
+mysql> SELECT title, released_year FROM books LIMIT 0, 12364654654654654;
++-----------------------------------------------------+---------------+
+| title                                               | released_year |
++-----------------------------------------------------+---------------+
+| The Namesake                                        |          2003 |
+| Norse Mythology                                     |          2016 |
+| American Gods                                       |          2001 |
+| Interpreter of Maladies                             |          1996 |
+| A Hologram for the King: A Novel                    |          2012 |
+| The Circle                                          |          2013 |
+| The Amazing Adventures of Kavalier & Clay           |          2000 |
+| Just Kids                                           |          2010 |
+| A Heartbreaking Work of Staggering Genius           |          2001 |
+| Coraline                                            |          2003 |
+| What We Talk About When We Talk About Love: Stories |          1981 |
+| Where I'm Calling From: Selected Stories            |          1989 |
+| White Noise                                         |          1985 |
+| Cannery Row                                         |          1945 |
+| Oblivion: Stories                                   |          2004 |
+| Consider the Lobster                                |          2005 |
+| 10% Happier                                         |          2014 |
+| fake_book                                           |          2001 |
+| Lincoln In The Bardo                                |          2017 |
++-----------------------------------------------------+---------------+
+19 rows in set (0.00 sec)
+
+mysql>

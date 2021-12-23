@@ -1,0 +1,41 @@
+// Easier to read results
+
+mysql> SELECT cat_id, name FROM cats;
++--------+----------------+
+| cat_id | name           |
++--------+----------------+
+|      1 | Ringo          |
+|      2 | Cindy          |
+|      3 | Dumbledore     |
+|      4 | Egg            |
+|      5 | George Michael |
+|      6 | Jackson        |
++--------+----------------+
+6 rows in set (0.00 sec)
+
+mysql> SELECT cat_id AS id, name FROM cats;
++----+----------------+
+| id | name           |
++----+----------------+
+|  1 | Ringo          |
+|  2 | Cindy          |
+|  3 | Dumbledore     |
+|  4 | Egg            |
+|  5 | George Michael |
+|  6 | Jackson        |
++----+----------------+
+6 rows in set (0.00 sec)
+
+mysql> SELECT cat_id AS id, name AS 'cat name', breed AS 'kitty breed' FROM cats;
++----+----------------+-------------+
+| id | cat name       | kitty breed |
++----+----------------+-------------+
+|  1 | Ringo          | Tabby       |
+|  2 | Cindy          | Maine Coon  |
+|  3 | Dumbledore     | Maine Coon  |
+|  4 | Egg            | Persian     |
+|  5 | George Michael | Ragdoll     |
+|  6 | Jackson        | Sphynx      |
++----+----------------+-------------+
+6 rows in set (0.00 sec)
+

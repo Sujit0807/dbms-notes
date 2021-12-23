@@ -1,0 +1,137 @@
+mysql> DESC cats;
++-------+-------------+------+-----+---------+-------+
+| Field | Type        | Null | Key | Default | Extra |
++-------+-------------+------+-----+---------+-------+
+| name  | varchar(50) | YES  |     | NULL    |       |
+| age   | int         | YES  |     | NULL    |       |
++-------+-------------+------+-----+---------+-------+
+2 rows in set (0.15 sec)
+
+mysql> INSERT INTO cats(age, name) VALUES(11, 'Draco');
+Query OK, 1 row affected (0.11 sec)
+
+mysql> SELECT * FROM cats;
++-------+------+
+| name  | age  |
++-------+------+
+| Blue  |    1 |
+| Draco |   11 |
++-------+------+
+2 rows in set (0.14 sec)
+
+mysql> INSET INTO cats(name, age)
+    -> VALUES ('Charlie', 10),
+    -> ('Sadie', 3),
+    -> ('Lazy Bear', 1);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'INSET INTO cats(name, age)
+VALUES ('Charlie', 10),
+('Sadie', 3),
+('Lazy Bear', 1' at line 1
+mysql> INSERT INTO cats(name, age)
+    -> VALUES ('Charlie', 10),
+    -> ('Sadie', 3),
+    -> ('Lazy Bear', 1);
+Query OK, 3 rows affected (0.16 sec)
+Records: 3  Duplicates: 0  Warnings: 0
+
+mysql> SELECT * FROM cats;
++-----------+------+
+| name      | age  |
++-----------+------+
+| Blue      |    1 |
+| Draco     |   11 |
+| Charlie   |   10 |
+| Sadie     |    3 |
+| Lazy Bear |    1 |
++-----------+------+
+5 rows in set (0.02 sec)
+
+mysql> INSERT INTO CATS(age, name)
+    -> VALUES ('Peanut',5);
+ERROR 1366 (HY000): Incorrect integer value: 'Peanut' for column 'age' at row 1
+mysql> INSERT INTO CATS(age, name)
+    -> VALUES (5,'Rocky);
+    '> ^C
+mysql> INSERT INTO CATS(age, name)
+    -> VALUES (5, 'ROCKY');
+Query OK, 1 row affected (0.08 sec)
+
+mysql> SELEct * FROM cats;
++-----------+------+
+| name      | age  |
++-----------+------+
+| Blue      |    1 |
+| Draco     |   11 |
+| Charlie   |   10 |
+| Sadie     |    3 |
+| Lazy Bear |    1 |
+| ROCKY     |    5 |
++-----------+------+
+6 rows in set (0.02 sec)
+
+mysql> CREATE TABLE Peoples
+    -> (first_name VARCHAR(20),
+    -> last_name VARCHAR(20),
+    -> age INT);
+Query OK, 0 rows affected (0.72 sec)
+
+mysql> show tables;
++-----------------+
+| Tables_in_sujit |
++-----------------+
+| cats            |
+| peoples         |
++-----------------+
+2 rows in set (0.02 sec)
+
+mysql> SELECT * peoples;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'peoples' at line 1
+mysql> SELECT * FROM peoples;
+Empty set (0.05 sec)
+
+mysql> INSERT INTO peoples
+    -> (first_name, last_name, age)
+    -> VALUES ('Tina', 'Belch', 13);
+Query OK, 1 row affected (0.15 sec)
+
+mysql> SELECT * FROM peoples;
++------------+-----------+------+
+| first_name | last_name | age  |
++------------+-----------+------+
+| Tina       | Belch     |   13 |
++------------+-----------+------+
+1 row in set (0.10 sec)
+
+mysql> INSERT INTO peoples(first_name, last_name, age)
+    -> VALUES ('Bob', 'Belcher', 42);
+Query OK, 1 row affected (0.11 sec)
+
+mysql> SELECT * FROM peoples;
++------------+-----------+------+
+| first_name | last_name | age  |
++------------+-----------+------+
+| Tina       | Belch     |   13 |
+| Bob        | Belcher   |   42 |
++------------+-----------+------+
+2 rows in set (0.00 sec)
+
+mysql> INSERT INTO peoples(last_name, first_name, age)
+    -> VALUES ('Belcher', 'Linda', 45)
+    -> ,('Frond', 'Phillip', 38),
+    -> ('Fischoeder', 'Calvin', 70);
+Query OK, 3 rows affected (0.15 sec)
+Records: 3  Duplicates: 0  Warnings: 0
+
+mysql> SELECT * FROM peoples;
++------------+------------+------+
+| first_name | last_name  | age  |
++------------+------------+------+
+| Tina       | Belch      |   13 |
+| Bob        | Belcher    |   42 |
+| Linda      | Belcher    |   45 |
+| Phillip    | Frond      |   38 |
+| Calvin     | Fischoeder |   70 |
++------------+------------+------+
+5 rows in set (0.01 sec)
+
+mysql>

@@ -1,0 +1,78 @@
+mysql> SELECT CHAR_LENGTH('Hello World');
++----------------------------+
+| CHAR_LENGTH('Hello World') |
++----------------------------+
+|                         11 |
++----------------------------+
+1 row in set (0.12 sec)
+
+mysql> SELECT author_fname, CHAR_LENGTH(author_fname) AS Length FROM books;
++--------------+--------+
+| author_fname | Length |
++--------------+--------+
+| Jhumpa       |      6 |
+| Neil         |      4 |
+| Neil         |      4 |
+| Jhumpa       |      6 |
+| Dave         |      4 |
+| Dave         |      4 |
+| Michael      |      7 |
+| Patti        |      5 |
+| Dave         |      4 |
+| Neil         |      4 |
+| Raymond      |      7 |
+| Raymond      |      7 |
+| Don          |      3 |
+| John         |      4 |
+| David        |      5 |
+| David        |      5 |
++--------------+--------+
+16 rows in set (0.00 sec)
+
+mysql> SELECT CONCAT(author_lname, ' is ', CHAR_LENGTH(author_lname), 'characters long') AS Statement FROM books;
++-------------------------------------+
+| Statement                           |
++-------------------------------------+
+| Lahiri is 6characters long          |
+| Gaiman is 6characters long          |
+| Gaiman is 6characters long          |
+| Lahiri is 6characters long          |
+| Eggers is 6characters long          |
+| Eggers is 6characters long          |
+| Chabon is 6characters long          |
+| Smith is 5characters long           |
+| Eggers is 6characters long          |
+| Gaiman is 6characters long          |
+| Carver is 6characters long          |
+| Carver is 6characters long          |
+| DeLillo is 7characters long         |
+| Steinbeck is 9characters long       |
+| Foster Wallace is 14characters long |
+| Foster Wallace is 14characters long |
++-------------------------------------+
+16 rows in set (0.00 sec)
+
+mysql> SELECT CONCAT(author_lname, ' is ', CHAR_LENGTH(author_lname), ' characters long') AS Statement FROM books;
++--------------------------------------+
+| Statement                            |
++--------------------------------------+
+| Lahiri is 6 characters long          |
+| Gaiman is 6 characters long          |
+| Gaiman is 6 characters long          |
+| Lahiri is 6 characters long          |
+| Eggers is 6 characters long          |
+| Eggers is 6 characters long          |
+| Chabon is 6 characters long          |
+| Smith is 5 characters long           |
+| Eggers is 6 characters long          |
+| Gaiman is 6 characters long          |
+| Carver is 6 characters long          |
+| Carver is 6 characters long          |
+| DeLillo is 7 characters long         |
+| Steinbeck is 9 characters long       |
+| Foster Wallace is 14 characters long |
+| Foster Wallace is 14 characters long |
++--------------------------------------+
+16 rows in set (0.00 sec)
+
+mysql>

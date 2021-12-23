@@ -1,0 +1,31 @@
+mysql> SELECT * FROM cats;
++--------+----------------+-------------------+------+
+| cat_id | name           | breed             | age  |
++--------+----------------+-------------------+------+
+|      1 | Ringo          | British Shorthair |    4 |
+|      2 | Cindy          | Maine Coon        |   12 |
+|      3 | Dumbledore     | Maine Coon        |   12 |
+|      5 | George Michael | Maine Coon        |   12 |
+|      6 | Jack           | Sphynx            |    7 |
++--------+----------------+-------------------+------+
+5 rows in set (0.00 sec)
+
+mysql> DELETE FROM cats WHERE age = 12;
+Query OK, 3 rows affected (0.14 sec)
+
+mysql> SELECT * FROM cats;
++--------+-------+-------------------+------+
+| cat_id | name  | breed             | age  |
++--------+-------+-------------------+------+
+|      1 | Ringo | British Shorthair |    4 |
+|      6 | Jack  | Sphynx            |    7 |
++--------+-------+-------------------+------+
+2 rows in set (0.01 sec)
+
+mysql> DELETE FROM cats;
+Query OK, 2 rows affected (0.26 sec)
+
+mysql> SELECT * FROM cats;
+Empty set (0.00 sec)
+
+mysql>

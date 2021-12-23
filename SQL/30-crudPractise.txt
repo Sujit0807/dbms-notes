@@ -1,0 +1,343 @@
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| mysql              |
+| performance_schema |
+| sujit              |
+| sys                |
++--------------------+
+5 rows in set (2.68 sec)
+
+mysql> CREATE DATABASE shirt_db;
+Query OK, 1 row affected (0.75 sec)
+
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| mysql              |
+| performance_schema |
+| shirt_db           |
+| sujit              |
+| sys                |
++--------------------+
+6 rows in set (0.05 sec)
+
+mysql> USE shirt_db;
+Database changed
+mysql> SELECT database();
++------------+
+| database() |
++------------+
+| shirt_db   |
++------------+
+1 row in set (0.00 sec)
+
+mysql> CREATE TABLE shirts(shirt_id INT NOT NULL AUTO_INCREMENT,
+    -> article VARCHAR(50),
+    -> color VARCHAR(50),
+    -> shirt_size VARCHAR(1),
+    -> last_worn INT);
+ERROR 1075 (42000): Incorrect table definition; there can be only one auto column and it must be defined as a key
+mysql> CREATE TABLE shirts(shirt_id INT NOT NULL AUTO_INCREMENT,
+    -> article VARCHAR(50),
+    -> color VARCHAR(50),
+    -> shirt_size VARCHAR(1),
+    -> last_worn INT,
+    -> PRIMARY KEY(shirt_id));
+Query OK, 0 rows affected (3.23 sec)
+
+mysql> SHOW TABLE cats;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'cats' at line 1
+mysql> SELECT * FROM cats;
+ERROR 1146 (42S02): Table 'shirt_db.cats' doesn't exist
+mysql> SELECT * FROM shirts;
+Empty set (0.48 sec)
+
+mysql> show cats;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'cats' at line 1
+mysql> SHOW COLUMNS FROM shirts;
++------------+-------------+------+-----+---------+----------------+
+| Field      | Type        | Null | Key | Default | Extra          |
++------------+-------------+------+-----+---------+----------------+
+| shirt_id   | int         | NO   | PRI | NULL    | auto_increment |
+| article    | varchar(50) | YES  |     | NULL    |                |
+| color      | varchar(50) | YES  |     | NULL    |                |
+| shirt_size | varchar(1)  | YES  |     | NULL    |                |
+| last_worn  | int         | YES  |     | NULL    |                |
++------------+-------------+------+-----+---------+----------------+
+5 rows in set (0.15 sec)
+
+mysql> DESC shirts;
++------------+-------------+------+-----+---------+----------------+
+| Field      | Type        | Null | Key | Default | Extra          |
++------------+-------------+------+-----+---------+----------------+
+| shirt_id   | int         | NO   | PRI | NULL    | auto_increment |
+| article    | varchar(50) | YES  |     | NULL    |                |
+| color      | varchar(50) | YES  |     | NULL    |                |
+| shirt_size | varchar(1)  | YES  |     | NULL    |                |
+| last_worn  | int         | YES  |     | NULL    |                |
++------------+-------------+------+-----+---------+----------------+
+5 rows in set (0.00 sec)
+
+mysql> INSER INTO shirts(article,color,shirt_size,last_worn),
+    -> VALUES ('t-shirt', 'white', 'S', 10),
+    -> ('t-shirt', 'green', 'S', 200),
+    -> ('polo shirt', 'black', 'M', 10),
+    -> ('tank top', 'blue', 'S', 50),
+    -> ('t-shirt', 'pink', 'S', 0),
+    -> ('polo shirt', 'red', 'M', 5),
+    -> ('tank top', 'white', 'S', 200),
+    -> ('tank top', 'blue', 'M', 15);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'INSER INTO shirts(article,color,shirt_size,last_worn),
+VALUES ('t-shirt', 'white' at line 1
+mysql> INSERT INTO shirts(article,color,shirt_size,last_worn),
+    -> VALUES ('t-shirt', 'white', 'S', 10),
+    -> ('t-shirt', 'green', 'S', 200),
+    -> ('polo shirt', 'black', 'M', 10),
+    -> ('tank top', 'blue', 'S', 50),
+    -> ('t-shirt', 'pink', 'S', 0),
+    -> ('tank top', 'white', 'S', 200),
+    -> ('tank top', 'blue', 'M', 15);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ',
+VALUES ('t-shirt', 'white', 'S', 10),
+('t-shirt', 'green', 'S', 200),
+('polo s' at line 1
+mysql> INSERT INTO shirts(article,color,shirt_size,last_worn),
+    -> VALUES ('t-shirt', 'white', 'S', 10),^C
+mysql> INSERT INTO shirts(article,color,shirt_size,last_worn)
+    -> VALUES ('t-shirt', 'white', 'S', 10),
+    -> ('t-shirt', 'green', 'S', 200),
+    -> ('polo shirt', 'black', 'M', 10),
+    -> ('tank top', 'blue', 'S', 50),
+    -> ('t-shirt', 'pink', 'S', 0),
+    -> ('tank top', 'white', 'S', 200),
+    -> ('tank top', 'blue', 'M', 15);
+Query OK, 7 rows affected (0.22 sec)
+Records: 7  Duplicates: 0  Warnings: 0
+
+mysql> SELECT * FROM shirts;
++----------+------------+-------+------------+-----------+
+| shirt_id | article    | color | shirt_size | last_worn |
++----------+------------+-------+------------+-----------+
+|        1 | t-shirt    | white | S          |        10 |
+|        2 | t-shirt    | green | S          |       200 |
+|        3 | polo shirt | black | M          |        10 |
+|        4 | tank top   | blue  | S          |        50 |
+|        5 | t-shirt    | pink  | S          |         0 |
+|        6 | tank top   | white | S          |       200 |
+|        7 | tank top   | blue  | M          |        15 |
++----------+------------+-------+------------+-----------+
+7 rows in set (0.01 sec)
+
+mysql> INSERT INTO shirts(article,color,shirt_size,last_worn)
+    -> VALUES ("shirt", 'red', M, 100);
+ERROR 1054 (42S22): Unknown column 'M' in 'field list'
+mysql> INSERT INTO shirts(article,color,shirt_size,last_worn)
+    -> VALUES ("shirt", 'red', 'M', 100);
+Query OK, 1 row affected (0.22 sec)
+
+mysql> SELECT * FROM shirts;
++----------+------------+-------+------------+-----------+
+| shirt_id | article    | color | shirt_size | last_worn |
++----------+------------+-------+------------+-----------+
+|        1 | t-shirt    | white | S          |        10 |
+|        2 | t-shirt    | green | S          |       200 |
+|        3 | polo shirt | black | M          |        10 |
+|        4 | tank top   | blue  | S          |        50 |
+|        5 | t-shirt    | pink  | S          |         0 |
+|        6 | tank top   | white | S          |       200 |
+|        7 | tank top   | blue  | M          |        15 |
+|        8 | shirt      | red   | M          |       100 |
++----------+------------+-------+------------+-----------+
+8 rows in set (0.00 sec)
+
+mysql> INSERT INTO shirts(article, color, shirt_size, last_worn)
+    -> VALUES (^C
+mysql> INSERT INTO shirts(color, article, shirt_size, last_Worn)
+    -> VALUES ('Purple', 'polo shirt', 'M', 50);
+Query OK, 1 row affected (0.11 sec)
+
+mysql> SELECT * FROM shirts;
++----------+------------+--------+------------+-----------+
+| shirt_id | article    | color  | shirt_size | last_worn |
++----------+------------+--------+------------+-----------+
+|        1 | t-shirt    | white  | S          |        10 |
+|        2 | t-shirt    | green  | S          |       200 |
+|        3 | polo shirt | black  | M          |        10 |
+|        4 | tank top   | blue   | S          |        50 |
+|        5 | t-shirt    | pink   | S          |         0 |
+|        6 | tank top   | white  | S          |       200 |
+|        7 | tank top   | blue   | M          |        15 |
+|        8 | shirt      | red    | M          |       100 |
+|        9 | polo shirt | Purple | M          |        50 |
++----------+------------+--------+------------+-----------+
+9 rows in set (0.02 sec)
+
+mysql> SELECT article, color FROM shirts;
++------------+--------+
+| article    | color  |
++------------+--------+
+| t-shirt    | white  |
+| t-shirt    | green  |
+| polo shirt | black  |
+| tank top   | blue   |
+| t-shirt    | pink   |
+| tank top   | white  |
+| tank top   | blue   |
+| shirt      | red    |
+| polo shirt | Purple |
++------------+--------+
+9 rows in set (0.00 sec)
+
+mysql> SELECT article, color, shirt_size, last_worn FROM shirts WHERE shirt_size = 'M';
++------------+--------+------------+-----------+
+| article    | color  | shirt_size | last_worn |
++------------+--------+------------+-----------+
+| polo shirt | black  | M          |        10 |
+| tank top   | blue   | M          |        15 |
+| shirt      | red    | M          |       100 |
+| polo shirt | Purple | M          |        50 |
++------------+--------+------------+-----------+
+4 rows in set (0.02 sec)
+
+mysql> UPDATE shirts SET shirt_size = 'L' WHERE article = 'POLO';
+Query OK, 0 rows affected (0.01 sec)
+Rows matched: 0  Changed: 0  Warnings: 0
+
+mysql> SELECT * FROM shirts;
++----------+------------+--------+------------+-----------+
+| shirt_id | article    | color  | shirt_size | last_worn |
++----------+------------+--------+------------+-----------+
+|        1 | t-shirt    | white  | S          |        10 |
+|        2 | t-shirt    | green  | S          |       200 |
+|        3 | polo shirt | black  | M          |        10 |
+|        4 | tank top   | blue   | S          |        50 |
+|        5 | t-shirt    | pink   | S          |         0 |
+|        6 | tank top   | white  | S          |       200 |
+|        7 | tank top   | blue   | M          |        15 |
+|        8 | shirt      | red    | M          |       100 |
+|        9 | polo shirt | Purple | M          |        50 |
++----------+------------+--------+------------+-----------+
+9 rows in set (0.00 sec)
+
+mysql> UPDATE shirts SET shirt_size = 'L' WHERE article = 'POLO SHIRT';
+Query OK, 2 rows affected (0.22 sec)
+Rows matched: 2  Changed: 2  Warnings: 0
+
+mysql> SELECT * FROM shirts;
++----------+------------+--------+------------+-----------+
+| shirt_id | article    | color  | shirt_size | last_worn |
++----------+------------+--------+------------+-----------+
+|        1 | t-shirt    | white  | S          |        10 |
+|        2 | t-shirt    | green  | S          |       200 |
+|        3 | polo shirt | black  | L          |        10 |
+|        4 | tank top   | blue   | S          |        50 |
+|        5 | t-shirt    | pink   | S          |         0 |
+|        6 | tank top   | white  | S          |       200 |
+|        7 | tank top   | blue   | M          |        15 |
+|        8 | shirt      | red    | M          |       100 |
+|        9 | polo shirt | Purple | L          |        50 |
++----------+------------+--------+------------+-----------+
+9 rows in set (0.03 sec)
+
+mysql> UPDATE shirts SET last_worn = 0 WHERE last_worn = 15;
+Query OK, 1 row affected (0.13 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> SELECT * FROM shirts;
++----------+------------+--------+------------+-----------+
+| shirt_id | article    | color  | shirt_size | last_worn |
++----------+------------+--------+------------+-----------+
+|        1 | t-shirt    | white  | S          |        10 |
+|        2 | t-shirt    | green  | S          |       200 |
+|        3 | polo shirt | black  | L          |        10 |
+|        4 | tank top   | blue   | S          |        50 |
+|        5 | t-shirt    | pink   | S          |         0 |
+|        6 | tank top   | white  | S          |       200 |
+|        7 | tank top   | blue   | M          |         0 |
+|        8 | shirt      | red    | M          |       100 |
+|        9 | polo shirt | Purple | L          |        50 |
++----------+------------+--------+------------+-----------+
+9 rows in set (0.00 sec)
+
+mysql> UPDATE shirts SET shirt_size = 'XS', color = 'off white' WHERE color = 'white';
+ERROR 1406 (22001): Data too long for column 'shirt_size' at row 1
+mysql> UPDATE shirts SET shirt_size = 'X', color = 'off white' WHERE color = 'white';
+Query OK, 2 rows affected (0.22 sec)
+Rows matched: 2  Changed: 2  Warnings: 0
+
+mysql> SELECT * FROM shirts;
++----------+------------+-----------+------------+-----------+
+| shirt_id | article    | color     | shirt_size | last_worn |
++----------+------------+-----------+------------+-----------+
+|        1 | t-shirt    | off white | X          |        10 |
+|        2 | t-shirt    | green     | S          |       200 |
+|        3 | polo shirt | black     | L          |        10 |
+|        4 | tank top   | blue      | S          |        50 |
+|        5 | t-shirt    | pink      | S          |         0 |
+|        6 | tank top   | off white | X          |       200 |
+|        7 | tank top   | blue      | M          |         0 |
+|        8 | shirt      | red       | M          |       100 |
+|        9 | polo shirt | Purple    | L          |        50 |
++----------+------------+-----------+------------+-----------+
+9 rows in set (0.02 sec)
+
+mysql> DELETE FROM shirts WHERE last_worn = 200;
+Query OK, 2 rows affected (2.29 sec)
+
+mysql> SELECT * FROM shirts;
++----------+------------+-----------+------------+-----------+
+| shirt_id | article    | color     | shirt_size | last_worn |
++----------+------------+-----------+------------+-----------+
+|        1 | t-shirt    | off white | X          |        10 |
+|        3 | polo shirt | black     | L          |        10 |
+|        4 | tank top   | blue      | S          |        50 |
+|        5 | t-shirt    | pink      | S          |         0 |
+|        7 | tank top   | blue      | M          |         0 |
+|        8 | shirt      | red       | M          |       100 |
+|        9 | polo shirt | Purple    | L          |        50 |
++----------+------------+-----------+------------+-----------+
+7 rows in set (0.00 sec)
+
+mysql> DELETE FROM shirts WHERE article  = 'tank top';
+Query OK, 2 rows affected (1.64 sec)
+
+mysql> SELECT * FROM shirts;
++----------+------------+-----------+------------+-----------+
+| shirt_id | article    | color     | shirt_size | last_worn |
++----------+------------+-----------+------------+-----------+
+|        1 | t-shirt    | off white | X          |        10 |
+|        3 | polo shirt | black     | L          |        10 |
+|        5 | t-shirt    | pink      | S          |         0 |
+|        8 | shirt      | red       | M          |       100 |
+|        9 | polo shirt | Purple    | L          |        50 |
++----------+------------+-----------+------------+-----------+
+5 rows in set (0.00 sec)
+
+mysql> DROP TABLE shirts;
+Query OK, 0 rows affected (1.90 sec)
+
+mysql> DESC shirts;
+ERROR 1146 (42S02): Table 'shirt_db.shirts' doesn't exist
+mysql> DROP database shirts_db;
+ERROR 1008 (HY000): Can't drop database 'shirts_db'; database doesn't exist
+mysql> DROP database shirt_db;
+Query OK, 0 rows affected (1.64 sec)
+
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| mysql              |
+| performance_schema |
+| sujit              |
+| sys                |
++--------------------+
+5 rows in set (0.14 sec)
+
+mysql>

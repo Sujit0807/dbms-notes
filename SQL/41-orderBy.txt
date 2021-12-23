@@ -1,0 +1,497 @@
+mysql> SELECT author_lname FROM books ORDER BY author_lname;
++----------------+
+| author_lname   |
++----------------+
+| Carver         |
+| Carver         |
+| Chabon         |
+| DeLillo        |
+| Eggers         |
+| Eggers         |
+| Eggers         |
+| Foster Wallace |
+| Foster Wallace |
+| Gaiman         |
+| Gaiman         |
+| Gaiman         |
+| Harris         |
+| Harris         |
+| Lahiri         |
+| Lahiri         |
+| Saunders       |
+| Smith          |
+| Steinbeck      |
++----------------+
+19 rows in set (0.11 sec)
+
+mysql> SELECT author_fname FROM books ORDER BY author_lname;
++--------------+
+| author_fname |
++--------------+
+| Raymond      |
+| Raymond      |
+| Michael      |
+| Don          |
+| Dave         |
+| Dave         |
+| Dave         |
+| David        |
+| David        |
+| Neil         |
+| Neil         |
+| Neil         |
+| Dan          |
+| Freida       |
+| Jhumpa       |
+| Jhumpa       |
+| George       |
+| Patti        |
+| John         |
++--------------+
+19 rows in set (0.00 sec)
+
+mysql> SELECT author_fname, author_lname FROM books ORDER BY author_lname;
++--------------+----------------+
+| author_fname | author_lname   |
++--------------+----------------+
+| Raymond      | Carver         |
+| Raymond      | Carver         |
+| Michael      | Chabon         |
+| Don          | DeLillo        |
+| Dave         | Eggers         |
+| Dave         | Eggers         |
+| Dave         | Eggers         |
+| David        | Foster Wallace |
+| David        | Foster Wallace |
+| Neil         | Gaiman         |
+| Neil         | Gaiman         |
+| Neil         | Gaiman         |
+| Dan          | Harris         |
+| Freida       | Harris         |
+| Jhumpa       | Lahiri         |
+| Jhumpa       | Lahiri         |
+| George       | Saunders       |
+| Patti        | Smith          |
+| John         | Steinbeck      |
++--------------+----------------+
+19 rows in set (0.00 sec)
+
+mysql> SELECT author_fname, author_lname FROM books ORDER BY author_fname;
++--------------+----------------+
+| author_fname | author_lname   |
++--------------+----------------+
+| Dan          | Harris         |
+| Dave         | Eggers         |
+| Dave         | Eggers         |
+| Dave         | Eggers         |
+| David        | Foster Wallace |
+| David        | Foster Wallace |
+| Don          | DeLillo        |
+| Freida       | Harris         |
+| George       | Saunders       |
+| Jhumpa       | Lahiri         |
+| Jhumpa       | Lahiri         |
+| John         | Steinbeck      |
+| Michael      | Chabon         |
+| Neil         | Gaiman         |
+| Neil         | Gaiman         |
+| Neil         | Gaiman         |
+| Patti        | Smith          |
+| Raymond      | Carver         |
+| Raymond      | Carver         |
++--------------+----------------+
+19 rows in set (0.00 sec)
+
+mysql> SELECT author_fname FROM books ORDER BY author_fname;
++--------------+
+| author_fname |
++--------------+
+| Dan          |
+| Dave         |
+| Dave         |
+| Dave         |
+| David        |
+| David        |
+| Don          |
+| Freida       |
+| George       |
+| Jhumpa       |
+| Jhumpa       |
+| John         |
+| Michael      |
+| Neil         |
+| Neil         |
+| Neil         |
+| Patti        |
+| Raymond      |
+| Raymond      |
++--------------+
+19 rows in set (0.00 sec)
+
+mysql> SELECT DISTINCT title FROM books ORDER BY title;
++-----------------------------------------------------+
+| title                                               |
++-----------------------------------------------------+
+| 10% Happier                                         |
+| A Heartbreaking Work of Staggering Genius           |
+| A Hologram for the King: A Novel                    |
+| American Gods                                       |
+| Cannery Row                                         |
+| Consider the Lobster                                |
+| Coraline                                            |
+| fake_book                                           |
+| Interpreter of Maladies                             |
+| Just Kids                                           |
+| Lincoln In The Bardo                                |
+| Norse Mythology                                     |
+| Oblivion: Stories                                   |
+| The Amazing Adventures of Kavalier & Clay           |
+| The Circle                                          |
+| The Namesake                                        |
+| What We Talk About When We Talk About Love: Stories |
+| Where I'm Calling From: Selected Stories            |
+| White Noise                                         |
++-----------------------------------------------------+
+19 rows in set (0.00 sec)
+
+mysql> SELECT title FROM books ORDER BY title;
++-----------------------------------------------------+
+| title                                               |
++-----------------------------------------------------+
+| 10% Happier                                         |
+| A Heartbreaking Work of Staggering Genius           |
+| A Hologram for the King: A Novel                    |
+| American Gods                                       |
+| Cannery Row                                         |
+| Consider the Lobster                                |
+| Coraline                                            |
+| fake_book                                           |
+| Interpreter of Maladies                             |
+| Just Kids                                           |
+| Lincoln In The Bardo                                |
+| Norse Mythology                                     |
+| Oblivion: Stories                                   |
+| The Amazing Adventures of Kavalier & Clay           |
+| The Circle                                          |
+| The Namesake                                        |
+| What We Talk About When We Talk About Love: Stories |
+| Where I'm Calling From: Selected Stories            |
+| White Noise                                         |
++-----------------------------------------------------+
+19 rows in set (0.00 sec)
+
+mysql> SELECT author_fname FROM books ORDER BY author_fname DESC;
++--------------+
+| author_fname |
++--------------+
+| Raymond      |
+| Raymond      |
+| Patti        |
+| Neil         |
+| Neil         |
+| Neil         |
+| Michael      |
+| John         |
+| Jhumpa       |
+| Jhumpa       |
+| George       |
+| Freida       |
+| Don          |
+| David        |
+| David        |
+| Dave         |
+| Dave         |
+| Dave         |
+| Dan          |
++--------------+
+19 rows in set (0.00 sec)
+
+mysql> SELECT author_lname FROM books ORDER BY author_lname DESC;
++----------------+
+| author_lname   |
++----------------+
+| Steinbeck      |
+| Smith          |
+| Saunders       |
+| Lahiri         |
+| Lahiri         |
+| Harris         |
+| Harris         |
+| Gaiman         |
+| Gaiman         |
+| Gaiman         |
+| Foster Wallace |
+| Foster Wallace |
+| Eggers         |
+| Eggers         |
+| Eggers         |
+| DeLillo        |
+| Chabon         |
+| Carver         |
+| Carver         |
++----------------+
+19 rows in set (0.00 sec)
+
+mysql> SELECT released_year FROM books ORDER BY released_year;
++---------------+
+| released_year |
++---------------+
+|          1945 |
+|          1981 |
+|          1985 |
+|          1989 |
+|          1996 |
+|          2000 |
+|          2001 |
+|          2001 |
+|          2001 |
+|          2003 |
+|          2003 |
+|          2004 |
+|          2005 |
+|          2010 |
+|          2012 |
+|          2013 |
+|          2014 |
+|          2016 |
+|          2017 |
++---------------+
+19 rows in set (0.00 sec)
+
+mysql> SELECT released_year FROM books ORDER BY released_year DESC;
++---------------+
+| released_year |
++---------------+
+|          2017 |
+|          2016 |
+|          2014 |
+|          2013 |
+|          2012 |
+|          2010 |
+|          2005 |
+|          2004 |
+|          2003 |
+|          2003 |
+|          2001 |
+|          2001 |
+|          2001 |
+|          2000 |
+|          1996 |
+|          1989 |
+|          1985 |
+|          1981 |
+|          1945 |
++---------------+
+19 rows in set (0.00 sec)
+
+mysql> SELECT released_year FROM books ORDER BY released_year ASC;
++---------------+
+| released_year |
++---------------+
+|          1945 |
+|          1981 |
+|          1985 |
+|          1989 |
+|          1996 |
+|          2000 |
+|          2001 |
+|          2001 |
+|          2001 |
+|          2003 |
+|          2003 |
+|          2004 |
+|          2005 |
+|          2010 |
+|          2012 |
+|          2013 |
+|          2014 |
+|          2016 |
+|          2017 |
++---------------+
+19 rows in set (0.00 sec)
+
+mysql> SELECT title, author_lname released_year FROM books ORDER BY released_year ASC;
++-----------------------------------------------------+----------------+
+| title                                               | released_year  |
++-----------------------------------------------------+----------------+
+| What We Talk About When We Talk About Love: Stories | Carver         |
+| Where I'm Calling From: Selected Stories            | Carver         |
+| The Amazing Adventures of Kavalier & Clay           | Chabon         |
+| White Noise                                         | DeLillo        |
+| A Hologram for the King: A Novel                    | Eggers         |
+| The Circle                                          | Eggers         |
+| A Heartbreaking Work of Staggering Genius           | Eggers         |
+| Oblivion: Stories                                   | Foster Wallace |
+| Consider the Lobster                                | Foster Wallace |
+| Norse Mythology                                     | Gaiman         |
+| American Gods                                       | Gaiman         |
+| Coraline                                            | Gaiman         |
+| 10% Happier                                         | Harris         |
+| fake_book                                           | Harris         |
+| The Namesake                                        | Lahiri         |
+| Interpreter of Maladies                             | Lahiri         |
+| Lincoln In The Bardo                                | Saunders       |
+| Just Kids                                           | Smith          |
+| Cannery Row                                         | Steinbeck      |
++-----------------------------------------------------+----------------+
+19 rows in set (0.00 sec)
+
+mysql> SELECT title, author_lname, released_year FROM books ORDER BY released_year ASC;
++-----------------------------------------------------+----------------+---------------+
+| title                                               | author_lname   | released_year |
++-----------------------------------------------------+----------------+---------------+
+| Cannery Row                                         | Steinbeck      |          1945 |
+| What We Talk About When We Talk About Love: Stories | Carver         |          1981 |
+| White Noise                                         | DeLillo        |          1985 |
+| Where I'm Calling From: Selected Stories            | Carver         |          1989 |
+| Interpreter of Maladies                             | Lahiri         |          1996 |
+| The Amazing Adventures of Kavalier & Clay           | Chabon         |          2000 |
+| American Gods                                       | Gaiman         |          2001 |
+| A Heartbreaking Work of Staggering Genius           | Eggers         |          2001 |
+| fake_book                                           | Harris         |          2001 |
+| The Namesake                                        | Lahiri         |          2003 |
+| Coraline                                            | Gaiman         |          2003 |
+| Oblivion: Stories                                   | Foster Wallace |          2004 |
+| Consider the Lobster                                | Foster Wallace |          2005 |
+| Just Kids                                           | Smith          |          2010 |
+| A Hologram for the King: A Novel                    | Eggers         |          2012 |
+| The Circle                                          | Eggers         |          2013 |
+| 10% Happier                                         | Harris         |          2014 |
+| Norse Mythology                                     | Gaiman         |          2016 |
+| Lincoln In The Bardo                                | Saunders       |          2017 |
++-----------------------------------------------------+----------------+---------------+
+19 rows in set (0.00 sec)
+
+mysql> SELECT title, author_lname, released_year FROM books ORDER BY 3;
++-----------------------------------------------------+----------------+---------------+
+| title                                               | author_lname   | released_year |
++-----------------------------------------------------+----------------+---------------+
+| Cannery Row                                         | Steinbeck      |          1945 |
+| What We Talk About When We Talk About Love: Stories | Carver         |          1981 |
+| White Noise                                         | DeLillo        |          1985 |
+| Where I'm Calling From: Selected Stories            | Carver         |          1989 |
+| Interpreter of Maladies                             | Lahiri         |          1996 |
+| The Amazing Adventures of Kavalier & Clay           | Chabon         |          2000 |
+| American Gods                                       | Gaiman         |          2001 |
+| A Heartbreaking Work of Staggering Genius           | Eggers         |          2001 |
+| fake_book                                           | Harris         |          2001 |
+| The Namesake                                        | Lahiri         |          2003 |
+| Coraline                                            | Gaiman         |          2003 |
+| Oblivion: Stories                                   | Foster Wallace |          2004 |
+| Consider the Lobster                                | Foster Wallace |          2005 |
+| Just Kids                                           | Smith          |          2010 |
+| A Hologram for the King: A Novel                    | Eggers         |          2012 |
+| The Circle                                          | Eggers         |          2013 |
+| 10% Happier                                         | Harris         |          2014 |
+| Norse Mythology                                     | Gaiman         |          2016 |
+| Lincoln In The Bardo                                | Saunders       |          2017 |
++-----------------------------------------------------+----------------+---------------+
+19 rows in set (0.00 sec)
+
+mysql> SELECT title, author_lname, released_year FROM books ORDER BY 1;
++-----------------------------------------------------+----------------+---------------+
+| title                                               | author_lname   | released_year |
++-----------------------------------------------------+----------------+---------------+
+| 10% Happier                                         | Harris         |          2014 |
+| A Heartbreaking Work of Staggering Genius           | Eggers         |          2001 |
+| A Hologram for the King: A Novel                    | Eggers         |          2012 |
+| American Gods                                       | Gaiman         |          2001 |
+| Cannery Row                                         | Steinbeck      |          1945 |
+| Consider the Lobster                                | Foster Wallace |          2005 |
+| Coraline                                            | Gaiman         |          2003 |
+| fake_book                                           | Harris         |          2001 |
+| Interpreter of Maladies                             | Lahiri         |          1996 |
+| Just Kids                                           | Smith          |          2010 |
+| Lincoln In The Bardo                                | Saunders       |          2017 |
+| Norse Mythology                                     | Gaiman         |          2016 |
+| Oblivion: Stories                                   | Foster Wallace |          2004 |
+| The Amazing Adventures of Kavalier & Clay           | Chabon         |          2000 |
+| The Circle                                          | Eggers         |          2013 |
+| The Namesake                                        | Lahiri         |          2003 |
+| What We Talk About When We Talk About Love: Stories | Carver         |          1981 |
+| Where I'm Calling From: Selected Stories            | Carver         |          1989 |
+| White Noise                                         | DeLillo        |          1985 |
++-----------------------------------------------------+----------------+---------------+
+19 rows in set (0.00 sec)
+
+mysql> SELECT title, author_lname, released_year FROM books ORDER BY 1 DESC;
++-----------------------------------------------------+----------------+---------------+
+| title                                               | author_lname   | released_year |
++-----------------------------------------------------+----------------+---------------+
+| White Noise                                         | DeLillo        |          1985 |
+| Where I'm Calling From: Selected Stories            | Carver         |          1989 |
+| What We Talk About When We Talk About Love: Stories | Carver         |          1981 |
+| The Namesake                                        | Lahiri         |          2003 |
+| The Circle                                          | Eggers         |          2013 |
+| The Amazing Adventures of Kavalier & Clay           | Chabon         |          2000 |
+| Oblivion: Stories                                   | Foster Wallace |          2004 |
+| Norse Mythology                                     | Gaiman         |          2016 |
+| Lincoln In The Bardo                                | Saunders       |          2017 |
+| Just Kids                                           | Smith          |          2010 |
+| Interpreter of Maladies                             | Lahiri         |          1996 |
+| fake_book                                           | Harris         |          2001 |
+| Coraline                                            | Gaiman         |          2003 |
+| Consider the Lobster                                | Foster Wallace |          2005 |
+| Cannery Row                                         | Steinbeck      |          1945 |
+| American Gods                                       | Gaiman         |          2001 |
+| A Hologram for the King: A Novel                    | Eggers         |          2012 |
+| A Heartbreaking Work of Staggering Genius           | Eggers         |          2001 |
+| 10% Happier                                         | Harris         |          2014 |
++-----------------------------------------------------+----------------+---------------+
+19 rows in set (0.00 sec)
+
+mysql>
+mysql>
+mysql> SELECT title, author_fname, author_lname FROM books ORDER BY author_fname, author_lname;
++-----------------------------------------------------+--------------+----------------+
+| title                                               | author_fname | author_lname   |
++-----------------------------------------------------+--------------+----------------+
+| 10% Happier                                         | Dan          | Harris         |
+| A Hologram for the King: A Novel                    | Dave         | Eggers         |
+| The Circle                                          | Dave         | Eggers         |
+| A Heartbreaking Work of Staggering Genius           | Dave         | Eggers         |
+| Oblivion: Stories                                   | David        | Foster Wallace |
+| Consider the Lobster                                | David        | Foster Wallace |
+| White Noise                                         | Don          | DeLillo        |
+| fake_book                                           | Freida       | Harris         |
+| Lincoln In The Bardo                                | George       | Saunders       |
+| The Namesake                                        | Jhumpa       | Lahiri         |
+| Interpreter of Maladies                             | Jhumpa       | Lahiri         |
+| Cannery Row                                         | John         | Steinbeck      |
+| The Amazing Adventures of Kavalier & Clay           | Michael      | Chabon         |
+| Norse Mythology                                     | Neil         | Gaiman         |
+| American Gods                                       | Neil         | Gaiman         |
+| Coraline                                            | Neil         | Gaiman         |
+| Just Kids                                           | Patti        | Smith          |
+| What We Talk About When We Talk About Love: Stories | Raymond      | Carver         |
+| Where I'm Calling From: Selected Stories            | Raymond      | Carver         |
++-----------------------------------------------------+--------------+----------------+
+19 rows in set (0.00 sec)
+
+mysql> SELECT title, author_fname, author_lname, released_year FROM books ORDER BY author_fname, author_lname;
++-----------------------------------------------------+--------------+----------------+---------------+
+| title                                               | author_fname | author_lname   | released_year |
++-----------------------------------------------------+--------------+----------------+---------------+
+| 10% Happier                                         | Dan          | Harris         |          2014 |
+| A Hologram for the King: A Novel                    | Dave         | Eggers         |          2012 |
+| The Circle                                          | Dave         | Eggers         |          2013 |
+| A Heartbreaking Work of Staggering Genius           | Dave         | Eggers         |          2001 |
+| Oblivion: Stories                                   | David        | Foster Wallace |          2004 |
+| Consider the Lobster                                | David        | Foster Wallace |          2005 |
+| White Noise                                         | Don          | DeLillo        |          1985 |
+| fake_book                                           | Freida       | Harris         |          2001 |
+| Lincoln In The Bardo                                | George       | Saunders       |          2017 |
+| The Namesake                                        | Jhumpa       | Lahiri         |          2003 |
+| Interpreter of Maladies                             | Jhumpa       | Lahiri         |          1996 |
+| Cannery Row                                         | John         | Steinbeck      |          1945 |
+| The Amazing Adventures of Kavalier & Clay           | Michael      | Chabon         |          2000 |
+| Norse Mythology                                     | Neil         | Gaiman         |          2016 |
+| American Gods                                       | Neil         | Gaiman         |          2001 |
+| Coraline                                            | Neil         | Gaiman         |          2003 |
+| Just Kids                                           | Patti        | Smith          |          2010 |
+| What We Talk About When We Talk About Love: Stories | Raymond      | Carver         |          1981 |
+| Where I'm Calling From: Selected Stories            | Raymond      | Carver         |          1989 |
++-----------------------------------------------------+--------------+----------------+---------------+
+19 rows in set (0.00 sec)
+
+mysql>

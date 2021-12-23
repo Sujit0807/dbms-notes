@@ -1,0 +1,27 @@
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| book_store         |
+| information_schema |
+| mysql              |
+| performance_schema |
+| sys                |
++--------------------+
+5 rows in set (0.72 sec)
+
+mysql> CREATE DATABASE soap_store;
+Query OK, 1 row affected (1.53 sec)
+
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| book_store         |
+| information_schema |
+| mysql              |
+| performance_schema |
+| soap_store         |
+| sys                |
++--------------------+
+6 rows in set (0.00 sec)

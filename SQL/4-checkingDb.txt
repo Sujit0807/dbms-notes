@@ -1,0 +1,86 @@
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| mysql              |
+| performance_schema |
+| sys                |
++--------------------+
+4 rows in set (0.00 sec)
+
+mysql> CREATE DATABASE practiceDB;
+Query OK, 1 row affected (0.25 sec)
+
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| mysql              |
+| performance_schema |
+| practicedb         |
+| sys                |
++--------------------+
+5 rows in set (0.10 sec)
+
+mysql> USE DATABASE practicedb;
+ERROR 1049 (42000): Unknown database 'database'
+mysql> USE practicedb;
+Database changed
+mysql> SELECT database();
++------------+
+| database() |
++------------+
+| practicedb |
++------------+
+1 row in set (0.00 sec)
+
+mysql>
+
+mysql> DROP DATABASE practicedb;
+Query OK, 0 rows affected (0.21 sec)
+
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| mysql              |
+| performance_schema |
+| sys                |
++--------------------+
+4 rows in set (0.00 sec)
+
+mysql> SELECT database();
++------------+
+| database() |
++------------+
+| NULL       |
++------------+
+1 row in set (0.00 sec)
+
+mysql> CREATE DATAbase sujit;
+Query OK, 1 row affected (1.63 sec)
+
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| mysql              |
+| performance_schema |
+| sujit              |
+| sys                |
++--------------------+
+5 rows in set (0.00 sec)
+
+mysql> USE sujit;
+Database changed
+mysql> SELECT database();
++------------+
+| database() |
++------------+
+| sujit      |
++------------+
+1 row in set (0.00 sec)

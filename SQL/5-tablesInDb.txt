@@ -1,0 +1,4 @@
+// A database is just a bunch of tables (in relational database atleast)
+
+// Tables Holds The Data !
+

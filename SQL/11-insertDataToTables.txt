@@ -1,0 +1,28 @@
+mysql> DESC cats;
++-------+-------------+------+-----+---------+-------+
+| Field | Type        | Null | Key | Default | Extra |
++-------+-------------+------+-----+---------+-------+
+| name  | varchar(50) | YES  |     | NULL    |       |
+| age   | int         | YES  |     | NULL    |       |
++-------+-------------+------+-----+---------+-------+
+2 rows in set (0.57 sec)
+
+mysql> INSERT INTO cats(name, age)
+    -> VALUES('Blue',1)
+    -> VALUES('Mangi',2);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'VALUES('Mangi',2)' at line 3
+mysql> INSERT INTO cats(name, age)
+    -> VALUES('Blue',1);
+Query OK, 1 row affected (0.14 sec)
+
+mysql> DESC cats;
++-------+-------------+------+-----+---------+-------+
+| Field | Type        | Null | Key | Default | Extra |
++-------+-------------+------+-----+---------+-------+
+| name  | varchar(50) | YES  |     | NULL    |       |
+| age   | int         | YES  |     | NULL    |       |
++-------+-------------+------+-----+---------+-------+
+2 rows in set (0.15 sec)
+
+mysql> INSERT INTO cats(age, name) VALUES(11, 'Draco');
+Query OK, 1 row affected (0.11 sec)

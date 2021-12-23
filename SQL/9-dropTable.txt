@@ -1,0 +1,43 @@
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| cat_app            |
+| information_schema |
+| mysql              |
+| performance_schema |
+| sys                |
++--------------------+
+5 rows in set (0.44 sec)
+
+mysql> USE cat_app;
+Database changed
+mysql> SELECT database();
++------------+
+| database() |
++------------+
+| cat_app    |
++------------+
+1 row in set (0.00 sec)
+
+mysql> DESC cat_app;
+ERROR 1146 (42S02): Table 'cat_app.cat_app' doesn't exist
+mysql> show tables;
++-------------------+
+| Tables_in_cat_app |
++-------------------+
+| cats              |
+| sujit             |
++-------------------+
+2 rows in set (0.32 sec)
+
+mysql> DROP TABLE cats;
+Query OK, 0 rows affected (1.28 sec)
+
+mysql> show tables;
++-------------------+
+| Tables_in_cat_app |
++-------------------+
+| sujit             |
++-------------------+
+1 row in set (0.38 sec)

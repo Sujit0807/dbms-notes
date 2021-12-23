@@ -1,0 +1,73 @@
+mysql> SELECT title FROM books WHERE author_fname LIKE '%da%';
++-------------------------------------------+
+| title                                     |
++-------------------------------------------+
+| A Hologram for the King: A Novel          |
+| The Circle                                |
+| A Heartbreaking Work of Staggering Genius |
+| Oblivion: Stories                         |
+| Consider the Lobster                      |
+| 10% Happier                               |
+| fake_book                                 |
++-------------------------------------------+
+7 rows in set (0.14 sec)
+
+mysql> SELECT title, author_fname FROM books WHERE author_fname LIKE '%da%';
++-------------------------------------------+--------------+
+| title                                     | author_fname |
++-------------------------------------------+--------------+
+| A Hologram for the King: A Novel          | Dave         |
+| The Circle                                | Dave         |
+| A Heartbreaking Work of Staggering Genius | Dave         |
+| Oblivion: Stories                         | David        |
+| Consider the Lobster                      | David        |
+| 10% Happier                               | Dan          |
+| fake_book                                 | Freida       |
++-------------------------------------------+--------------+
+7 rows in set (0.00 sec)
+
+mysql> SELECT title, author_fname FROM books WHERE author_fname LIKE 'da%';
++-------------------------------------------+--------------+
+| title                                     | author_fname |
++-------------------------------------------+--------------+
+| A Hologram for the King: A Novel          | Dave         |
+| The Circle                                | Dave         |
+| A Heartbreaking Work of Staggering Genius | Dave         |
+| Oblivion: Stories                         | David        |
+| Consider the Lobster                      | David        |
+| 10% Happier                               | Dan          |
++-------------------------------------------+--------------+
+6 rows in set (0.00 sec)
+
+mysql> SELECT title, author_fname FROM books WHERE author_fname LIKE 'da';
+Empty set (0.00 sec)
+
+mysql> SELECT title, author_fname FROM books WHERE author_fname LIKE '%da';
++-----------+--------------+
+| title     | author_fname |
++-----------+--------------+
+| fake_book | Freida       |
++-----------+--------------+
+1 row in set (0.00 sec)
+
+mysql> SELECT title, author_fname FROM books WHERE author_fname LIKE '%dave';
++-------------------------------------------+--------------+
+| title                                     | author_fname |
++-------------------------------------------+--------------+
+| A Hologram for the King: A Novel          | Dave         |
+| The Circle                                | Dave         |
+| A Heartbreaking Work of Staggering Genius | Dave         |
++-------------------------------------------+--------------+
+3 rows in set (0.00 sec)
+
+mysql> SELECT Title, author_fname FROM books WHERE author_fname LIKE '%dave';
++-------------------------------------------+--------------+
+| Title                                     | author_fname |
++-------------------------------------------+--------------+
+| A Hologram for the King: A Novel          | Dave         |
+| The Circle                                | Dave         |
+| A Heartbreaking Work of Staggering Genius | Dave         |
++-------------------------------------------+--------------+
+3 rows in set (0.00 sec)
+
+mysql>

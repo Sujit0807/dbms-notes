@@ -1,0 +1,91 @@
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| mysql              |
+| performance_schema |
+| sujit              |
+| sys                |
++--------------------+
+5 rows in set (0.66 sec)
+
+mysql> USE sujit;
+Database changed
+mysql> SELECT database();
++------------+
+| database() |
++------------+
+| sujit      |
++------------+
+1 row in set (0.00 sec)
+
+mysql> show tables;
++-----------------+
+| Tables_in_sujit |
++-----------------+
+| cats            |
++-----------------+
+1 row in set (0.12 sec)
+
+mysql> DESC cats
+    -> ;
++-------+-------------+------+-----+---------+-------+
+| Field | Type        | Null | Key | Default | Extra |
++-------+-------------+------+-----+---------+-------+
+| name  | varchar(50) | YES  |     | NULL    |       |
+| age   | int         | YES  |     | NULL    |       |
++-------+-------------+------+-----+---------+-------+
+2 rows in set (0.01 sec)
+
+mysql> INSERT INTO cats
+    -> (name)
+    -> VALUES ('Maggy');
+Query OK, 1 row affected (0.39 sec)
+
+mysql> select * from cats;
++-----------+------+
+| name      | age  |
++-----------+------+
+| Blue      |    1 |
+| Draco     |   11 |
+| Charlie   |   10 |
+| Sadie     |    3 |
+| Lazy Bear |    1 |
+| ROCKY     |    5 |
+| Maggy     | NULL |
++-----------+------+
+7 rows in set (0.00 sec)
+
+
+
+
+mysql> CREATE TABLE cat2(
+    -> name VARCHAR(100) NOT NULL,
+    -> age INT NOt NULL);
+Query OK, 0 rows affected (1.29 sec)
+
+mysql> DESC cats;
++-------+-------------+------+-----+---------+-------+
+| Field | Type        | Null | Key | Default | Extra |
++-------+-------------+------+-----+---------+-------+
+| name  | varchar(50) | YES  |     | NULL    |       |
+| age   | int         | YES  |     | NULL    |       |
++-------+-------------+------+-----+---------+-------+
+2 rows in set (0.14 sec)
+
+mysql> DESC cats2;
+ERROR 1146 (42S02): Table 'sujit.cats2' doesn't exist
+mysql> DESC cat2;
++-------+--------------+------+-----+---------+-------+
+| Field | Type         | Null | Key | Default | Extra |
++-------+--------------+------+-----+---------+-------+
+| name  | varchar(100) | NO   |     | NULL    |       |
+| age   | int          | NO   |     | NULL    |       |
++-------+--------------+------+-----+---------+-------+
+2 rows in set (0.01 sec)
+
+mysql> INSERT INTO cat2(name)
+    -> VALUES ('Pussy');
+ERROR 1364 (HY000): Field 'age' doesn't have a default value
+mysql>
