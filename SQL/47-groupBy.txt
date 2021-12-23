@@ -1,0 +1,221 @@
+mysql> SELECT title, author_lname FROM books;
++-----------------------------------------------------+----------------+
+| title                                               | author_lname   |
++-----------------------------------------------------+----------------+
+| The Namesake                                        | Lahiri         |
+| Norse Mythology                                     | Gaiman         |
+| American Gods                                       | Gaiman         |
+| Interpreter of Maladies                             | Lahiri         |
+| A Hologram for the King: A Novel                    | Eggers         |
+| The Circle                                          | Eggers         |
+| The Amazing Adventures of Kavalier & Clay           | Chabon         |
+| Just Kids                                           | Smith          |
+| A Heartbreaking Work of Staggering Genius           | Eggers         |
+| Coraline                                            | Gaiman         |
+| What We Talk About When We Talk About Love: Stories | Carver         |
+| Where I'm Calling From: Selected Stories            | Carver         |
+| White Noise                                         | DeLillo        |
+| Cannery Row                                         | Steinbeck      |
+| Oblivion: Stories                                   | Foster Wallace |
+| Consider the Lobster                                | Foster Wallace |
+| 10% Happier                                         | Harris         |
+| fake_book                                           | Harris         |
+| Lincoln In The Bardo                                | Saunders       |
++-----------------------------------------------------+----------------+
+19 rows in set (0.00 sec)
+
+mysql> SELECT title, author_lname FROM books GROUP BY author_lname;
++-----------------------------------------------------+----------------+
+| title                                               | author_lname   |
++-----------------------------------------------------+----------------+
+| The Namesake                                        | Lahiri         |
+| Norse Mythology                                     | Gaiman         |
+| A Hologram for the King: A Novel                    | Eggers         |
+| The Amazing Adventures of Kavalier & Clay           | Chabon         |
+| Just Kids                                           | Smith          |
+| What We Talk About When We Talk About Love: Stories | Carver         |
+| White Noise                                         | DeLillo        |
+| Cannery Row                                         | Steinbeck      |
+| Oblivion: Stories                                   | Foster Wallace |
+| 10% Happier                                         | Harris         |
+| Lincoln In The Bardo                                | Saunders       |
++-----------------------------------------------------+----------------+
+11 rows in set (0.00 sec)
+
+mysql> SELECT title, author_fname, author_lname FROM books;
++-----------------------------------------------------+--------------+----------------+
+| title                                               | author_fname | author_lname   |
++-----------------------------------------------------+--------------+----------------+
+| The Namesake                                        | Jhumpa       | Lahiri         |
+| Norse Mythology                                     | Neil         | Gaiman         |
+| American Gods                                       | Neil         | Gaiman         |
+| Interpreter of Maladies                             | Jhumpa       | Lahiri         |
+| A Hologram for the King: A Novel                    | Dave         | Eggers         |
+| The Circle                                          | Dave         | Eggers         |
+| The Amazing Adventures of Kavalier & Clay           | Michael      | Chabon         |
+| Just Kids                                           | Patti        | Smith          |
+| A Heartbreaking Work of Staggering Genius           | Dave         | Eggers         |
+| Coraline                                            | Neil         | Gaiman         |
+| What We Talk About When We Talk About Love: Stories | Raymond      | Carver         |
+| Where I'm Calling From: Selected Stories            | Raymond      | Carver         |
+| White Noise                                         | Don          | DeLillo        |
+| Cannery Row                                         | John         | Steinbeck      |
+| Oblivion: Stories                                   | David        | Foster Wallace |
+| Consider the Lobster                                | David        | Foster Wallace |
+| 10% Happier                                         | Dan          | Harris         |
+| fake_book                                           | Freida       | Harris         |
+| Lincoln In The Bardo                                | George       | Saunders       |
++-----------------------------------------------------+--------------+----------------+
+19 rows in set (0.00 sec)
+
+mysql> SELECT title, author_fname, author_lname FROM books GROUP BY author_lname;
++-----------------------------------------------------+--------------+----------------+
+| title                                               | author_fname | author_lname   |
++-----------------------------------------------------+--------------+----------------+
+| The Namesake                                        | Jhumpa       | Lahiri         |
+| Norse Mythology                                     | Neil         | Gaiman         |
+| A Hologram for the King: A Novel                    | Dave         | Eggers         |
+| The Amazing Adventures of Kavalier & Clay           | Michael      | Chabon         |
+| Just Kids                                           | Patti        | Smith          |
+| What We Talk About When We Talk About Love: Stories | Raymond      | Carver         |
+| White Noise                                         | Don          | DeLillo        |
+| Cannery Row                                         | John         | Steinbeck      |
+| Oblivion: Stories                                   | David        | Foster Wallace |
+| 10% Happier                                         | Dan          | Harris         |
+| Lincoln In The Bardo                                | George       | Saunders       |
++-----------------------------------------------------+--------------+----------------+
+11 rows in set (0.00 sec)
+
+mysql> SELECT author_fname, author_lname, COUNT(*) FROM books GROUP BY author_lname;
++--------------+----------------+----------+
+| author_fname | author_lname   | COUNT(*) |
++--------------+----------------+----------+
+| Jhumpa       | Lahiri         |        2 |
+| Neil         | Gaiman         |        3 |
+| Dave         | Eggers         |        3 |
+| Michael      | Chabon         |        1 |
+| Patti        | Smith          |        1 |
+| Raymond      | Carver         |        2 |
+| Don          | DeLillo        |        1 |
+| John         | Steinbeck      |        1 |
+| David        | Foster Wallace |        2 |
+| Dan          | Harris         |        2 |
+| George       | Saunders       |        1 |
++--------------+----------------+----------+
+11 rows in set (0.00 sec)
+
+mysql> SELECT author_fname, author_lname, COUNT(*) FROM books GROUP BY author_fname, author_lname;
++--------------+----------------+----------+
+| author_fname | author_lname   | COUNT(*) |
++--------------+----------------+----------+
+| Jhumpa       | Lahiri         |        2 |
+| Neil         | Gaiman         |        3 |
+| Dave         | Eggers         |        3 |
+| Michael      | Chabon         |        1 |
+| Patti        | Smith          |        1 |
+| Raymond      | Carver         |        2 |
+| Don          | DeLillo        |        1 |
+| John         | Steinbeck      |        1 |
+| David        | Foster Wallace |        2 |
+| Dan          | Harris         |        1 |
+| Freida       | Harris         |        1 |
+| George       | Saunders       |        1 |
++--------------+----------------+----------+
+12 rows in set (0.00 sec)
+
+mysql> SELECT released_year, COUNT(*) FROM books GROUP BY released year
+    -> ;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'year' at line 1
+mysql> SELECT released_year, COUNT(*) FROM books GROUP BY released_year;
++---------------+----------+
+| released_year | COUNT(*) |
++---------------+----------+
+|          2003 |        2 |
+|          2016 |        1 |
+|          2001 |        3 |
+|          1996 |        1 |
+|          2012 |        1 |
+|          2013 |        1 |
+|          2000 |        1 |
+|          2010 |        1 |
+|          1981 |        1 |
+|          1989 |        1 |
+|          1985 |        1 |
+|          1945 |        1 |
+|          2004 |        1 |
+|          2005 |        1 |
+|          2014 |        1 |
+|          2017 |        1 |
++---------------+----------+
+16 rows in set (0.00 sec)
+
+mysql> SELECT released_year, COUNT(*) FROM books GROUP BY released_year ORDER BY 1;
++---------------+----------+
+| released_year | COUNT(*) |
++---------------+----------+
+|          1945 |        1 |
+|          1981 |        1 |
+|          1985 |        1 |
+|          1989 |        1 |
+|          1996 |        1 |
+|          2000 |        1 |
+|          2001 |        3 |
+|          2003 |        2 |
+|          2004 |        1 |
+|          2005 |        1 |
+|          2010 |        1 |
+|          2012 |        1 |
+|          2013 |        1 |
+|          2014 |        1 |
+|          2016 |        1 |
+|          2017 |        1 |
++---------------+----------+
+16 rows in set (0.00 sec)
+
+mysql> SELECT CONCAT('In ', released_year, ' ', COUNT(*), ' book(s) released') FROM books GROUP BY released_year ORDER BY 1;
++------------------------------------------------------------------+
+| CONCAT('In ', released_year, ' ', COUNT(*), ' book(s) released') |
++------------------------------------------------------------------+
+| In 1945 1 book(s) released                                       |
+| In 1981 1 book(s) released                                       |
+| In 1985 1 book(s) released                                       |
+| In 1989 1 book(s) released                                       |
+| In 1996 1 book(s) released                                       |
+| In 2000 1 book(s) released                                       |
+| In 2001 3 book(s) released                                       |
+| In 2003 2 book(s) released                                       |
+| In 2004 1 book(s) released                                       |
+| In 2005 1 book(s) released                                       |
+| In 2010 1 book(s) released                                       |
+| In 2012 1 book(s) released                                       |
+| In 2013 1 book(s) released                                       |
+| In 2014 1 book(s) released                                       |
+| In 2016 1 book(s) released                                       |
+| In 2017 1 book(s) released                                       |
++------------------------------------------------------------------+
+16 rows in set (0.10 sec)
+
+mysql> SELECT CONCAT('In ', released_year, ' ', COUNT(*), ' book(s) released') AS year FROM books GROUP BY released_year ORDER BY 1;
++----------------------------+
+| year                       |
++----------------------------+
+| In 1945 1 book(s) released |
+| In 1981 1 book(s) released |
+| In 1985 1 book(s) released |
+| In 1989 1 book(s) released |
+| In 1996 1 book(s) released |
+| In 2000 1 book(s) released |
+| In 2001 3 book(s) released |
+| In 2003 2 book(s) released |
+| In 2004 1 book(s) released |
+| In 2005 1 book(s) released |
+| In 2010 1 book(s) released |
+| In 2012 1 book(s) released |
+| In 2013 1 book(s) released |
+| In 2014 1 book(s) released |
+| In 2016 1 book(s) released |
+| In 2017 1 book(s) released |
++----------------------------+
+16 rows in set (0.00 sec)
+
+mysql>

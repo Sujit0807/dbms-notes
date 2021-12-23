@@ -1,0 +1,111 @@
+mysql> SELECT MIN(released_year) FROM books;
++--------------------+
+| MIN(released_year) |
++--------------------+
+|               1945 |
++--------------------+
+1 row in set (0.02 sec)
+
+mysql> SELECT MIN(title) FROM books;
++-------------+
+| MIN(title)  |
++-------------+
+| 10% Happier |
++-------------+
+1 row in set (0.00 sec)
+
+mysql> SELECT * FROM books;
++---------+-----------------------------------------------------+--------------+----------------+---------------+----------------+-------+
+| book_id | title                                               | author_fname | author_lname   | released_year | stock_quantity | pages |
++---------+-----------------------------------------------------+--------------+----------------+---------------+----------------+-------+
+|       1 | The Namesake                                        | Jhumpa       | Lahiri         |          2003 |             32 |   291 |
+|       2 | Norse Mythology                                     | Neil         | Gaiman         |          2016 |             43 |   304 |
+|       3 | American Gods                                       | Neil         | Gaiman         |          2001 |             12 |   465 |
+|       4 | Interpreter of Maladies                             | Jhumpa       | Lahiri         |          1996 |             97 |   198 |
+|       5 | A Hologram for the King: A Novel                    | Dave         | Eggers         |          2012 |            154 |   352 |
+|       6 | The Circle                                          | Dave         | Eggers         |          2013 |             26 |   504 |
+|       7 | The Amazing Adventures of Kavalier & Clay           | Michael      | Chabon         |          2000 |             68 |   634 |
+|       8 | Just Kids                                           | Patti        | Smith          |          2010 |             55 |   304 |
+|       9 | A Heartbreaking Work of Staggering Genius           | Dave         | Eggers         |          2001 |            104 |   437 |
+|      10 | Coraline                                            | Neil         | Gaiman         |          2003 |            100 |   208 |
+|      11 | What We Talk About When We Talk About Love: Stories | Raymond      | Carver         |          1981 |             23 |   176 |
+|      12 | Where I'm Calling From: Selected Stories            | Raymond      | Carver         |          1989 |             12 |   526 |
+|      13 | White Noise                                         | Don          | DeLillo        |          1985 |             49 |   320 |
+|      14 | Cannery Row                                         | John         | Steinbeck      |          1945 |             95 |   181 |
+|      15 | Oblivion: Stories                                   | David        | Foster Wallace |          2004 |            172 |   329 |
+|      16 | Consider the Lobster                                | David        | Foster Wallace |          2005 |             92 |   343 |
+|      17 | 10% Happier                                         | Dan          | Harris         |          2014 |             29 |   256 |
+|      18 | fake_book                                           | Freida       | Harris         |          2001 |            287 |   428 |
+|      19 | Lincoln In The Bardo                                | George       | Saunders       |          2017 |           1000 |   367 |
++---------+-----------------------------------------------------+--------------+----------------+---------------+----------------+-------+
+19 rows in set (0.00 sec)
+
+mysql> SELECT MAX(pages) FROM books;
++------------+
+| MAX(pages) |
++------------+
+|        634 |
++------------+
+1 row in set (0.00 sec)
+
+mysql> SELECT title, MAX(pages) FROM books;
++--------------+------------+
+| title        | MAX(pages) |
++--------------+------------+
+| The Namesake |        634 |
++--------------+------------+
+1 row in set (0.10 sec)
+
+mysql> SELECT title, MIN(pages) FROM books;
++--------------+------------+
+| title        | MIN(pages) |
++--------------+------------+
+| The Namesake |        176 |
++--------------+------------+
+1 row in set (0.00 sec)
+
+mysql> SELECT title, MIN(Year) FROM books;
+ERROR 1054 (42S22): Unknown column 'Year' in 'field list'
+mysql> SELECT title, MIN(released_year) FROM books;
++--------------+--------------------+
+| title        | MIN(released_year) |
++--------------+--------------------+
+| The Namesake |               1945 |
++--------------+--------------------+
+1 row in set (0.00 sec)
+
+mysql> SELECT MAX(pages), title FROM books;
++------------+--------------+
+| MAX(pages) | title        |
++------------+--------------+
+|        634 | The Namesake |
++------------+--------------+
+1 row in set (0.00 sec)
+
+mysql> SELECT title, pages fROM books;
++-----------------------------------------------------+-------+
+| title                                               | pages |
++-----------------------------------------------------+-------+
+| The Namesake                                        |   291 |
+| Norse Mythology                                     |   304 |
+| American Gods                                       |   465 |
+| Interpreter of Maladies                             |   198 |
+| A Hologram for the King: A Novel                    |   352 |
+| The Circle                                          |   504 |
+| The Amazing Adventures of Kavalier & Clay           |   634 |
+| Just Kids                                           |   304 |
+| A Heartbreaking Work of Staggering Genius           |   437 |
+| Coraline                                            |   208 |
+| What We Talk About When We Talk About Love: Stories |   176 |
+| Where I'm Calling From: Selected Stories            |   526 |
+| White Noise                                         |   320 |
+| Cannery Row                                         |   181 |
+| Oblivion: Stories                                   |   329 |
+| Consider the Lobster                                |   343 |
+| 10% Happier                                         |   256 |
+| fake_book                                           |   428 |
+| Lincoln In The Bardo                                |   367 |
++-----------------------------------------------------+-------+
+19 rows in set (0.00 sec)
+
+mysql>

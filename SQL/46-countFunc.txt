@@ -1,0 +1,223 @@
+mysql> SELECT COUNT(*) FROM books;
+ERROR 1046 (3D000): No database selected
+mysql> SHOW DATABASES;
++--------------------+
+| Database           |
++--------------------+
+| book_store         |
+| information_schema |
+| mysql              |
+| performance_schema |
+| sujit              |
+| sys                |
++--------------------+
+6 rows in set (0.00 sec)
+
+mysql> USE book_store;
+Database changed
+mysql> SELECT database();
++------------+
+| database() |
++------------+
+| book_store |
++------------+
+1 row in set (0.00 sec)
+
+mysql> SHOW TABLES;
++----------------------+
+| Tables_in_book_store |
++----------------------+
+| books                |
++----------------------+
+1 row in set (0.00 sec)
+
+mysql> SELECT COUNT(*) FROM books;
++----------+
+| COUNT(*) |
++----------+
+|       19 |
++----------+
+1 row in set (0.23 sec)
+
+mysql> SELECT * FROM books;
++---------+-----------------------------------------------------+--------------+----------------+---------------+----------------+-------+
+| book_id | title                                               | author_fname | author_lname   | released_year | stock_quantity | pages |
++---------+-----------------------------------------------------+--------------+----------------+---------------+----------------+-------+
+|       1 | The Namesake                                        | Jhumpa       | Lahiri         |          2003 |             32 |   291 |
+|       2 | Norse Mythology                                     | Neil         | Gaiman         |          2016 |             43 |   304 |
+|       3 | American Gods                                       | Neil         | Gaiman         |          2001 |             12 |   465 |
+|       4 | Interpreter of Maladies                             | Jhumpa       | Lahiri         |          1996 |             97 |   198 |
+|       5 | A Hologram for the King: A Novel                    | Dave         | Eggers         |          2012 |            154 |   352 |
+|       6 | The Circle                                          | Dave         | Eggers         |          2013 |             26 |   504 |
+|       7 | The Amazing Adventures of Kavalier & Clay           | Michael      | Chabon         |          2000 |             68 |   634 |
+|       8 | Just Kids                                           | Patti        | Smith          |          2010 |             55 |   304 |
+|       9 | A Heartbreaking Work of Staggering Genius           | Dave         | Eggers         |          2001 |            104 |   437 |
+|      10 | Coraline                                            | Neil         | Gaiman         |          2003 |            100 |   208 |
+|      11 | What We Talk About When We Talk About Love: Stories | Raymond      | Carver         |          1981 |             23 |   176 |
+|      12 | Where I'm Calling From: Selected Stories            | Raymond      | Carver         |          1989 |             12 |   526 |
+|      13 | White Noise                                         | Don          | DeLillo        |          1985 |             49 |   320 |
+|      14 | Cannery Row                                         | John         | Steinbeck      |          1945 |             95 |   181 |
+|      15 | Oblivion: Stories                                   | David        | Foster Wallace |          2004 |            172 |   329 |
+|      16 | Consider the Lobster                                | David        | Foster Wallace |          2005 |             92 |   343 |
+|      17 | 10% Happier                                         | Dan          | Harris         |          2014 |             29 |   256 |
+|      18 | fake_book                                           | Freida       | Harris         |          2001 |            287 |   428 |
+|      19 | Lincoln In The Bardo                                | George       | Saunders       |          2017 |           1000 |   367 |
++---------+-----------------------------------------------------+--------------+----------------+---------------+----------------+-------+
+19 rows in set (0.00 sec)
+
+mysql> SELECT COUNT(*) FROM books;
++----------+
+| COUNT(*) |
++----------+
+|       19 |
++----------+
+1 row in set (0.00 sec)
+
+mysql> SELECT author_fname FROM books;
++--------------+
+| author_fname |
++--------------+
+| Jhumpa       |
+| Neil         |
+| Neil         |
+| Jhumpa       |
+| Dave         |
+| Dave         |
+| Michael      |
+| Patti        |
+| Dave         |
+| Neil         |
+| Raymond      |
+| Raymond      |
+| Don          |
+| John         |
+| David        |
+| David        |
+| Dan          |
+| Freida       |
+| George       |
++--------------+
+19 rows in set (0.00 sec)
+
+mysql> SELECT COUNT(author_fname) FROM books;
++---------------------+
+| COUNT(author_fname) |
++---------------------+
+|                  19 |
++---------------------+
+1 row in set (0.09 sec)
+
+mysql> SELECT DISTINCT COUNT(author_fname) FROM books;
++---------------------+
+| COUNT(author_fname) |
++---------------------+
+|                  19 |
++---------------------+
+1 row in set (0.00 sec)
+
+mysql> SELECT COUNT(DISTINCT author_fname) FROM books;
++------------------------------+
+| COUNT(DISTINCT author_fname) |
++------------------------------+
+|                           12 |
++------------------------------+
+1 row in set (0.12 sec)
+
+mysql> SELECT COUNT(author_lname) FROM books;
++---------------------+
+| COUNT(author_lname) |
++---------------------+
+|                  19 |
++---------------------+
+1 row in set (0.00 sec)
+
+mysql> SELECT DISTINCT author_lname FROM books;
++----------------+
+| author_lname   |
++----------------+
+| Lahiri         |
+| Gaiman         |
+| Eggers         |
+| Chabon         |
+| Smith          |
+| Carver         |
+| DeLillo        |
+| Steinbeck      |
+| Foster Wallace |
+| Harris         |
+| Saunders       |
++----------------+
+11 rows in set (0.00 sec)
+
+mysql> SELECT COUNT(DISTINCT author_lname) FROM books;
++------------------------------+
+| COUNT(DISTINCT author_lname) |
++------------------------------+
+|                           11 |
++------------------------------+
+1 row in set (0.00 sec)
+
+mysql> SELECT author_fname, author_lname FROM books;
++--------------+----------------+
+| author_fname | author_lname   |
++--------------+----------------+
+| Jhumpa       | Lahiri         |
+| Neil         | Gaiman         |
+| Neil         | Gaiman         |
+| Jhumpa       | Lahiri         |
+| Dave         | Eggers         |
+| Dave         | Eggers         |
+| Michael      | Chabon         |
+| Patti        | Smith          |
+| Dave         | Eggers         |
+| Neil         | Gaiman         |
+| Raymond      | Carver         |
+| Raymond      | Carver         |
+| Don          | DeLillo        |
+| John         | Steinbeck      |
+| David        | Foster Wallace |
+| David        | Foster Wallace |
+| Dan          | Harris         |
+| Freida       | Harris         |
+| George       | Saunders       |
++--------------+----------------+
+19 rows in set (0.00 sec)
+
+mysql> SELECT COUNT(DISTINCT author_fname, author_lname) FROM books;
++--------------------------------------------+
+| COUNT(DISTINCT author_fname, author_lname) |
++--------------------------------------------+
+|                                         12 |
++--------------------------------------------+
+1 row in set (0.00 sec)
+
+mysql> SELECT COUNT(title) FROM books WHERE title LIKE '%the%';
++--------------+
+| COUNT(title) |
++--------------+
+|            6 |
++--------------+
+1 row in set (0.00 sec)
+
+mysql> SELECT title FROM books WHERE title LIKE '%the%';
++-------------------------------------------+
+| title                                     |
++-------------------------------------------+
+| The Namesake                              |
+| A Hologram for the King: A Novel          |
+| The Circle                                |
+| The Amazing Adventures of Kavalier & Clay |
+| Consider the Lobster                      |
+| Lincoln In The Bardo                      |
++-------------------------------------------+
+6 rows in set (0.00 sec)
+
+mysql> SELECT COUNT(*) FROM books WHERE title LIKE '%the%';
++----------+
+| COUNT(*) |
++----------+
+|        6 |
++----------+
+1 row in set (0.00 sec)
+
+mysql>

@@ -1,0 +1,86 @@
+mysql> SHOW DATABASES;
++--------------------+
+| Database           |
++--------------------+
+| book_store         |
+| information_schema |
+| mysql              |
+| performance_schema |
+| sujit              |
+| sys                |
++--------------------+
+6 rows in set (0.01 sec)
+
+mysql> USE book_store;
+Database changed
+mysql> SELECT database();
++------------+
+| database() |
++------------+
+| book_store |
++------------+
+1 row in set (0.00 sec)
+
+mysql> SHOW TABLES;
++----------------------+
+| Tables_in_book_store |
++----------------------+
+| books                |
++----------------------+
+1 row in set (0.48 sec)
+
+mysql> SELECT SUM(pages) FROM books;
++------------+
+| SUM(pages) |
++------------+
+|       6623 |
++------------+
+1 row in set (0.76 sec)
+
+mysql> SELECT SUM(released_year) fROM books;
++--------------------+
+| SUM(released_year) |
++--------------------+
+|              37996 |
++--------------------+
+1 row in set (0.00 sec)
+
+mysql> SELECT author_fname, author_lname, Sum(pages) FROM books GROUP BY author_fname, author_lname;
++--------------+----------------+------------+
+| author_fname | author_lname   | Sum(pages) |
++--------------+----------------+------------+
+| Jhumpa       | Lahiri         |        489 |
+| Neil         | Gaiman         |        977 |
+| Dave         | Eggers         |       1293 |
+| Michael      | Chabon         |        634 |
+| Patti        | Smith          |        304 |
+| Raymond      | Carver         |        702 |
+| Don          | DeLillo        |        320 |
+| John         | Steinbeck      |        181 |
+| David        | Foster Wallace |        672 |
+| Dan          | Harris         |        256 |
+| Freida       | Harris         |        428 |
+| George       | Saunders       |        367 |
++--------------+----------------+------------+
+12 rows in set (0.00 sec)
+
+mysql> SELECT author_fname, author_lname, Sum(released_year) FROM books GROUP BY author_fname, author_lname;
++--------------+----------------+--------------------+
+| author_fname | author_lname   | Sum(released_year) |
++--------------+----------------+--------------------+
+| Jhumpa       | Lahiri         |               3999 |
+| Neil         | Gaiman         |               6020 |
+| Dave         | Eggers         |               6026 |
+| Michael      | Chabon         |               2000 |
+| Patti        | Smith          |               2010 |
+| Raymond      | Carver         |               3970 |
+| Don          | DeLillo        |               1985 |
+| John         | Steinbeck      |               1945 |
+| David        | Foster Wallace |               4009 |
+| Dan          | Harris         |               2014 |
+| Freida       | Harris         |               2001 |
+| George       | Saunders       |               2017 |
++--------------+----------------+--------------------+
+12 rows in set (0.00 sec)
+
+mysql>

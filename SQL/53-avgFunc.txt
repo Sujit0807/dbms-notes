@@ -1,0 +1,132 @@
+mysql> SELECT AVG(pages) FROM books;
++------------+
+| AVG(pages) |
++------------+
+|   348.5789 |
++------------+
+1 row in set (0.00 sec)
+
+mysql> SELECT AVG(released_year) FROM books;
++--------------------+
+| AVG(released_year) |
++--------------------+
+|          1999.7895 |
++--------------------+
+1 row in set (0.00 sec)
+
+mysql> SELECT title, AVG(stock_quantity) FROM books GROUP BY released_year;
++-----------------------------------------------------+---------------------+
+| title                                               | AVG(stock_quantity) |
++-----------------------------------------------------+---------------------+
+| The Namesake                                        |             66.0000 |
+| Norse Mythology                                     |             43.0000 |
+| American Gods                                       |            134.3333 |
+| Interpreter of Maladies                             |             97.0000 |
+| A Hologram for the King: A Novel                    |            154.0000 |
+| The Circle                                          |             26.0000 |
+| The Amazing Adventures of Kavalier & Clay           |             68.0000 |
+| Just Kids                                           |             55.0000 |
+| What We Talk About When We Talk About Love: Stories |             23.0000 |
+| Where I'm Calling From: Selected Stories            |             12.0000 |
+| White Noise                                         |             49.0000 |
+| Cannery Row                                         |             95.0000 |
+| Oblivion: Stories                                   |            172.0000 |
+| Consider the Lobster                                |             92.0000 |
+| 10% Happier                                         |             29.0000 |
+| Lincoln In The Bardo                                |           1000.0000 |
++-----------------------------------------------------+---------------------+
+16 rows in set (0.00 sec)
+
+mysql> SELECT title, author_fname, author_lname AVG(stock_quantity) FROM books GROUP BY released_year;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '(stock_quantity) FROM books GROUP BY released_year' at line 1
+mysql> SELECT title, author_fname, author_lname, AVG(stock_quantity) FROM books GROUP BY released_year;
++-----------------------------------------------------+--------------+----------------+---------------------+
+| title                                               | author_fname | author_lname   | AVG(stock_quantity) |
++-----------------------------------------------------+--------------+----------------+---------------------+
+| The Namesake                                        | Jhumpa       | Lahiri         |             66.0000 |
+| Norse Mythology                                     | Neil         | Gaiman         |             43.0000 |
+| American Gods                                       | Neil         | Gaiman         |            134.3333 |
+| Interpreter of Maladies                             | Jhumpa       | Lahiri         |             97.0000 |
+| A Hologram for the King: A Novel                    | Dave         | Eggers         |            154.0000 |
+| The Circle                                          | Dave         | Eggers         |             26.0000 |
+| The Amazing Adventures of Kavalier & Clay           | Michael      | Chabon         |             68.0000 |
+| Just Kids                                           | Patti        | Smith          |             55.0000 |
+| What We Talk About When We Talk About Love: Stories | Raymond      | Carver         |             23.0000 |
+| Where I'm Calling From: Selected Stories            | Raymond      | Carver         |             12.0000 |
+| White Noise                                         | Don          | DeLillo        |             49.0000 |
+| Cannery Row                                         | John         | Steinbeck      |             95.0000 |
+| Oblivion: Stories                                   | David        | Foster Wallace |            172.0000 |
+| Consider the Lobster                                | David        | Foster Wallace |             92.0000 |
+| 10% Happier                                         | Dan          | Harris         |             29.0000 |
+| Lincoln In The Bardo                                | George       | Saunders       |           1000.0000 |
++-----------------------------------------------------+--------------+----------------+---------------------+
+16 rows in set (0.00 sec)
+
+mysql> SELECT title, author_fname, author_lname, AVG(stock_quantity), released_year, FROM books GROUP BY released_year;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'FROM books GROUP BY released_year' at line 1
+mysql> SELECT title, author_fname, author_lname, AVG(stock_quantity), released_year FROM books GROUP BY released_year;
++-----------------------------------------------------+--------------+----------------+---------------------+---------------+
+| title                                               | author_fname | author_lname   | AVG(stock_quantity) | released_year |
++-----------------------------------------------------+--------------+----------------+---------------------+---------------+
+| The Namesake                                        | Jhumpa       | Lahiri         |             66.0000 |          2003 |
+| Norse Mythology                                     | Neil         | Gaiman         |             43.0000 |          2016 |
+| American Gods                                       | Neil         | Gaiman         |            134.3333 |          2001 |
+| Interpreter of Maladies                             | Jhumpa       | Lahiri         |             97.0000 |          1996 |
+| A Hologram for the King: A Novel                    | Dave         | Eggers         |            154.0000 |          2012 |
+| The Circle                                          | Dave         | Eggers         |             26.0000 |          2013 |
+| The Amazing Adventures of Kavalier & Clay           | Michael      | Chabon         |             68.0000 |          2000 |
+| Just Kids                                           | Patti        | Smith          |             55.0000 |          2010 |
+| What We Talk About When We Talk About Love: Stories | Raymond      | Carver         |             23.0000 |          1981 |
+| Where I'm Calling From: Selected Stories            | Raymond      | Carver         |             12.0000 |          1989 |
+| White Noise                                         | Don          | DeLillo        |             49.0000 |          1985 |
+| Cannery Row                                         | John         | Steinbeck      |             95.0000 |          1945 |
+| Oblivion: Stories                                   | David        | Foster Wallace |            172.0000 |          2004 |
+| Consider the Lobster                                | David        | Foster Wallace |             92.0000 |          2005 |
+| 10% Happier                                         | Dan          | Harris         |             29.0000 |          2014 |
+| Lincoln In The Bardo                                | George       | Saunders       |           1000.0000 |          2017 |
++-----------------------------------------------------+--------------+----------------+---------------------+---------------+
+16 rows in set (0.00 sec)
+
+mysql> SELECT title, author_fname, author_lname, AVG(stock_quantity), released_year FROM books GROUP BY released_year ORDER BY 5;
++-----------------------------------------------------+--------------+----------------+---------------------+---------------+
+| title                                               | author_fname | author_lname   | AVG(stock_quantity) | released_year |
++-----------------------------------------------------+--------------+----------------+---------------------+---------------+
+| Cannery Row                                         | John         | Steinbeck      |             95.0000 |          1945 |
+| What We Talk About When We Talk About Love: Stories | Raymond      | Carver         |             23.0000 |          1981 |
+| White Noise                                         | Don          | DeLillo        |             49.0000 |          1985 |
+| Where I'm Calling From: Selected Stories            | Raymond      | Carver         |             12.0000 |          1989 |
+| Interpreter of Maladies                             | Jhumpa       | Lahiri         |             97.0000 |          1996 |
+| The Amazing Adventures of Kavalier & Clay           | Michael      | Chabon         |             68.0000 |          2000 |
+| American Gods                                       | Neil         | Gaiman         |            134.3333 |          2001 |
+| The Namesake                                        | Jhumpa       | Lahiri         |             66.0000 |          2003 |
+| Oblivion: Stories                                   | David        | Foster Wallace |            172.0000 |          2004 |
+| Consider the Lobster                                | David        | Foster Wallace |             92.0000 |          2005 |
+| Just Kids                                           | Patti        | Smith          |             55.0000 |          2010 |
+| A Hologram for the King: A Novel                    | Dave         | Eggers         |            154.0000 |          2012 |
+| The Circle                                          | Dave         | Eggers         |             26.0000 |          2013 |
+| 10% Happier                                         | Dan          | Harris         |             29.0000 |          2014 |
+| Norse Mythology                                     | Neil         | Gaiman         |             43.0000 |          2016 |
+| Lincoln In The Bardo                                | George       | Saunders       |           1000.0000 |          2017 |
++-----------------------------------------------------+--------------+----------------+---------------------+---------------+
+16 rows in set (0.00 sec)
+
+mysql> SELECT author_fname, author_lname, AVG(pages) FROM books GROUP BY author_lname, author_fname;
++--------------+----------------+------------+
+| author_fname | author_lname   | AVG(pages) |
++--------------+----------------+------------+
+| Jhumpa       | Lahiri         |   244.5000 |
+| Neil         | Gaiman         |   325.6667 |
+| Dave         | Eggers         |   431.0000 |
+| Michael      | Chabon         |   634.0000 |
+| Patti        | Smith          |   304.0000 |
+| Raymond      | Carver         |   351.0000 |
+| Don          | DeLillo        |   320.0000 |
+| John         | Steinbeck      |   181.0000 |
+| David        | Foster Wallace |   336.0000 |
+| Dan          | Harris         |   256.0000 |
+| Freida       | Harris         |   428.0000 |
+| George       | Saunders       |   367.0000 |
++--------------+----------------+------------+
+12 rows in set (0.00 sec)
+
+mysql>
