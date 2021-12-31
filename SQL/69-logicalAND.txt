@@ -1,0 +1,147 @@
+// WE CAN USE 'AND' or JUST SYMBOL '&&'
+
+
+mysql> SELECT title, released_year FROM books
+    -> WHERE released_year <= 2000;
++-----------------------------------------------------+---------------+
+| title                                               | released_year |
++-----------------------------------------------------+---------------+
+| Interpreter of Maladies                             |          1996 |
+| The Amazing Adventures of Kavalier & Clay           |          2000 |
+| What We Talk About When We Talk About Love: Stories |          1981 |
+| Where I'm Calling From: Selected Stories            |          1989 |
+| White Noise                                         |          1985 |
+| Cannery Row                                         |          1945 |
++-----------------------------------------------------+---------------+
+6 rows in set (0.00 sec)
+
+mysql> SELECT title, author_lname, released_year FROM books WHERE author_lname = 'Eggers';
++-------------------------------------------+--------------+---------------+
+| title                                     | author_lname | released_year |
++-------------------------------------------+--------------+---------------+
+| A Hologram for the King: A Novel          | Eggers       |          2012 |
+| The Circle                                | Eggers       |          2013 |
+| A Heartbreaking Work of Staggering Genius | Eggers       |          2001 |
++-------------------------------------------+--------------+---------------+
+3 rows in set (0.00 sec)
+
+mysql> SELECT title, author_lname, released_year FROM books WHERE author_lname = 'Eggers' AND released_year > 2010;
++----------------------------------+--------------+---------------+
+| title                            | author_lname | released_year |
++----------------------------------+--------------+---------------+
+| A Hologram for the King: A Novel | Eggers       |          2012 |
+| The Circle                       | Eggers       |          2013 |
++----------------------------------+--------------+---------------+
+2 rows in set (0.00 sec)
+
+mysql> SELECT title, author_lname, released_year FROM books WHERE author_lname = 'Eggers' && released_year > 2010;
++----------------------------------+--------------+---------------+
+| title                            | author_lname | released_year |
++----------------------------------+--------------+---------------+
+| A Hologram for the King: A Novel | Eggers       |          2012 |
+| The Circle                       | Eggers       |          2013 |
++----------------------------------+--------------+---------------+
+2 rows in set, 1 warning (0.02 sec)
+
+mysql> SELECT 1 > 5 && 7 = 9;
++----------------+
+| 1 > 5 && 7 = 9 |
++----------------+
+|              0 |
++----------------+
+1 row in set, 1 warning (0.00 sec)
+
+mysql> SELECT 5 > 6 && 7 = 9;
++----------------+
+| 5 > 6 && 7 = 9 |
++----------------+
+|              0 |
++----------------+
+1 row in set, 1 warning (0.00 sec)
+
+mysql> SELECT 5 > 6 && 7 < 9;
++----------------+
+| 5 > 6 && 7 < 9 |
++----------------+
+|              0 |
++----------------+
+1 row in set, 1 warning (0.00 sec)
+
+mysql> SELECT 7 > 6 && 7 < 9;
++----------------+
+| 7 > 6 && 7 < 9 |
++----------------+
+|              1 |
++----------------+
+1 row in set, 1 warning (0.00 sec)
+
+mysql> SELECT 7 > 6 && 10 < 9;
++-----------------+
+| 7 > 6 && 10 < 9 |
++-----------------+
+|               0 |
++-----------------+
+1 row in set, 1 warning (0.00 sec)
+
+mysql> SELECT -10 > -20 && 0 <= 0;
++---------------------+
+| -10 > -20 && 0 <= 0 |
++---------------------+
+|                   1 |
++---------------------+
+1 row in set, 1 warning (0.00 sec)
+
+mysql> SELECT -40 <= -0 && 10 > 4 0;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '0' at line 1
+mysql>
+mysql>
+mysql>
+mysql> SELECT -40 <= -0 && 10 > 40;
++----------------------+
+| -40 <= -0 && 10 > 40 |
++----------------------+
+|                    0 |
++----------------------+
+1 row in set, 1 warning (0.00 sec)
+
+mysql> SELECT 54 <= 54 && 'a' > 'A';
++-----------------------+
+| 54 <= 54 && 'a' > 'A' |
++-----------------------+
+|                     0 |
++-----------------------+
+1 row in set, 1 warning (0.00 sec)
+
+mysql> SELECT -40 <= -0 AND 10 > 40;
++-----------------------+
+| -40 <= -0 AND 10 > 40 |
++-----------------------+
+|                     0 |
++-----------------------+
+1 row in set (0.00 sec)
+
+mysql> SELECT 54 <= 54 AND 'a' = 'A';
++------------------------+
+| 54 <= 54 AND 'a' = 'A' |
++------------------------+
+|                      1 |
++------------------------+
+1 row in set (0.00 sec)
+
+mysql> SELECT *
+    -> FROM books
+    -> WHERE author_lname='Eggers'
+    ->     AND released_year > 2010
+    ->     AND title LIKE '%novel%';
++---------+----------------------------------+--------------+--------------+---------------+----------------+-------+
+| book_id | title                            | author_fname | author_lname | released_year | stock_quantity | pages |
++---------+----------------------------------+--------------+--------------+---------------+----------------+-------+
+|       5 | A Hologram for the King: A Novel | Dave         | Eggers       |          2012 |            154 |   352 |
++---------+----------------------------------+--------------+--------------+---------------+----------------+-------+
+1 row in set (0.00 sec)
+
+mysql>
+
+
+// Please note, as of MySQL 8.0.17, the && operator is deprecated and support for it will be removed in a future MySQL version. Applications should be adjusted to use the standard SQL AND operator.
+If you're using MySQL 5.7 or older, which most of you are if you're using GoormIDE, then you don't have to worry about this right now. But, in newer versions of MySQL (8.0.17 and newer) you will need to replace && with AND.

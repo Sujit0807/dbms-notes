@@ -1,0 +1,134 @@
+mysql> SELECT author_lname FROM books WHERE author_lname = 'eggers';
++--------------+
+| author_lname |
++--------------+
+| Eggers       |
+| Eggers       |
+| Eggers       |
++--------------+
+3 rows in set (0.00 sec)
+
+mysql> SELECT author_lname FROM books WHERE author_lname = 'eGGers';
++--------------+
+| author_lname |
++--------------+
+| Eggers       |
+| Eggers       |
+| Eggers       |
++--------------+
+3 rows in set (0.00 sec)
+
+mysql> SELECT author_lname FROM books WHERE author_lname = 'EGGers';
++--------------+
+| author_lname |
++--------------+
+| Eggers       |
+| Eggers       |
+| Eggers       |
++--------------+
+3 rows in set (0.00 sec)
+
+mysql> SELECT 3 < -10;
++---------+
+| 3 < -10 |
++---------+
+|       0 |
++---------+
+1 row in set (0.00 sec)
+
+mysql> SELECT -10 < -9;
++----------+
+| -10 < -9 |
++----------+
+|        1 |
++----------+
+1 row in set (0.00 sec)
+
+mysql> SELECT 42 <= 42;
++----------+
+| 42 <= 42 |
++----------+
+|        1 |
++----------+
+1 row in set (0.00 sec)
+
+mysql> SELECT 'h' < 'p';
++-----------+
+| 'h' < 'p' |
++-----------+
+|         1 |
++-----------+
+1 row in set (0.00 sec)
+
+mysql> SELECT 'Q' <= 'q';
++------------+
+| 'Q' <= 'q' |
++------------+
+|          1 |
++------------+
+1 row in set (0.00 sec)
+
+mysql> SELECT 'Q' = 'q';
++-----------+
+| 'Q' = 'q' |
++-----------+
+|         1 |
++-----------+
+1 row in set (0.00 sec)
+
+mysql> SELECT title, released_year FROM books;
++-----------------------------------------------------+---------------+
+| title                                               | released_year |
++-----------------------------------------------------+---------------+
+| The Namesake                                        |          2003 |
+| Norse Mythology                                     |          2016 |
+| American Gods                                       |          2001 |
+| Interpreter of Maladies                             |          1996 |
+| A Hologram for the King: A Novel                    |          2012 |
+| The Circle                                          |          2013 |
+| The Amazing Adventures of Kavalier & Clay           |          2000 |
+| Just Kids                                           |          2010 |
+| A Heartbreaking Work of Staggering Genius           |          2001 |
+| Coraline                                            |          2003 |
+| What We Talk About When We Talk About Love: Stories |          1981 |
+| Where I'm Calling From: Selected Stories            |          1989 |
+| White Noise                                         |          1985 |
+| Cannery Row                                         |          1945 |
+| Oblivion: Stories                                   |          2004 |
+| Consider the Lobster                                |          2005 |
+| 10% Happier                                         |          2014 |
+| fake_book                                           |          2001 |
+| Lincoln In The Bardo                                |          2017 |
++-----------------------------------------------------+---------------+
+19 rows in set (0.00 sec)
+
+mysql>
+mysql> SELECT title, released_year FROM books
+    -> WHERE released_year < 2000;
++-----------------------------------------------------+---------------+
+| title                                               | released_year |
++-----------------------------------------------------+---------------+
+| Interpreter of Maladies                             |          1996 |
+| What We Talk About When We Talk About Love: Stories |          1981 |
+| Where I'm Calling From: Selected Stories            |          1989 |
+| White Noise                                         |          1985 |
+| Cannery Row                                         |          1945 |
++-----------------------------------------------------+---------------+
+5 rows in set (0.00 sec)
+
+mysql>
+mysql> SELECT title, released_year FROM books
+    -> WHERE released_year <= 2000;
++-----------------------------------------------------+---------------+
+| title                                               | released_year |
++-----------------------------------------------------+---------------+
+| Interpreter of Maladies                             |          1996 |
+| The Amazing Adventures of Kavalier & Clay           |          2000 |
+| What We Talk About When We Talk About Love: Stories |          1981 |
+| Where I'm Calling From: Selected Stories            |          1989 |
+| White Noise                                         |          1985 |
+| Cannery Row                                         |          1945 |
++-----------------------------------------------------+---------------+
+6 rows in set (0.00 sec)
+
+mysql>

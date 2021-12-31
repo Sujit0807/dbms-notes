@@ -1,0 +1,78 @@
+mysql> SELECT
+    ->     title,
+    ->     author_lname,
+    ->     released_year
+    -> FROM books
+    -> WHERE author_lname='Eggers' || released_year > 2010;
++-------------------------------------------+--------------+---------------+
+| title                                     | author_lname | released_year |
++-------------------------------------------+--------------+---------------+
+| Norse Mythology                           | Gaiman       |          2016 |
+| A Hologram for the King: A Novel          | Eggers       |          2012 |
+| The Circle                                | Eggers       |          2013 |
+| A Heartbreaking Work of Staggering Genius | Eggers       |          2001 |
+| 10% Happier                               | Harris       |          2014 |
+| Lincoln In The Bardo                      | Saunders     |          2017 |
++-------------------------------------------+--------------+---------------+
+6 rows in set, 1 warning (0.00 sec)
+
+mysql>
+mysql>
+mysql> SELECT 40 <= 100 || -2 > 0;
++---------------------+
+| 40 <= 100 || -2 > 0 |
++---------------------+
+|                   1 |
++---------------------+
+1 row in set, 1 warning (0.00 sec)
+
+mysql> -- true
+mysql>
+mysql> SELECT 10 > 5 || 5 = 5;
++-----------------+
+| 10 > 5 || 5 = 5 |
++-----------------+
+|               1 |
++-----------------+
+1 row in set, 1 warning (0.00 sec)
+
+mysql> -- true
+mysql>
+mysql> SELECT 'a' = 5 || 3000 > 2000;
++------------------------+
+| 'a' = 5 || 3000 > 2000 |
++------------------------+
+|                      1 |
++------------------------+
+1 row in set, 2 warnings (0.06 sec)
+
+mysql> -- true
+mysql>
+mysql> SELECT title,
+    ->        author_lname,
+    ->        released_year,
+    ->        stock_quantity
+    -> FROM   books
+    -> WHERE  author_lname = 'Eggers'
+    ->               || released_year > 2010
+    -> OR     stock_quantity > 100;
++-------------------------------------------+----------------+---------------+----------------+
+| title                                     | author_lname   | released_year | stock_quantity |
++-------------------------------------------+----------------+---------------+----------------+
+| Norse Mythology                           | Gaiman         |          2016 |             43 |
+| A Hologram for the King: A Novel          | Eggers         |          2012 |            154 |
+| The Circle                                | Eggers         |          2013 |             26 |
+| A Heartbreaking Work of Staggering Genius | Eggers         |          2001 |            104 |
+| Oblivion: Stories                         | Foster Wallace |          2004 |            172 |
+| 10% Happier                               | Harris         |          2014 |             29 |
+| fake_book                                 | Harris         |          2001 |            287 |
+| Lincoln In The Bardo                      | Saunders       |          2017 |           1000 |
++-------------------------------------------+----------------+---------------+----------------+
+8 rows in set, 1 warning (0.00 sec)
+
+mysql>
+
+
+
+// Please note, as of MySQL 8.0.17, the || operator is deprecated and support for it will be removed in a future MySQL version. Applications should be adjusted to use the standard SQL OR operator.
+If you're using MySQL 5.7 or older, which most of you are if you're using GoormIDE, then you don't have to worry about this right now. But, in newer versions of MySQL (8.0.17 and newer) you will need to replace || with OR.

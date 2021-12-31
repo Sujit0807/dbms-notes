@@ -1,0 +1,205 @@
+// CAST  : CONVERTS ONE DATA TYPE INTO ANOTHER DATA TYPE IN SQL
+// BETWEEN : GIVES VALUES OR DATA BETWEEN THAT CONDITION
+
+
+mysql> SELECT title, released_year FROM books WHERE released_year >= 2004 && released_year <= 2015 ORDER BY released_year;
++----------------------------------+---------------+
+| title                            | released_year |
++----------------------------------+---------------+
+| Oblivion: Stories                |          2004 |
+| Consider the Lobster             |          2005 |
+| Just Kids                        |          2010 |
+| A Hologram for the King: A Novel |          2012 |
+| The Circle                       |          2013 |
+| 10% Happier                      |          2014 |
++----------------------------------+---------------+
+6 rows in set, 1 warning (0.00 sec)
+
+mysql> SHOW WARNINGS;
++---------+------+------------------------------------------------------------------------------------+
+| Level   | Code | Message                                                                            |
++---------+------+------------------------------------------------------------------------------------+
+| Warning | 1287 | '&&' is deprecated and will be removed in a future release. Please use AND instead |
++---------+------+------------------------------------------------------------------------------------+
+1 row in set (0.00 sec)
+
+mysql> SELECT title, released_year FROM books WHERE released_year >= 2004 AND released_year <= 2015 ORDER BY released_year;
++----------------------------------+---------------+
+| title                            | released_year |
++----------------------------------+---------------+
+| Oblivion: Stories                |          2004 |
+| Consider the Lobster             |          2005 |
+| Just Kids                        |          2010 |
+| A Hologram for the King: A Novel |          2012 |
+| The Circle                       |          2013 |
+| 10% Happier                      |          2014 |
++----------------------------------+---------------+
+6 rows in set (0.00 sec)
+
+mysql> SELECT title, released_year FROM books WHERE released_year BETWEEN 2004 AND 2015;
++----------------------------------+---------------+
+| title                            | released_year |
++----------------------------------+---------------+
+| A Hologram for the King: A Novel |          2012 |
+| The Circle                       |          2013 |
+| Just Kids                        |          2010 |
+| Oblivion: Stories                |          2004 |
+| Consider the Lobster             |          2005 |
+| 10% Happier                      |          2014 |
++----------------------------------+---------------+
+6 rows in set (0.10 sec)
+
+mysql> SELECT title, released_year FROM books WHERE released_year BETWEEN 2004 AND 2015 ORDER BY released_year;
++----------------------------------+---------------+
+| title                            | released_year |
++----------------------------------+---------------+
+| Oblivion: Stories                |          2004 |
+| Consider the Lobster             |          2005 |
+| Just Kids                        |          2010 |
+| A Hologram for the King: A Novel |          2012 |
+| The Circle                       |          2013 |
+| 10% Happier                      |          2014 |
++----------------------------------+---------------+
+6 rows in set (0.00 sec)
+
+mysql> SELECT title, released_year FROM books WHERE released_year BETWEEN 2004 AND 2015 ORDER BY released_year DESC;
++----------------------------------+---------------+
+| title                            | released_year |
++----------------------------------+---------------+
+| 10% Happier                      |          2014 |
+| The Circle                       |          2013 |
+| A Hologram for the King: A Novel |          2012 |
+| Just Kids                        |          2010 |
+| Consider the Lobster             |          2005 |
+| Oblivion: Stories                |          2004 |
++----------------------------------+---------------+
+6 rows in set (0.00 sec)
+
+mysql> SELECT title, released_year FROM books WHERE released_year BETWEEN 2005 AND 2014 ORDER BY released_year DESC;
++----------------------------------+---------------+
+| title                            | released_year |
++----------------------------------+---------------+
+| 10% Happier                      |          2014 |
+| The Circle                       |          2013 |
+| A Hologram for the King: A Novel |          2012 |
+| Just Kids                        |          2010 |
+| Consider the Lobster             |          2005 |
++----------------------------------+---------------+
+5 rows in set (0.00 sec)
+
+mysql> SELECT title, released_year FROM books WHERE released_year NOT BETWEEN 2004 AND 2015 ORDER BY released_year DESC;
++-----------------------------------------------------+---------------+
+| title                                               | released_year |
++-----------------------------------------------------+---------------+
+| Lincoln In The Bardo                                |          2017 |
+| Norse Mythology                                     |          2016 |
+| The Namesake                                        |          2003 |
+| Coraline                                            |          2003 |
+| American Gods                                       |          2001 |
+| A Heartbreaking Work of Staggering Genius           |          2001 |
+| fake_book                                           |          2001 |
+| The Amazing Adventures of Kavalier & Clay           |          2000 |
+| Interpreter of Maladies                             |          1996 |
+| Where I'm Calling From: Selected Stories            |          1989 |
+| White Noise                                         |          1985 |
+| What We Talk About When We Talk About Love: Stories |          1981 |
+| Cannery Row                                         |          1945 |
++-----------------------------------------------------+---------------+
+13 rows in set (0.00 sec)
+
+mysql> SELECT title, released_year FROM books WHERE released_year NOT BETWEEN 2004 AND 2015 ORDER BY released_year;
++-----------------------------------------------------+---------------+
+| title                                               | released_year |
++-----------------------------------------------------+---------------+
+| Cannery Row                                         |          1945 |
+| What We Talk About When We Talk About Love: Stories |          1981 |
+| White Noise                                         |          1985 |
+| Where I'm Calling From: Selected Stories            |          1989 |
+| Interpreter of Maladies                             |          1996 |
+| The Amazing Adventures of Kavalier & Clay           |          2000 |
+| American Gods                                       |          2001 |
+| A Heartbreaking Work of Staggering Genius           |          2001 |
+| fake_book                                           |          2001 |
+| The Namesake                                        |          2003 |
+| Coraline                                            |          2003 |
+| Norse Mythology                                     |          2016 |
+| Lincoln In The Bardo                                |          2017 |
++-----------------------------------------------------+---------------+
+13 rows in set (0.00 sec)
+
+mysql>
+mysql>
+mysql>
+mysql> SELECT CAST('2017-05-02' AS DATETIME);
++--------------------------------+
+| CAST('2017-05-02' AS DATETIME) |
++--------------------------------+
+| 2017-05-02 00:00:00            |
++--------------------------------+
+1 row in set (0.00 sec)
+
+mysql> SHOW TABLES;
++----------------------+
+| Tables_in_book_store |
++----------------------+
+| books                |
+| comment2             |
+| comments             |
+| items                |
+| people               |
+| thingies             |
+| thingies2            |
++----------------------+
+7 rows in set (0.01 sec)
+
+mysql> DESC people;
++-----------+--------------+------+-----+---------+-------+
+| Field     | Type         | Null | Key | Default | Extra |
++-----------+--------------+------+-----+---------+-------+
+| name      | varchar(100) | YES  |     | NULL    |       |
+| birthdate | date         | YES  |     | NULL    |       |
+| birthtime | time         | YES  |     | NULL    |       |
+| birthdt   | datetime     | YES  |     | NULL    |       |
++-----------+--------------+------+-----+---------+-------+
+4 rows in set (0.20 sec)
+
+mysql> SELECT * FROM people;
++---------+------------+-----------+---------------------+
+| name    | birthdate  | birthtime | birthdt             |
++---------+------------+-----------+---------------------+
+| Padma   | 1983-11-11 | 10:07:35  | 1983-11-11 10:07:35 |
+| Larry   | 1943-12-25 | 04:10:42  | 1943-12-25 04:10:42 |
+| Avdhoot | 2021-12-29 | 20:38:17  | 2021-12-29 20:38:17 |
+| Atharv  | 2021-12-29 | 20:40:32  | 2021-12-29 20:40:32 |
+| Sujit   | 2021-12-29 | 20:40:47  | 2021-12-29 20:40:47 |
+| Karan   | 2021-12-29 | 20:41:01  | 2021-12-29 20:41:01 |
+| Anjali  | 1943-12-27 | 04:10:42  | 1943-12-25 04:10:42 |
++---------+------------+-----------+---------------------+
+7 rows in set (0.15 sec)
+
+mysql> SELECT name, birthdt FROM people WHERE birthdt BETWEEN '1980-01-01' AND '2000-01-01';
++-------+---------------------+
+| name  | birthdt             |
++-------+---------------------+
+| Padma | 1983-11-11 10:07:35 |
++-------+---------------------+
+1 row in set (0.00 sec)
+
+mysql>
+mysql> SELECT
+    ->     name,
+    ->     birthdt
+    -> FROM people
+    -> WHERE
+    ->     birthdt BETWEEN CAST('1980-01-01' AS DATETIME)
+    ->     AND CAST('2000-01-01' AS DATETIME);
++-------+---------------------+
+| name  | birthdt             |
++-------+---------------------+
+| Padma | 1983-11-11 10:07:35 |
++-------+---------------------+
+1 row in set (0.02 sec)
+
+mysql>
+
+

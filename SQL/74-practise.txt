@@ -1,0 +1,204 @@
+mysql> SELECT 10 != 10;
++----------+
+| 10 != 10 |
++----------+
+|        0 |
++----------+
+1 row in set (0.00 sec)
+
+mysql> SELECT 15 > 14 && 99 - 5 <= 94;
++-------------------------+
+| 15 > 14 && 99 - 5 <= 94 |
++-------------------------+
+|                       1 |
++-------------------------+
+1 row in set, 1 warning (0.02 sec)
+
+mysql> SELECT 1 IN (5, 3) || 9 BETWEEN 8 AND 10;
++-----------------------------------+
+| 1 IN (5, 3) || 9 BETWEEN 8 AND 10 |
++-----------------------------------+
+|                                 1 |
++-----------------------------------+
+1 row in set, 1 warning (0.00 sec)
+
+mysql> SELECT title, released_year FROM books WHERE released_year < 1980;
++-------------+---------------+
+| title       | released_year |
++-------------+---------------+
+| Cannery Row |          1945 |
++-------------+---------------+
+1 row in set (0.00 sec)
+
+mysql>
+mysql> SELECT title, author_lname FROM books WHERE author_lname='Eggers' OR author_lname='Chabon';
++-------------------------------------------+--------------+
+| title                                     | author_lname |
++-------------------------------------------+--------------+
+| A Hologram for the King: A Novel          | Eggers       |
+| The Circle                                | Eggers       |
+| The Amazing Adventures of Kavalier & Clay | Chabon       |
+| A Heartbreaking Work of Staggering Genius | Eggers       |
++-------------------------------------------+--------------+
+4 rows in set (0.00 sec)
+
+mysql>
+mysql> SELECT title, author_lname FROM books WHERE author_lname IN ('Eggers','Chabon');
++-------------------------------------------+--------------+
+| title                                     | author_lname |
++-------------------------------------------+--------------+
+| A Hologram for the King: A Novel          | Eggers       |
+| The Circle                                | Eggers       |
+| The Amazing Adventures of Kavalier & Clay | Chabon       |
+| A Heartbreaking Work of Staggering Genius | Eggers       |
++-------------------------------------------+--------------+
+4 rows in set (0.00 sec)
+
+mysql>
+mysql> SELECT title, author_lname, released_year FROM books WHERE author_lname = 'Lahiri' && released_year > 2000;
++--------------+--------------+---------------+
+| title        | author_lname | released_year |
++--------------+--------------+---------------+
+| The Namesake | Lahiri       |          2003 |
++--------------+--------------+---------------+
+1 row in set, 1 warning (0.00 sec)
+
+mysql>
+mysql> SELECT title, pages FROM books WHERE pages >= 100 && pages <=200;
++-----------------------------------------------------+-------+
+| title                                               | pages |
++-----------------------------------------------------+-------+
+| Interpreter of Maladies                             |   198 |
+| What We Talk About When We Talk About Love: Stories |   176 |
+| Cannery Row                                         |   181 |
++-----------------------------------------------------+-------+
+3 rows in set, 1 warning (0.00 sec)
+
+mysql>
+mysql> SELECT title, pages FROM books WHERE pages BETWEEN 100 AND 200;
++-----------------------------------------------------+-------+
+| title                                               | pages |
++-----------------------------------------------------+-------+
+| Interpreter of Maladies                             |   198 |
+| What We Talk About When We Talk About Love: Stories |   176 |
+| Cannery Row                                         |   181 |
++-----------------------------------------------------+-------+
+3 rows in set (0.00 sec)
+
+mysql>
+mysql> SELECT
+    ->     title,
+    ->     author_lname
+    -> FROM books
+    -> WHERE
+    ->     author_lname LIKE 'C%' OR
+    ->     author_lname LIKE 'S%';
++-----------------------------------------------------+--------------+
+| title                                               | author_lname |
++-----------------------------------------------------+--------------+
+| The Amazing Adventures of Kavalier & Clay           | Chabon       |
+| Just Kids                                           | Smith        |
+| What We Talk About When We Talk About Love: Stories | Carver       |
+| Where I'm Calling From: Selected Stories            | Carver       |
+| Cannery Row                                         | Steinbeck    |
+| Lincoln In The Bardo                                | Saunders     |
++-----------------------------------------------------+--------------+
+6 rows in set (0.00 sec)
+
+mysql>
+mysql> SELECT
+    ->     title,
+    ->     author_lname
+    -> FROM books
+    -> WHERE
+    ->     SUBSTR(author_lname,1,1) = 'C' OR
+    ->     SUBSTR(author_lname,1,1) = 'S';
++-----------------------------------------------------+--------------+
+| title                                               | author_lname |
++-----------------------------------------------------+--------------+
+| The Amazing Adventures of Kavalier & Clay           | Chabon       |
+| Just Kids                                           | Smith        |
+| What We Talk About When We Talk About Love: Stories | Carver       |
+| Where I'm Calling From: Selected Stories            | Carver       |
+| Cannery Row                                         | Steinbeck    |
+| Lincoln In The Bardo                                | Saunders     |
++-----------------------------------------------------+--------------+
+6 rows in set (0.00 sec)
+
+mysql>
+mysql> SELECT title, author_lname FROM books
+    -> WHERE SUBSTR(author_lname,1,1) IN ('C', 'S');
++-----------------------------------------------------+--------------+
+| title                                               | author_lname |
++-----------------------------------------------------+--------------+
+| The Amazing Adventures of Kavalier & Clay           | Chabon       |
+| Just Kids                                           | Smith        |
+| What We Talk About When We Talk About Love: Stories | Carver       |
+| Where I'm Calling From: Selected Stories            | Carver       |
+| Cannery Row                                         | Steinbeck    |
+| Lincoln In The Bardo                                | Saunders     |
++-----------------------------------------------------+--------------+
+6 rows in set (0.00 sec)
+
+mysql>
+mysql> SELECT
+    ->     title,
+    ->     author_lname,
+    ->     CASE
+    ->         WHEN title LIKE '%stories%' THEN 'Short Stories'
+    ->         WHEN title = 'Just Kids' OR title = 'A Heartbreaking Work of Staggering Genius' THEN 'Memoir'
+    ->         ELSE 'Novel'
+    ->     END AS TYPE
+    -> FROM books;
++-----------------------------------------------------+----------------+---------------+
+| title                                               | author_lname   | TYPE          |
++-----------------------------------------------------+----------------+---------------+
+| The Namesake                                        | Lahiri         | Novel         |
+| Norse Mythology                                     | Gaiman         | Novel         |
+| American Gods                                       | Gaiman         | Novel         |
+| Interpreter of Maladies                             | Lahiri         | Novel         |
+| A Hologram for the King: A Novel                    | Eggers         | Novel         |
+| The Circle                                          | Eggers         | Novel         |
+| The Amazing Adventures of Kavalier & Clay           | Chabon         | Novel         |
+| Just Kids                                           | Smith          | Memoir        |
+| A Heartbreaking Work of Staggering Genius           | Eggers         | Memoir        |
+| Coraline                                            | Gaiman         | Novel         |
+| What We Talk About When We Talk About Love: Stories | Carver         | Short Stories |
+| Where I'm Calling From: Selected Stories            | Carver         | Short Stories |
+| White Noise                                         | DeLillo        | Novel         |
+| Cannery Row                                         | Steinbeck      | Novel         |
+| Oblivion: Stories                                   | Foster Wallace | Short Stories |
+| Consider the Lobster                                | Foster Wallace | Novel         |
+| 10% Happier                                         | Harris         | Novel         |
+| fake_book                                           | Harris         | Novel         |
+| Lincoln In The Bardo                                | Saunders       | Novel         |
++-----------------------------------------------------+----------------+---------------+
+19 rows in set (0.00 sec)
+
+mysql>
+mysql> SELECT author_fname, author_lname,
+    ->     CASE
+    ->         WHEN COUNT(*) = 1 THEN '1 book'
+    ->         ELSE CONCAT(COUNT(*), ' books')
+    ->     END AS COUNT
+    -> FROM books
+    -> GROUP BY author_lname, author_fname;
++--------------+----------------+---------+
+| author_fname | author_lname   | COUNT   |
++--------------+----------------+---------+
+| Jhumpa       | Lahiri         | 2 books |
+| Neil         | Gaiman         | 3 books |
+| Dave         | Eggers         | 3 books |
+| Michael      | Chabon         | 1 book  |
+| Patti        | Smith          | 1 book  |
+| Raymond      | Carver         | 2 books |
+| Don          | DeLillo        | 1 book  |
+| John         | Steinbeck      | 1 book  |
+| David        | Foster Wallace | 2 books |
+| Dan          | Harris         | 1 book  |
+| Freida       | Harris         | 1 book  |
+| George       | Saunders       | 1 book  |
++--------------+----------------+---------+
+12 rows in set (0.00 sec)
+
+mysql>
