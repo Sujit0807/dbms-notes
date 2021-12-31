@@ -1,0 +1,101 @@
+mysql> SHOW DATABASES;
++--------------------+
+| Database           |
++--------------------+
+| book_store         |
+| information_schema |
+| mysql              |
+| performance_schema |
+| sujit              |
+| sys                |
++--------------------+
+6 rows in set (2.62 sec)
+
+mysql> USE book_store;
+Database changed
+mysql> USE SUJIT;
+Database changed
+mysql> SELECT DATABASE();
++------------+
+| DATABASE() |
++------------+
+| sujit      |
++------------+
+1 row in set (0.00 sec)
+
+mysql> SHOW  TABLES;
++-----------------+
+| Tables_in_sujit |
++-----------------+
+| cat2            |
+| cats            |
+| cats3           |
+| cats4           |
+| employees       |
+| unique_cats     |
+| unique_cats2    |
++-----------------+
+7 rows in set (0.71 sec)
+
+mysql> CREATE TABLE dogs(name CHAR(5),
+    -> breed VARCHAR(10));
+^C -- query aborted
+Query OK, 0 rows affected (7.93 sec)
+
+mysql> SHOW TABLES;
++-----------------+
+| Tables_in_sujit |
++-----------------+
+| cat2            |
+| cats            |
+| cats3           |
+| cats4           |
+| dogs            |
+| employees       |
+| unique_cats     |
+| unique_cats2    |
++-----------------+
+8 rows in set (1.66 sec)
+
+mysql> DESC dogs;
++-------+-------------+------+-----+---------+-------+
+| Field | Type        | Null | Key | Default | Extra |
++-------+-------------+------+-----+---------+-------+
+| name  | char(5)     | YES  |     | NULL    |       |
+| breed | varchar(10) | YES  |     | NULL    |       |
++-------+-------------+------+-----+---------+-------+
+2 rows in set (0.69 sec)
+
+mysql> INSER INTO dogs(name, breed)
+    -> VALUES ('bob', 'beagle');
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'INSER INTO dogs(name, breed)
+VALUES ('bob', 'beagle')' at line 1
+mysql> INSERT INTO dogs(name, breed)
+    -> VALUES ('bob', 'beagle');
+Query OK, 1 row affected (1.09 sec)
+
+mysql> INSERT INTO dogs(name, breed)
+    -> VALUES('robby','corgi');
+Query OK, 1 row affected (1.05 sec)
+
+mysql> INSERT INTO dogs(name, breed)
+    -> VALUES('Princes Jane','Retriever');
+ERROR 1406 (22001): Data too long for column 'name' at row 1
+mysql> SELECT * FROM DOGS;
++-------+--------+
+| name  | breed  |
++-------+--------+
+| bob   | beagle |
+| robby | corgi  |
++-------+--------+
+2 rows in set (0.25 sec)
+
+mysql> VALUES('Princes Jane','Retrieverrrrrrrrrrrrrrrr');
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '('Princes Jane','Retrieverrrrrrrrrrrrrrrr')' at line 1
+mysql> INSERT INTO dogs(name, breed)
+    -> VALUES('Princes Jane','Retrieverrrrrrrrrrrrrrr');
+ERROR 1406 (22001): Data too long for column 'name' at row 1
+mysql> INSERT INTO dogs(name, breed)
+    -> VALUES('Bob','Retrieverrrrrrrrrrrrrrr');
+ERROR 1406 (22001): Data too long for column 'breed' at row 1
+mysql>

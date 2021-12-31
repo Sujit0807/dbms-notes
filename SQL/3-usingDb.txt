@@ -1,0 +1,30 @@
+mysql> SHOW DATABASES;
++--------------------+
+| Database           |
++--------------------+
+| book_store         |
+| information_schema |
+| mysql              |
+| performance_schema |
+| sujit              |
+| sys                |
++--------------------+
+6 rows in set (1.29 sec)
+
+mysql> USE book_store;
+Database changed
+mysql> SELECT database();
++------------+
+| database() |
++------------+
+| book_store |
++------------+
+1 row in set (0.00 sec)
+
+mysql> show tables;
++----------------------+
+| Tables_in_book_store |
++----------------------+
+| books                |
++----------------------+
+1 row in set (1.55 sec)

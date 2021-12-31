@@ -1,0 +1,100 @@
+// CURDATE - gives current date
+// CURTIME - gives current time
+// NOW     - gives current date and time
+
+
+mysql> SELECT * FROM people;
++-------+------------+-----------+---------------------+
+| name  | birthdate  | birthtime | birthdt             |
++-------+------------+-----------+---------------------+
+| Padma | 1983-11-11 | 10:07:35  | 1983-11-11 10:07:35 |
+| Larry | 1943-12-25 | 04:10:42  | 1943-12-25 04:10:42 |
++-------+------------+-----------+---------------------+
+2 rows in set (0.00 sec)
+
+mysql> SELECT CURDATE();
++------------+
+| CURDATE()  |
++------------+
+| 2021-12-29 |
++------------+
+1 row in set (0.04 sec)
+
+mysql> SELECT CURTIME();
++-----------+
+| CURTIME() |
++-----------+
+| 20:35:59  |
++-----------+
+1 row in set (0.00 sec)
+
+mysql> SELECT CURTIME();
++-----------+
+| CURTIME() |
++-----------+
+| 20:36:05  |
++-----------+
+1 row in set (0.00 sec)
+
+mysql> SELECT NOW();
++---------------------+
+| NOW()               |
++---------------------+
+| 2021-12-29 20:36:21 |
++---------------------+
+1 row in set (0.00 sec)
+
+mysql> INSERT INTO people(birthdate, birthtime, birthdt)
+    -> INSERT INTO people(birthdate, birthtime, birthdt)^C
+mysql>
+mysql> INSERT INTO people(name, birthdate, birthtime, birthdt)
+    -> VALUES('Avdhoot', CURDATE(),  CURTIME(), NOW());
+Query OK, 1 row affected (0.09 sec)
+
+mysql> SELECT * FROM people;
++---------+------------+-----------+---------------------+
+| name    | birthdate  | birthtime | birthdt             |
++---------+------------+-----------+---------------------+
+| Padma   | 1983-11-11 | 10:07:35  | 1983-11-11 10:07:35 |
+| Larry   | 1943-12-25 | 04:10:42  | 1943-12-25 04:10:42 |
+| Avdhoot | 2021-12-29 | 20:38:17  | 2021-12-29 20:38:17 |
++---------+------------+-----------+---------------------+
+3 rows in set (0.01 sec)
+
+mysql> INSERT INTO people(name, birthdate, birthtime, birthdt)
+    -> VALUES('Atharv', CURDATE(),  CURTIME(), NOW());
+Query OK, 1 row affected (0.25 sec)
+
+mysql> SELECT * FROM people;
++---------+------------+-----------+---------------------+
+| name    | birthdate  | birthtime | birthdt             |
++---------+------------+-----------+---------------------+
+| Padma   | 1983-11-11 | 10:07:35  | 1983-11-11 10:07:35 |
+| Larry   | 1943-12-25 | 04:10:42  | 1943-12-25 04:10:42 |
+| Avdhoot | 2021-12-29 | 20:38:17  | 2021-12-29 20:38:17 |
+| Atharv  | 2021-12-29 | 20:40:32  | 2021-12-29 20:40:32 |
++---------+------------+-----------+---------------------+
+4 rows in set (0.00 sec)
+
+mysql> INSERT INTO people(name, birthdate, birthtime, birthdt)
+    -> VALUES('Sujit', CURDATE(),  CURTIME(), NOW());
+Query OK, 1 row affected (0.07 sec)
+
+mysql> INSERT INTO people(name, birthdate, birthtime, birthdt)
+    -> VALUES('Karan', CURDATE(),  CURTIME(), NOW());
+Query OK, 1 row affected (0.11 sec)
+
+mysql> SELECT * FROM people;
++---------+------------+-----------+---------------------+
+| name    | birthdate  | birthtime | birthdt             |
++---------+------------+-----------+---------------------+
+| Padma   | 1983-11-11 | 10:07:35  | 1983-11-11 10:07:35 |
+| Larry   | 1943-12-25 | 04:10:42  | 1943-12-25 04:10:42 |
+| Avdhoot | 2021-12-29 | 20:38:17  | 2021-12-29 20:38:17 |
+| Atharv  | 2021-12-29 | 20:40:32  | 2021-12-29 20:40:32 |
+| Sujit   | 2021-12-29 | 20:40:47  | 2021-12-29 20:40:47 |
+| Karan   | 2021-12-29 | 20:41:01  | 2021-12-29 20:41:01 |
++---------+------------+-----------+---------------------+
+6 rows in set (0.00 sec)
+
+mysql>

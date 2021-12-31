@@ -2,3 +2,49 @@
 
 // Tables Holds The Data !
 
+mysql> SHOW DATABASES;
++--------------------+
+| Database           |
++--------------------+
+| book_store         |
+| information_schema |
+| mysql              |
+| performance_schema |
+| sujit              |
+| sys                |
++--------------------+
+6 rows in set (1.29 sec)
+
+mysql> USE book_store;
+Database changed
+mysql> SELECT database();
++------------+
+| database() |
++------------+
+| book_store |
++------------+
+1 row in set (0.00 sec)
+
+mysql> show tables;
++----------------------+
+| Tables_in_book_store |
++----------------------+
+| books                |
++----------------------+
+1 row in set (1.55 sec)
+
+mysql> DESC books;
++----------------+--------------+------+-----+---------+----------------+
+| Field          | Type         | Null | Key | Default | Extra          |
++----------------+--------------+------+-----+---------+----------------+
+| book_id        | int          | NO   | PRI | NULL    | auto_increment |
+| title          | varchar(100) | YES  |     | NULL    |                |
+| author_fname   | varchar(100) | YES  |     | NULL    |                |
+| author_lname   | varchar(100) | YES  |     | NULL    |                |
+| released_year  | int          | YES  |     | NULL    |                |
+| stock_quantity | int          | YES  |     | NULL    |                |
+| pages          | int          | YES  |     | NULL    |                |
++----------------+--------------+------+-----+---------+----------------+
+7 rows in set (1.31 sec)
+
+mysql>

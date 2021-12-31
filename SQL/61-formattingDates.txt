@@ -1,0 +1,378 @@
+mysql> SELECT * FROM people;
++---------+------------+-----------+---------------------+
+| name    | birthdate  | birthtime | birthdt             |
++---------+------------+-----------+---------------------+
+| Padma   | 1983-11-11 | 10:07:35  | 1983-11-11 10:07:35 |
+| Larry   | 1943-12-25 | 04:10:42  | 1943-12-25 04:10:42 |
+| Avdhoot | 2021-12-29 | 20:38:17  | 2021-12-29 20:38:17 |
+| Atharv  | 2021-12-29 | 20:40:32  | 2021-12-29 20:40:32 |
++---------+------------+-----------+---------------------+
+4 rows in set (0.00 sec)
+
+mysql> INSERT INTO people(name, birthdate, birthtime, birthdt)
+    -> VALUES('Sujit', CURDATE(),  CURTIME(), NOW());
+Query OK, 1 row affected (0.07 sec)
+
+mysql> INSERT INTO people(name, birthdate, birthtime, birthdt)
+    -> VALUES('Karan', CURDATE(),  CURTIME(), NOW());
+Query OK, 1 row affected (0.11 sec)
+
+mysql> SELECT * FROM people;
++---------+------------+-----------+---------------------+
+| name    | birthdate  | birthtime | birthdt             |
++---------+------------+-----------+---------------------+
+| Padma   | 1983-11-11 | 10:07:35  | 1983-11-11 10:07:35 |
+| Larry   | 1943-12-25 | 04:10:42  | 1943-12-25 04:10:42 |
+| Avdhoot | 2021-12-29 | 20:38:17  | 2021-12-29 20:38:17 |
+| Atharv  | 2021-12-29 | 20:40:32  | 2021-12-29 20:40:32 |
+| Sujit   | 2021-12-29 | 20:40:47  | 2021-12-29 20:40:47 |
+| Karan   | 2021-12-29 | 20:41:01  | 2021-12-29 20:41:01 |
++---------+------------+-----------+---------------------+
+6 rows in set (0.00 sec)
+
+mysql> SELECT name, DAY(birthdate) FROM people ;
++---------+----------------+
+| name    | DAY(birthdate) |
++---------+----------------+
+| Padma   |             11 |
+| Larry   |             25 |
+| Avdhoot |             29 |
+| Atharv  |             29 |
+| Sujit   |             29 |
+| Karan   |             29 |
++---------+----------------+
+6 rows in set (0.00 sec)
+
+mysql> SELECT name,birthdate, DAY(birthdate) FROM people ;
++---------+------------+----------------+
+| name    | birthdate  | DAY(birthdate) |
++---------+------------+----------------+
+| Padma   | 1983-11-11 |             11 |
+| Larry   | 1943-12-25 |             25 |
+| Avdhoot | 2021-12-29 |             29 |
+| Atharv  | 2021-12-29 |             29 |
+| Sujit   | 2021-12-29 |             29 |
+| Karan   | 2021-12-29 |             29 |
++---------+------------+----------------+
+6 rows in set (0.00 sec)
+
+mysql> SELECT name,birthdate, DAYNAME(birthdate) FROM people ;
++---------+------------+--------------------+
+| name    | birthdate  | DAYNAME(birthdate) |
++---------+------------+--------------------+
+| Padma   | 1983-11-11 | Friday             |
+| Larry   | 1943-12-25 | Saturday           |
+| Avdhoot | 2021-12-29 | Wednesday          |
+| Atharv  | 2021-12-29 | Wednesday          |
+| Sujit   | 2021-12-29 | Wednesday          |
+| Karan   | 2021-12-29 | Wednesday          |
++---------+------------+--------------------+
+6 rows in set (0.04 sec)
+
+mysql> SELECT name,birthdate, DAYOFWEEK(birthdate) FROM people;
++---------+------------+----------------------+
+| name    | birthdate  | DAYOFWEEK(birthdate) |
++---------+------------+----------------------+
+| Padma   | 1983-11-11 |                    6 |
+| Larry   | 1943-12-25 |                    7 |
+| Avdhoot | 2021-12-29 |                    4 |
+| Atharv  | 2021-12-29 |                    4 |
+| Sujit   | 2021-12-29 |                    4 |
+| Karan   | 2021-12-29 |                    4 |
++---------+------------+----------------------+
+6 rows in set (0.00 sec)
+
+mysql> SELECT name,birthdate, DAYOFYEAR(birthdate) FROM people;
++---------+------------+----------------------+
+| name    | birthdate  | DAYOFYEAR(birthdate) |
++---------+------------+----------------------+
+| Padma   | 1983-11-11 |                  315 |
+| Larry   | 1943-12-25 |                  359 |
+| Avdhoot | 2021-12-29 |                  363 |
+| Atharv  | 2021-12-29 |                  363 |
+| Sujit   | 2021-12-29 |                  363 |
+| Karan   | 2021-12-29 |                  363 |
++---------+------------+----------------------+
+6 rows in set (0.00 sec)
+
+mysql> SELECT name, birthtime, DAYOFYEAR(birthdate) FROM people;
++---------+-----------+----------------------+
+| name    | birthtime | DAYOFYEAR(birthdate) |
++---------+-----------+----------------------+
+| Padma   | 10:07:35  |                  315 |
+| Larry   | 04:10:42  |                  359 |
+| Avdhoot | 20:38:17  |                  363 |
+| Atharv  | 20:40:32  |                  363 |
+| Sujit   | 20:40:47  |                  363 |
+| Karan   | 20:41:01  |                  363 |
++---------+-----------+----------------------+
+6 rows in set (0.00 sec)
+
+mysql> SELECT name, birthtime, DAYOFYEAR(birthtime) FROM people;
++---------+-----------+----------------------+
+| name    | birthtime | DAYOFYEAR(birthtime) |
++---------+-----------+----------------------+
+| Padma   | 10:07:35  |                  363 |
+| Larry   | 04:10:42  |                  363 |
+| Avdhoot | 20:38:17  |                  363 |
+| Atharv  | 20:40:32  |                  363 |
+| Sujit   | 20:40:47  |                  363 |
+| Karan   | 20:41:01  |                  363 |
++---------+-----------+----------------------+
+6 rows in set (0.00 sec)
+
+mysql> INSERT INTO people(name, birthdate, birthtime, birthdt)
+    -> VALUES ('Anjali', '1943-12-27', '04:10:42', '1943-12-25 04:10:42');
+Query OK, 1 row affected (0.07 sec)
+
+mysql> SELECT name, birthtime, DAYOFYEAR(birthtime) FROM people;
++---------+-----------+----------------------+
+| name    | birthtime | DAYOFYEAR(birthtime) |
++---------+-----------+----------------------+
+| Padma   | 10:07:35  |                  363 |
+| Larry   | 04:10:42  |                  363 |
+| Avdhoot | 20:38:17  |                  363 |
+| Atharv  | 20:40:32  |                  363 |
+| Sujit   | 20:40:47  |                  363 |
+| Karan   | 20:41:01  |                  363 |
+| Anjali  | 04:10:42  |                  363 |
++---------+-----------+----------------------+
+7 rows in set (0.02 sec)
+
+mysql> SELECT * FROM people;
++---------+------------+-----------+---------------------+
+| name    | birthdate  | birthtime | birthdt             |
++---------+------------+-----------+---------------------+
+| Padma   | 1983-11-11 | 10:07:35  | 1983-11-11 10:07:35 |
+| Larry   | 1943-12-25 | 04:10:42  | 1943-12-25 04:10:42 |
+| Avdhoot | 2021-12-29 | 20:38:17  | 2021-12-29 20:38:17 |
+| Atharv  | 2021-12-29 | 20:40:32  | 2021-12-29 20:40:32 |
+| Sujit   | 2021-12-29 | 20:40:47  | 2021-12-29 20:40:47 |
+| Karan   | 2021-12-29 | 20:41:01  | 2021-12-29 20:41:01 |
+| Anjali  | 1943-12-27 | 04:10:42  | 1943-12-25 04:10:42 |
++---------+------------+-----------+---------------------+
+7 rows in set (0.00 sec)
+
+mysql> SELECT name, birthtime, DAYOFYEAR(birthdt) FROM people;
++---------+-----------+--------------------+
+| name    | birthtime | DAYOFYEAR(birthdt) |
++---------+-----------+--------------------+
+| Padma   | 10:07:35  |                315 |
+| Larry   | 04:10:42  |                359 |
+| Avdhoot | 20:38:17  |                363 |
+| Atharv  | 20:40:32  |                363 |
+| Sujit   | 20:40:47  |                363 |
+| Karan   | 20:41:01  |                363 |
+| Anjali  | 04:10:42  |                359 |
++---------+-----------+--------------------+
+7 rows in set (0.00 sec)
+
+mysql> SELECT name, birthdate, MONTHNAME(birthdt) FROM people;
++---------+------------+--------------------+
+| name    | birthdate  | MONTHNAME(birthdt) |
++---------+------------+--------------------+
+| Padma   | 1983-11-11 | November           |
+| Larry   | 1943-12-25 | December           |
+| Avdhoot | 2021-12-29 | December           |
+| Atharv  | 2021-12-29 | December           |
+| Sujit   | 2021-12-29 | December           |
+| Karan   | 2021-12-29 | December           |
+| Anjali  | 1943-12-27 | December           |
++---------+------------+--------------------+
+7 rows in set (0.02 sec)
+
+mysql> SELECT name, birthdate, HOUR(birthdt) FROM people;
++---------+------------+---------------+
+| name    | birthdate  | HOUR(birthdt) |
++---------+------------+---------------+
+| Padma   | 1983-11-11 |            10 |
+| Larry   | 1943-12-25 |             4 |
+| Avdhoot | 2021-12-29 |            20 |
+| Atharv  | 2021-12-29 |            20 |
+| Sujit   | 2021-12-29 |            20 |
+| Karan   | 2021-12-29 |            20 |
+| Anjali  | 1943-12-27 |             4 |
++---------+------------+---------------+
+7 rows in set (0.00 sec)
+
+mysql> SELECT name, birthdate, MINUTE(birthdt) FROM people;
++---------+------------+-----------------+
+| name    | birthdate  | MINUTE(birthdt) |
++---------+------------+-----------------+
+| Padma   | 1983-11-11 |               7 |
+| Larry   | 1943-12-25 |              10 |
+| Avdhoot | 2021-12-29 |              38 |
+| Atharv  | 2021-12-29 |              40 |
+| Sujit   | 2021-12-29 |              40 |
+| Karan   | 2021-12-29 |              41 |
+| Anjali  | 1943-12-27 |              10 |
++---------+------------+-----------------+
+7 rows in set (0.00 sec)
+
+mysql> SELECT name, birthdate, SECOND(birthdt) FROM people;
++---------+------------+-----------------+
+| name    | birthdate  | SECOND(birthdt) |
++---------+------------+-----------------+
+| Padma   | 1983-11-11 |              35 |
+| Larry   | 1943-12-25 |              42 |
+| Avdhoot | 2021-12-29 |              17 |
+| Atharv  | 2021-12-29 |              32 |
+| Sujit   | 2021-12-29 |              47 |
+| Karan   | 2021-12-29 |               1 |
+| Anjali  | 1943-12-27 |              42 |
++---------+------------+-----------------+
+7 rows in set (0.00 sec)
+
+mysql> SELECT CONCAT(MONTHNAME(birthdate), ' ', DAY(birthdate), ' ', YEAR(birthdate)) FROM peoples;
+ERROR 1146 (42S02): Table 'book_store.peoples' doesn't exist
+mysql> SELECT CONCAT(MONTHNAME(birthdate), ' ', DAY(birthdate), ' ', YEAR(birthdate)) FROM people;
++-------------------------------------------------------------------------+
+| CONCAT(MONTHNAME(birthdate), ' ', DAY(birthdate), ' ', YEAR(birthdate)) |
++-------------------------------------------------------------------------+
+| November 11 1983                                                        |
+| December 25 1943                                                        |
+| December 29 2021                                                        |
+| December 29 2021                                                        |
+| December 29 2021                                                        |
+| December 29 2021                                                        |
+| December 27 1943                                                        |
++-------------------------------------------------------------------------+
+7 rows in set (0.12 sec)
+
+mysql> SELECT CONCAT(MONTHNAME(birthdate), ' ', DAY(birthdate), ' ', YEAR(birthdate)) AS Date FROM people;
++------------------+
+| Date             |
++------------------+
+| November 11 1983 |
+| December 25 1943 |
+| December 29 2021 |
+| December 29 2021 |
+| December 29 2021 |
+| December 29 2021 |
+| December 27 1943 |
++------------------+
+7 rows in set (0.00 sec)
+
+mysql> SELECT CONCAT(MONTHNAME(birthdate), ' ', DAY(birthdate), ' ', YEAR(birthdate)) AS BirthDate FROM people;
++------------------+
+| BirthDate        |
++------------------+
+| November 11 1983 |
+| December 25 1943 |
+| December 29 2021 |
+| December 29 2021 |
+| December 29 2021 |
+| December 29 2021 |
+| December 27 1943 |
++------------------+
+7 rows in set (0.00 sec)
+
+mysql> SELECT DATE_FORMAT('1983-11-11 10:07:35', '%W-%M-%Y');
++------------------------------------------------+
+| DATE_FORMAT('1983-11-11 10:07:35', '%W-%M-%Y') |
++------------------------------------------------+
+| Friday-November-1983                           |
++------------------------------------------------+
+1 row in set (0.01 sec)
+
+mysql> SELECT DATE_FORMAT('1983-11-11 10:07:35', '%W--%M--%Y');
++--------------------------------------------------+
+| DATE_FORMAT('1983-11-11 10:07:35', '%W--%M--%Y') |
++--------------------------------------------------+
+| Friday--November--1983                           |
++--------------------------------------------------+
+1 row in set (0.00 sec)
+
+mysql> SELECT DATE_FORMAT('1983-11-11 10:07:35', '%W%M%Y');
++----------------------------------------------+
+| DATE_FORMAT('1983-11-11 10:07:35', '%W%M%Y') |
++----------------------------------------------+
+| FridayNovember1983                           |
++----------------------------------------------+
+1 row in set (0.00 sec)
+
+mysql> SELECT DATE_FORMAT(birthdt, 'Was born on%W') FrOM people;
++---------------------------------------+
+| DATE_FORMAT(birthdt, 'Was born on%W') |
++---------------------------------------+
+| Was born onFriday                     |
+| Was born onSaturday                   |
+| Was born onWednesday                  |
+| Was born onWednesday                  |
+| Was born onWednesday                  |
+| Was born onWednesday                  |
+| Was born onSaturday                   |
++---------------------------------------+
+7 rows in set (0.00 sec)
+
+mysql> SELECT DATE_FORMAT(birthdt, 'Was born on %W') FrOM people;
++----------------------------------------+
+| DATE_FORMAT(birthdt, 'Was born on %W') |
++----------------------------------------+
+| Was born on Friday                     |
+| Was born on Saturday                   |
+| Was born on Wednesday                  |
+| Was born on Wednesday                  |
+| Was born on Wednesday                  |
+| Was born on Wednesday                  |
+| Was born on Saturday                   |
++----------------------------------------+
+7 rows in set (0.00 sec)
+
+mysql> SELECT CONCAT(name, ' ',DATE_FORMAT(birthdt, 'Was born on %W')) FrOM people;
++----------------------------------------------------------+
+| CONCAT(name, ' ',DATE_FORMAT(birthdt, 'Was born on %W')) |
++----------------------------------------------------------+
+| Padma Was born on Friday                                 |
+| Larry Was born on Saturday                               |
+| Avdhoot Was born on Wednesday                            |
+| Atharv Was born on Wednesday                             |
+| Sujit Was born on Wednesday                              |
+| Karan Was born on Wednesday                              |
+| Anjali Was born on Saturday                              |
++----------------------------------------------------------+
+7 rows in set (0.02 sec)
+
+mysql> SELECT DATE_FORMAT(birthdt, '%m/%d/%y') FROM people;
++----------------------------------+
+| DATE_FORMAT(birthdt, '%m/%d/%y') |
++----------------------------------+
+| 11/11/83                         |
+| 12/25/43                         |
+| 12/29/21                         |
+| 12/29/21                         |
+| 12/29/21                         |
+| 12/29/21                         |
+| 12/25/43                         |
++----------------------------------+
+7 rows in set (0.00 sec)
+
+mysql> SELECT DATE_FORMAT(birthdt, '%m/%d/%Y') FROM people;
++----------------------------------+
+| DATE_FORMAT(birthdt, '%m/%d/%Y') |
++----------------------------------+
+| 11/11/1983                       |
+| 12/25/1943                       |
+| 12/29/2021                       |
+| 12/29/2021                       |
+| 12/29/2021                       |
+| 12/29/2021                       |
+| 12/25/1943                       |
++----------------------------------+
+7 rows in set (0.00 sec)
+
+mysql> SELECT DATE_FORMAT(birthdt, '%m/%d/%Y at %h:%m') FROM people;
++-------------------------------------------+
+| DATE_FORMAT(birthdt, '%m/%d/%Y at %h:%m') |
++-------------------------------------------+
+| 11/11/1983 at 10:11                       |
+| 12/25/1943 at 04:12                       |
+| 12/29/2021 at 08:12                       |
+| 12/29/2021 at 08:12                       |
+| 12/29/2021 at 08:12                       |
+| 12/29/2021 at 08:12                       |
+| 12/25/1943 at 04:12                       |
++-------------------------------------------+
+7 rows in set (0.00 sec)
+
+mysql>

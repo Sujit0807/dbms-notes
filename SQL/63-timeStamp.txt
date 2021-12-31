@@ -1,0 +1,76 @@
+mysql> CREATE TABLE comments(
+    -> content VARCHAR(100),
+    -> created_at TIMESTAMP DEFAULT NOW());
+Query OK, 0 rows affected (2.45 sec)
+
+mysql> INSERT INTO comments(content) VALUES('lol what a funny article');
+Query OK, 1 row affected (0.17 sec)
+
+mysql> INSERT INTO comments(content) VALUES('I found this offensive');
+Query OK, 1 row affected (0.20 sec)
+
+mysql> SELECT * FROM comments;
++--------------------------+---------------------+
+| content                  | created_at          |
++--------------------------+---------------------+
+| lol what a funny article | 2021-12-29 23:54:54 |
+| I found this offensive   | 2021-12-29 23:55:12 |
++--------------------------+---------------------+
+2 rows in set (0.00 sec)
+
+mysql> INSERT INTO comments(content) VALUES('dkljflakjkl');
+Query OK, 1 row affected (0.07 sec)
+
+mysql> SELECT * FROM comments ORDER BY created_at DESC;
++--------------------------+---------------------+
+| content                  | created_at          |
++--------------------------+---------------------+
+| dkljflakjkl              | 2021-12-29 23:56:12 |
+| I found this offensive   | 2021-12-29 23:55:12 |
+| lol what a funny article | 2021-12-29 23:54:54 |
++--------------------------+---------------------+
+3 rows in set (0.12 sec)
+
+mysql> CREATE TABLE comment2(
+    -> content VARCHAR(100),
+    -> changed_at TIMESTAMP DEFAULT NOW() ON UPDATE CURRENT_TIMESTAMP);
+Query OK, 0 rows affected (0.87 sec)
+
+mysql> INSERT INTO comment2(content) VALUES('lol what a funny article');
+Query OK, 1 row affected (0.13 sec)
+
+mysql> INSERT INTO comment2(content) VALUES('I found this offensive');
+Query OK, 1 row affected (0.18 sec)
+
+mysql> INSERT INTO comment2(content) VALUES('dkljflakjkl');
+Query OK, 1 row affected (0.08 sec)
+
+mysql> SELECT * FROM comment2 ORDER BY created_at DESC;
+ERROR 1054 (42S22): Unknown column 'created_at' in 'order clause'
+mysql> SELECT * FROM comment2 ORDER BY created_at;
+ERROR 1054 (42S22): Unknown column 'created_at' in 'order clause'
+mysql> SELECT * FROM comment2 ORDER BY changed_at;
++--------------------------+---------------------+
+| content                  | changed_at          |
++--------------------------+---------------------+
+| lol what a funny article | 2021-12-30 00:00:37 |
+| I found this offensive   | 2021-12-30 00:00:50 |
+| dkljflakjkl              | 2021-12-30 00:01:35 |
++--------------------------+---------------------+
+3 rows in set (0.02 sec)
+
+mysql> UPDATE comment2 SET content='THIS IS NOT GIBBERISH' WHERE content='dkljflakjkl';
+Query OK, 1 row affected (0.22 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> SELECT * FROM comment2;
++--------------------------+---------------------+
+| content                  | changed_at          |
++--------------------------+---------------------+
+| lol what a funny article | 2021-12-30 00:00:37 |
+| I found this offensive   | 2021-12-30 00:00:50 |
+| THIS IS NOT GIBBERISH    | 2021-12-30 00:04:35 |
++--------------------------+---------------------+
+3 rows in set (0.00 sec)
+
+mysql>

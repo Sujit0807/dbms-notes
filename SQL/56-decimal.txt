@@ -1,0 +1,88 @@
+mysql> USE book_store;
+Database changed
+mysql> CREATE TABLE items(price DECIMAL(5,2));
+Query OK, 0 rows affected (1.85 sec)
+
+mysql> SHOW TABLES;
++----------------------+
+| Tables_in_book_store |
++----------------------+
+| books                |
+| items                |
++----------------------+
+2 rows in set (0.21 sec)
+
+mysql> INSERT INTO items(price)
+    -> VALUES (7);
+Query OK, 1 row affected (0.12 sec)
+
+mysql> INSERT INTO items(price)
+    -> VALUES (7898998);
+ERROR 1264 (22003): Out of range value for column 'price' at row 1
+mysql> VALUES (78989);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '(78989)' at line 1
+mysql> INSERT INTO items(price)
+    -> VALUES (78989);
+ERROR 1264 (22003): Out of range value for column 'price' at row 1
+mysql> VALUES (789);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '(789)' at line 1
+mysql> INSERT INTO items(price)
+    -> VALUES (789);
+Query OK, 1 row affected (1.75 sec)
+
+mysql> SELECT * FROM items;
++--------+
+| price  |
++--------+
+|   7.00 |
+| 789.00 |
++--------+
+2 rows in set (0.19 sec)
+
+mysql> INSERT INTO items(price) VALUES(2.99);
+Query OK, 1 row affected (0.17 sec)
+
+mysql> INSERT INTO items(price) VALUES(29.999);
+Query OK, 1 row affected, 1 warning (1.36 sec)
+
+mysql> INSERT INTO items(price) VALUES(314.999);
+Query OK, 1 row affected, 1 warning (0.21 sec)
+
+mysql> INSERT INTO items(price) VALUES(314665.999);
+ERROR 1264 (22003): Out of range value for column 'price' at row 1
+mysql> INSERT INTO items(price) VALUES(31466.999);
+ERROR 1264 (22003): Out of range value for column 'price' at row 1
+mysql> INSERT INTO items(price) VALUES(314.999);
+Query OK, 1 row affected, 1 warning (0.23 sec)
+
+mysql> SELECT * FROM items;
++--------+
+| price  |
++--------+
+|   7.00 |
+| 789.00 |
+|   2.99 |
+|  30.00 |
+| 315.00 |
+| 315.00 |
++--------+
+6 rows in set (0.00 sec)
+
+mysql> INSERT INTO items(price) VALUES(1.9999);
+Query OK, 1 row affected, 1 warning (0.08 sec)
+
+mysql> SELECT * FROM items;
++--------+
+| price  |
++--------+
+|   7.00 |
+| 789.00 |
+|   2.99 |
+|  30.00 |
+| 315.00 |
+| 315.00 |
+|   2.00 |
++--------+
+7 rows in set (0.00 sec)
+
+mysql>
