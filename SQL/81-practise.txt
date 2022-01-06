@@ -1,0 +1,359 @@
+mysql> SHOW DATABASES;
++--------------------+
+| Database           |
++--------------------+
+| book_store         |
+| eshop              |
+| information_schema |
+| mysql              |
+| performance_schema |
+| sujit              |
+| sys                |
++--------------------+
+7 rows in set (0.74 sec)
+
+mysql> USE eshop;
+Database changed
+mysql> SELECT database();
++------------+
+| database() |
++------------+
+| eshop      |
++------------+
+1 row in set (0.00 sec)
+
+mysql> SHOW TABLES;
++-----------------+
+| Tables_in_eshop |
++-----------------+
+| customers       |
+| orders          |
++-----------------+
+2 rows in set (0.31 sec)
+
+mysql> DESC customers;
++------------+--------------+------+-----+---------+----------------+
+| Field      | Type         | Null | Key | Default | Extra          |
++------------+--------------+------+-----+---------+----------------+
+| id         | int          | NO   | PRI | NULL    | auto_increment |
+| first_name | varchar(100) | YES  |     | NULL    |                |
+| last_name  | varchar(100) | YES  |     | NULL    |                |
+| email      | varchar(100) | YES  |     | NULL    |                |
++------------+--------------+------+-----+---------+----------------+
+4 rows in set (0.01 sec)
+
+mysql> DESC orders;
++-------------+--------------+------+-----+---------+----------------+
+| Field       | Type         | Null | Key | Default | Extra          |
++-------------+--------------+------+-----+---------+----------------+
+| id          | int          | NO   | PRI | NULL    | auto_increment |
+| order_date  | date         | YES  |     | NULL    |                |
+| amount      | decimal(8,2) | YES  |     | NULL    |                |
+| customer_id | int          | YES  | MUL | NULL    |                |
++-------------+--------------+------+-----+---------+----------------+
+4 rows in set (0.00 sec)
+
+mysql> CREATE TABLE students(
+    -> id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    -> first_name VARCHAR(100)
+    -> );
+Query OK, 0 rows affected (1.56 sec)
+
+mysql> DESC students;
++------------+--------------+------+-----+---------+----------------+
+| Field      | Type         | Null | Key | Default | Extra          |
++------------+--------------+------+-----+---------+----------------+
+| id         | int          | NO   | PRI | NULL    | auto_increment |
+| first_name | varchar(100) | YES  |     | NULL    |                |
++------------+--------------+------+-----+---------+----------------+
+2 rows in set (0.17 sec)
+
+mysql> CREATE TABLE papers(
+    -> title VARCHAR(100),
+    -> grade INT,
+    -> student_id INT,
+    -> FOREIGN KEY(student_id) REFERENCES TO studests(id),
+    -> DELETE ON CASCADE);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'TO studests(id),
+DELETE ON CASCADE)' at line 5
+mysql> CREATE TABLE papers(
+    -> title VARCHAR(100),
+    -> grade INT,
+    -> student_id INT,
+    -> FOREIGN KEY(student_id) REFERENCES studests(id)
+    -> ON DELETE CASCADE);
+ERROR 1824 (HY000): Failed to open the referenced table 'studests'
+mysql>
+mysql>
+mysql> CREATE TABLE papers(
+    -> title VARCHAR(100),
+    -> grade INT,
+    -> student_id INT,
+    -> FOREIGN KEY(student_id) REFERENCES students(id)
+    -> ON DELETE CASCADE);
+Query OK, 0 rows affected (0.97 sec)
+
+mysql> DESC papers;
++------------+--------------+------+-----+---------+-------+
+| Field      | Type         | Null | Key | Default | Extra |
++------------+--------------+------+-----+---------+-------+
+| title      | varchar(100) | YES  |     | NULL    |       |
+| grade      | int          | YES  |     | NULL    |       |
+| student_id | int          | YES  | MUL | NULL    |       |
++------------+--------------+------+-----+---------+-------+
+3 rows in set (0.16 sec)
+
+mysql> INSERT INTO students (first_name) VALUES
+    -> ('Caleb'), ('Samantha'), ('Raj'), ('Carlos'), ('Lisa');
+Query OK, 5 rows affected (0.25 sec)
+Records: 5  Duplicates: 0  Warnings: 0
+
+mysql>
+mysql> INSERT INTO papers (student_id, title, grade ) VALUES
+    -> (1, 'My First Book Report', 60),
+    -> (1, 'My Second Book Report', 75),
+    -> (2, 'Russian Lit Through The Ages', 94),
+    -> (2, 'De Montaigne and The Art of The Essay', 98),
+    -> (4, 'Borges and Magical Realism', 89);
+Query OK, 5 rows affected (2.07 sec)
+Records: 5  Duplicates: 0  Warnings: 0
+
+mysql> SELECT * FROM students;
++----+------------+
+| id | first_name |
++----+------------+
+|  1 | Caleb      |
+|  2 | Samantha   |
+|  3 | Raj        |
+|  4 | Carlos     |
+|  5 | Lisa       |
++----+------------+
+5 rows in set (0.73 sec)
+
+mysql> SELECT * FROM papers;
++---------------------------------------+-------+------------+
+| title                                 | grade | student_id |
++---------------------------------------+-------+------------+
+| My First Book Report                  |    60 |          1 |
+| My Second Book Report                 |    75 |          1 |
+| Russian Lit Through The Ages          |    94 |          2 |
+| De Montaigne and The Art of The Essay |    98 |          2 |
+| Borges and Magical Realism            |    89 |          4 |
++---------------------------------------+-------+------------+
+5 rows in set (0.00 sec)
+
+mysql> SELECT first_name, title, grade FROM students
+    -> JOIN PAPERS
+    -> ON papers.student_id = students.id;
++------------+---------------------------------------+-------+
+| first_name | title                                 | grade |
++------------+---------------------------------------+-------+
+| Caleb      | My First Book Report                  |    60 |
+| Caleb      | My Second Book Report                 |    75 |
+| Samantha   | Russian Lit Through The Ages          |    94 |
+| Samantha   | De Montaigne and The Art of The Essay |    98 |
+| Carlos     | Borges and Magical Realism            |    89 |
++------------+---------------------------------------+-------+
+5 rows in set (0.00 sec)
+
+mysql> SELECT first_name, title, grade FROM students
+    -> JOIN PAPERS
+    -> ON papers.student_id = students.id;
++------------+---------------------------------------+-------+
+| first_name | title                                 | grade |
++------------+---------------------------------------+-------+
+| Caleb      | My First Book Report                  |    60 |
+| Caleb      | My Second Book Report                 |    75 |
+| Samantha   | Russian Lit Through The Ages          |    94 |
+| Samantha   | De Montaigne and The Art of The Essay |    98 |
+| Carlos     | Borges and Magical Realism            |    89 |
++------------+---------------------------------------+-------+
+5 rows in set (0.00 sec)
+
+mysql> SELECT first_name, title, grade FROM students
+    -> JOIN PAPERS
+    -> ON papers.student_id = students.id ORDER BY 3;
++------------+---------------------------------------+-------+
+| first_name | title                                 | grade |
++------------+---------------------------------------+-------+
+| Caleb      | My First Book Report                  |    60 |
+| Caleb      | My Second Book Report                 |    75 |
+| Carlos     | Borges and Magical Realism            |    89 |
+| Samantha   | Russian Lit Through The Ages          |    94 |
+| Samantha   | De Montaigne and The Art of The Essay |    98 |
++------------+---------------------------------------+-------+
+5 rows in set (0.00 sec)
+
+mysql> SELECT first_name, title, grade FROM students
+    -> JOIN PAPERS
+    -> ON papers.student_id = students.id ORDER BY 3 DESC;
++------------+---------------------------------------+-------+
+| first_name | title                                 | grade |
++------------+---------------------------------------+-------+
+| Samantha   | De Montaigne and The Art of The Essay |    98 |
+| Samantha   | Russian Lit Through The Ages          |    94 |
+| Carlos     | Borges and Magical Realism            |    89 |
+| Caleb      | My Second Book Report                 |    75 |
+| Caleb      | My First Book Report                  |    60 |
++------------+---------------------------------------+-------+
+5 rows in set (0.00 sec)
+
+mysql> SELECT first_name, title, grade FROM students
+    -> LEFT JOIN papers
+    -> ON papers.student_id = students.id;
++------------+---------------------------------------+-------+
+| first_name | title                                 | grade |
++------------+---------------------------------------+-------+
+| Caleb      | My First Book Report                  |    60 |
+| Caleb      | My Second Book Report                 |    75 |
+| Samantha   | Russian Lit Through The Ages          |    94 |
+| Samantha   | De Montaigne and The Art of The Essay |    98 |
+| Raj        | NULL                                  |  NULL |
+| Carlos     | Borges and Magical Realism            |    89 |
+| Lisa       | NULL                                  |  NULL |
++------------+---------------------------------------+-------+
+7 rows in set (0.00 sec)
+
+mysql> SELECT first_name, title, grade FROM papers
+    -> RIGHT JOIN students
+    -> ON papers.student_id = students.id;
++------------+---------------------------------------+-------+
+| first_name | title                                 | grade |
++------------+---------------------------------------+-------+
+| Caleb      | My First Book Report                  |    60 |
+| Caleb      | My Second Book Report                 |    75 |
+| Samantha   | Russian Lit Through The Ages          |    94 |
+| Samantha   | De Montaigne and The Art of The Essay |    98 |
+| Raj        | NULL                                  |  NULL |
+| Carlos     | Borges and Magical Realism            |    89 |
+| Lisa       | NULL                                  |  NULL |
++------------+---------------------------------------+-------+
+7 rows in set (0.00 sec)
+
+mysql> SELECT first_name, IFNULL(title, 'MISSING') AS title, grade FROM students
+    -> LEFT JOIN papers
+    -> ON papers.student_id = students.id;
++------------+---------------------------------------+-------+
+| first_name | title                                 | grade |
++------------+---------------------------------------+-------+
+| Caleb      | My First Book Report                  |    60 |
+| Caleb      | My Second Book Report                 |    75 |
+| Samantha   | Russian Lit Through The Ages          |    94 |
+| Samantha   | De Montaigne and The Art of The Essay |    98 |
+| Raj        | MISSING                               |  NULL |
+| Carlos     | Borges and Magical Realism            |    89 |
+| Lisa       | MISSING                               |  NULL |
++------------+---------------------------------------+-------+
+7 rows in set (0.00 sec)
+
+mysql> SELECT first_name, IFNULL(title, 'MISSING') AS title, IFNULL(grade, 0) AS grade FROM students
+    -> JOIN ON papers
+    -> ON papers.student_id = students.id;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'ON papers
+ON papers.student_id = students.id' at line 2
+mysql>
+mysql>
+mysql> SELECT first_name, IFNULL(title, 'MISSING') AS title, IFNULL(grade, 0) AS grade FROM students
+    -> JOIN papers
+    -> ON papers.student_id = students.id;
++------------+---------------------------------------+-------+
+| first_name | title                                 | grade |
++------------+---------------------------------------+-------+
+| Caleb      | My First Book Report                  |    60 |
+| Caleb      | My Second Book Report                 |    75 |
+| Samantha   | Russian Lit Through The Ages          |    94 |
+| Samantha   | De Montaigne and The Art of The Essay |    98 |
+| Carlos     | Borges and Magical Realism            |    89 |
++------------+---------------------------------------+-------+
+5 rows in set (0.00 sec)
+
+mysql> SELECT first_name, IFNULL(title, 'MISSING') AS title, IFNULL(grade, 0) AS grade FROM students
+    -> LEFT JOIN papers
+    -> ON papers.student_id = students.id;
++------------+---------------------------------------+-------+
+| first_name | title                                 | grade |
++------------+---------------------------------------+-------+
+| Caleb      | My First Book Report                  |    60 |
+| Caleb      | My Second Book Report                 |    75 |
+| Samantha   | Russian Lit Through The Ages          |    94 |
+| Samantha   | De Montaigne and The Art of The Essay |    98 |
+| Raj        | MISSING                               |     0 |
+| Carlos     | Borges and Magical Realism            |    89 |
+| Lisa       | MISSING                               |     0 |
++------------+---------------------------------------+-------+
+7 rows in set (0.00 sec)
+
+mysql> SELECT first_name, AVG(grades) AS average FROM students
+    -> LEFT JOIN papers
+    -> ON papers.student_id = students.id
+    -> ;
+ERROR 1054 (42S22): Unknown column 'grades' in 'field list'
+mysql>
+mysql> SELECT first_name, AVG(grade) AS average FROM students
+    -> LEFT JOIN papers
+    -> ON papers.student_id = students.id
+    -> ;
++------------+---------+
+| first_name | average |
++------------+---------+
+| Caleb      | 83.2000 |
++------------+---------+
+1 row in set (0.11 sec)
+
+mysql>
+mysql>
+mysql> SELECT first_name, AVG(grade) AS average FROM students
+    -> LEFT JOIN papers
+    -> ON papers.student_id = students.id
+    -> GROUP BY first_name;
++------------+---------+
+| first_name | average |
++------------+---------+
+| Caleb      | 67.5000 |
+| Samantha   | 96.0000 |
+| Raj        |    NULL |
+| Carlos     | 89.0000 |
+| Lisa       |    NULL |
++------------+---------+
+5 rows in set (0.10 sec)
+
+mysql> SELECT first_name, IFNULL(AVG(grade), 0) AS average FROM students
+    -> LEFT JOIN papers
+    -> ON papers.student_id = students.id
+    -> GROUP BY first_name
+    -> ORDER BY 2 DESC;
++------------+---------+
+| first_name | average |
++------------+---------+
+| Samantha   | 96.0000 |
+| Carlos     | 89.0000 |
+| Caleb      | 67.5000 |
+| Raj        |  0.0000 |
+| Lisa       |  0.0000 |
++------------+---------+
+5 rows in set (0.00 sec)
+
+mysql> SELECT first_name, IFNULL(AVG(grade), 0)
+    -> ,
+    -> CASE
+    -> WHEN AVG(grade) IS NULL THEN 'FAILING'
+    -> WHEN AVG(grade) >= 75 THEN 'PASSING'
+    -> ELSE 'FAILING'
+    -> END AS passing_status
+    -> FROM students
+    -> LEFT JOIN papers
+    -> ON papers.student_id = students.id
+    -> GROUP BY 1
+    -> ORDER BY 2 DESC;
++------------+-----------------------+----------------+
+| first_name | IFNULL(AVG(grade), 0) | passing_status |
++------------+-----------------------+----------------+
+| Samantha   |               96.0000 | PASSING        |
+| Carlos     |               89.0000 | PASSING        |
+| Caleb      |               67.5000 | FAILING        |
+| Raj        |                0.0000 | FAILING        |
+| Lisa       |                0.0000 | FAILING        |
++------------+-----------------------+----------------+
+5 rows in set (0.12 sec)
+
+mysql>
