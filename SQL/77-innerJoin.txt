@@ -1,0 +1,183 @@
+// -- IMPLICIT INNER JOIN --
+
+mysql> SELECT * FROM customers, orders
+    -> WHERE customers.id = orders.customer_id;
++----+------------+-----------+------------------+----+------------+--------+-------------+
+| id | first_name | last_name | email            | id | order_date | amount | customer_id |
++----+------------+-----------+------------------+----+------------+--------+-------------+
+|  1 | Boy        | George    | george@gmail.com |  1 | 2016-02-10 |  99.99 |           1 |
+|  1 | Boy        | George    | george@gmail.com |  2 | 2017-11-11 |  35.50 |           1 |
+|  2 | George     | Michael   | gm@gmail.com     |  3 | 2014-12-12 | 800.67 |           2 |
+|  2 | George     | Michael   | gm@gmail.com     |  4 | 2015-01-03 |  12.50 |           2 |
+|  5 | Bette      | Davis     | bette@aol.com    |  5 | 1999-04-11 | 450.25 |           5 |
++----+------------+-----------+------------------+----+------------+--------+-------------+
+5 rows in set (0.00 sec)
+
+mysql> SELECT first_name, last_name, order_date, amount
+    -> FROM customers, orders
+    ->     WHERE customers.id = orders.customer_id;
++------------+-----------+------------+--------+
+| first_name | last_name | order_date | amount |
++------------+-----------+------------+--------+
+| Boy        | George    | 2016-02-10 |  99.99 |
+| Boy        | George    | 2017-11-11 |  35.50 |
+| George     | Michael   | 2014-12-12 | 800.67 |
+| George     | Michael   | 2015-01-03 |  12.50 |
+| Bette      | Davis     | 1999-04-11 | 450.25 |
++------------+-----------+------------+--------+
+5 rows in set (0.00 sec)
+
+
+
+// -- EXPLICIT INNER JOINS --
+
+mysql> SELECT * FROM customers
+    -> JOIN orders
+    ->     ON customers.id = orders.customer_id;
++----+------------+-----------+------------------+----+------------+--------+-------------+
+| id | first_name | last_name | email            | id | order_date | amount | customer_id |
++----+------------+-----------+------------------+----+------------+--------+-------------+
+|  1 | Boy        | George    | george@gmail.com |  1 | 2016-02-10 |  99.99 |           1 |
+|  1 | Boy        | George    | george@gmail.com |  2 | 2017-11-11 |  35.50 |           1 |
+|  2 | George     | Michael   | gm@gmail.com     |  3 | 2014-12-12 | 800.67 |           2 |
+|  2 | George     | Michael   | gm@gmail.com     |  4 | 2015-01-03 |  12.50 |           2 |
+|  5 | Bette      | Davis     | bette@aol.com    |  5 | 1999-04-11 | 450.25 |           5 |
++----+------------+-----------+------------------+----+------------+--------+-------------+
+5 rows in set (0.00 sec)
+
+mysql>
+mysql> SELECT first_name, last_name, order_date, amount
+    -> FROM customers
+    -> JOIN orders
+    ->     ON customers.id = orders.customer_id;
++------------+-----------+------------+--------+
+| first_name | last_name | order_date | amount |
++------------+-----------+------------+--------+
+| Boy        | George    | 2016-02-10 |  99.99 |
+| Boy        | George    | 2017-11-11 |  35.50 |
+| George     | Michael   | 2014-12-12 | 800.67 |
+| George     | Michael   | 2015-01-03 |  12.50 |
+| Bette      | Davis     | 1999-04-11 | 450.25 |
++------------+-----------+------------+--------+
+5 rows in set (0.00 sec)
+
+mysql>
+mysql> SELECT *
+    -> FROM orders
+    -> JOIN customers
+    ->     ON customers.id = orders.customer_id;
++----+------------+--------+-------------+----+------------+-----------+------------------+
+| id | order_date | amount | customer_id | id | first_name | last_name | email            |
++----+------------+--------+-------------+----+------------+-----------+------------------+
+|  1 | 2016-02-10 |  99.99 |           1 |  1 | Boy        | George    | george@gmail.com |
+|  2 | 2017-11-11 |  35.50 |           1 |  1 | Boy        | George    | george@gmail.com |
+|  3 | 2014-12-12 | 800.67 |           2 |  2 | George     | Michael   | gm@gmail.com     |
+|  4 | 2015-01-03 |  12.50 |           2 |  2 | George     | Michael   | gm@gmail.com     |
+|  5 | 1999-04-11 | 450.25 |           5 |  5 | Bette      | Davis     | bette@aol.com    |
++----+------------+--------+-------------+----+------------+-----------+------------------+
+5 rows in set (0.00 sec)
+
+
+
+// -- ARBITRARY JOIN - meaningless, but still possible --
+
+mysql> SELECT * FROM customers
+    -> JOIN orders ON customers.id = orders.id;
++----+------------+-----------+------------------+----+------------+--------+-------------+
+| id | first_name | last_name | email            | id | order_date | amount | customer_id |
++----+------------+-----------+------------------+----+------------+--------+-------------+
+|  1 | Boy        | George    | george@gmail.com |  1 | 2016-02-10 |  99.99 |           1 |
+|  2 | George     | Michael   | gm@gmail.com     |  2 | 2017-11-11 |  35.50 |           1 |
+|  3 | David      | Bowie     | david@gmail.com  |  3 | 2014-12-12 | 800.67 |           2 |
+|  4 | Blue       | Steele    | blue@gmail.com   |  4 | 2015-01-03 |  12.50 |           2 |
+|  5 | Bette      | Davis     | bette@aol.com    |  5 | 1999-04-11 | 450.25 |           5 |
++----+------------+-----------+------------------+----+------------+--------+-------------+
+5 rows in set (0.00 sec)
+
+mysql> SELECT first_name, last_name, order_date, amount
+    -> FROM customers
+    -> JOIN orders
+    -> ON customers.id = orders.customer_id
+    -> ORDER BY amount;
++------------+-----------+------------+--------+
+| first_name | last_name | order_date | amount |
++------------+-----------+------------+--------+
+| George     | Michael   | 2015-01-03 |  12.50 |
+| Boy        | George    | 2017-11-11 |  35.50 |
+| Boy        | George    | 2016-02-10 |  99.99 |
+| Bette      | Davis     | 1999-04-11 | 450.25 |
+| George     | Michael   | 2014-12-12 | 800.67 |
++------------+-----------+------------+--------+
+5 rows in set (0.01 sec)
+
+mysql> SELECT first_name, last_name, order_date, AVG(amount)
+    -> FROM customers
+    -> JOIN orders
+    -> ON customers.id = orders.customer_id
+    -> GROUP BY orders.customer_id;
++------------+-----------+------------+-------------+
+| first_name | last_name | order_date | AVG(amount) |
++------------+-----------+------------+-------------+
+| Boy        | George    | 2016-02-10 |   67.745000 |
+| George     | Michael   | 2014-12-12 |  406.585000 |
+| Bette      | Davis     | 1999-04-11 |  450.250000 |
++------------+-----------+------------+-------------+
+3 rows in set (0.16 sec)
+
+mysql> SELECT first_name, last_name, order_date, AVG(amount)
+    -> FROM customers
+    -> JOIN orders
+    -> ON customers.id = orders.customer_id
+    -> GROUP BY orders.customer_id ORDER BY amount;
++------------+-----------+------------+-------------+
+| first_name | last_name | order_date | AVG(amount) |
++------------+-----------+------------+-------------+
+| Boy        | George    | 2016-02-10 |   67.745000 |
+| Bette      | Davis     | 1999-04-11 |  450.250000 |
+| George     | Michael   | 2014-12-12 |  406.585000 |
++------------+-----------+------------+-------------+
+3 rows in set (0.00 sec)
+
+mysql> SELECT first_name, last_name, order_date, AVG(amount)
+    -> FROM customers
+    -> JOIN orders
+    -> ON customers.id = orders.customer_id
+    -> GROUP BY orders.customer_id ORDER BY amount DESC;
++------------+-----------+------------+-------------+
+| first_name | last_name | order_date | AVG(amount) |
++------------+-----------+------------+-------------+
+| George     | Michael   | 2014-12-12 |  406.585000 |
+| Bette      | Davis     | 1999-04-11 |  450.250000 |
+| Boy        | George    | 2016-02-10 |   67.745000 |
++------------+-----------+------------+-------------+
+3 rows in set (0.00 sec)
+
+mysql> SELECT first_name, last_name, order_date, AVG(amount), customer_id
+    -> FROM customers
+    -> JOIN orders
+    -> ON customers.id = orders.customer_id
+    -> GROUP BY orders.customer_id ORDER BY amount DESC;
++------------+-----------+------------+-------------+-------------+
+| first_name | last_name | order_date | AVG(amount) | customer_id |
++------------+-----------+------------+-------------+-------------+
+| George     | Michael   | 2014-12-12 |  406.585000 |           2 |
+| Bette      | Davis     | 1999-04-11 |  450.250000 |           5 |
+| Boy        | George    | 2016-02-10 |   67.745000 |           1 |
++------------+-----------+------------+-------------+-------------+
+3 rows in set (0.00 sec)
+
+mysql> SELECT * FROM customers
+    -> INNER JOIN orders
+    -> ON customers.id = orders.customer_id;
++----+------------+-----------+------------------+----+------------+--------+-------------+
+| id | first_name | last_name | email            | id | order_date | amount | customer_id |
++----+------------+-----------+------------------+----+------------+--------+-------------+
+|  1 | Boy        | George    | george@gmail.com |  1 | 2016-02-10 |  99.99 |           1 |
+|  1 | Boy        | George    | george@gmail.com |  2 | 2017-11-11 |  35.50 |           1 |
+|  2 | George     | Michael   | gm@gmail.com     |  3 | 2014-12-12 | 800.67 |           2 |
+|  2 | George     | Michael   | gm@gmail.com     |  4 | 2015-01-03 |  12.50 |           2 |
+|  5 | Bette      | Davis     | bette@aol.com    |  5 | 1999-04-11 | 450.25 |           5 |
++----+------------+-----------+------------------+----+------------+--------+-------------+
+5 rows in set (0.00 sec)
+
+mysql>
