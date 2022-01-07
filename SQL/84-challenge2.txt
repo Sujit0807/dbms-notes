@@ -1,0 +1,52 @@
+mysql> SELECT title, AVG(rating) FROM series
+    -> JOIN reviews
+    -> ON series.id = reviews.id
+    -> GROUP BY title
+    -> ORDER BY rating;
++-----------------------+-------------+
+| title                 | AVG(rating) |
++-----------------------+-------------+
+| Fargo                 |     6.00000 |
+| Malcolm In The Middle |     7.00000 |
+| Stranger Things       |     7.10000 |
+| Arrested Development  |     7.50000 |
+| Pushing Daisies       |     7.50000 |
+| Bojack Horseman       |     7.70000 |
+| Archer                |     8.00000 |
+| Freaks and Geeks      |     8.00000 |
+| Seinfeld              |     8.00000 |
+| Curb Your Enthusiasm  |     8.10000 |
+| General Hospital      |     8.40000 |
+| Bob's Burgers         |     8.50000 |
+| Breaking Bad          |     8.90000 |
+| Halt and Catch Fire   |     9.90000 |
++-----------------------+-------------+
+14 rows in set (0.14 sec)
+
+mysql> SELECT
+    ->     title,
+    ->     AVG(rating) as avg_rating
+    -> FROM series
+    -> JOIN reviews
+    ->     ON series.id = reviews.series_id
+    -> GROUP BY series.id
+    -> ORDER BY avg_rating;
++----------------------+------------+
+| title                | avg_rating |
++----------------------+------------+
+| General Hospital     |    5.38000 |
+| Bob's Burgers        |    7.52000 |
+| Seinfeld             |    7.60000 |
+| Bojack Horseman      |    7.94000 |
+| Arrested Development |    8.08000 |
+| Archer               |    8.12000 |
+| Curb Your Enthusiasm |    8.12000 |
+| Freaks and Geeks     |    8.60000 |
+| Stranger Things      |    8.76667 |
+| Breaking Bad         |    9.36000 |
+| Fargo                |    9.40000 |
+| Halt and Catch Fire  |    9.90000 |
++----------------------+------------+
+12 rows in set (0.00 sec)
+
+mysql>
