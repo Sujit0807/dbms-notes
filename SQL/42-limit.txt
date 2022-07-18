@@ -115,7 +115,7 @@ mysql> SELECT title, released_year FROM books ORDER BY released_year LIMIT 5;
 +-----------------------------------------------------+---------------+
 5 rows in set (0.00 sec)
 
-mysql> SELECT title, released_year FROM books ORDER BY released_year LIMIT 0,  5;
+mysql> SELECT title, released_year FROM books ORDER BY released_year LIMIT 0,  5; // Limit Start from 0 and 5 records 
 +-----------------------------------------------------+---------------+
 | title                                               | released_year |
 +-----------------------------------------------------+---------------+

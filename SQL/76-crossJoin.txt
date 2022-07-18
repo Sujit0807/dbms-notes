@@ -88,20 +88,3 @@ mysql> SELECT * FROM customers, orders;
 +----+------------+-----------+------------------+----+------------+--------+-------------+
 25 rows in set (0.00 sec)
 
-mysql> SELECT first_name, last_name, order_date, amount
-    -> FROM customers
-    -> JOIN orders
-    -> ON customers.id = orders.customer_id
-    -> ORDER BY amount;
-+------------+-----------+------------+--------+
-| first_name | last_name | order_date | amount |
-+------------+-----------+------------+--------+
-| George     | Michael   | 2015-01-03 |  12.50 |
-| Boy        | George    | 2017-11-11 |  35.50 |
-| Boy        | George    | 2016-02-10 |  99.99 |
-| Bette      | Davis     | 1999-04-11 | 450.25 |
-| George     | Michael   | 2014-12-12 | 800.67 |
-+------------+-----------+------------+--------+
-5 rows in set (0.01 sec)
-
-mysql>
